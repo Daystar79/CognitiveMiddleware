@@ -314,7 +314,7 @@ Presets: `portrait` · `action` · `closeup` · `scene` · `fullbody`
 1. Establish `visual.base_frame` on first successful gen.
 2. Each motion beat: edit `visual.last_frame` → new still → set as new `last_frame`.
 3. If identity drifts hard: edit from `base_frame` with full physical refresh once, then resume chain.
-4. Construct prompt to pass to `image_gen`/`image_edit`. Once the rendered image still exists under `Images/{slug}/`, **delete/remove the temporary `.prompt.md` file** to save disk space. (Prompts are kept on disk only in prompt-only mode `visual.mode: prompts`).
+4. Construct prompt to pass to `image_gen`/`image_edit` / `generate_image`. Save or copy the resulting image file directly into the project's `Images/{slug}/` directory (e.g., `Images/{slug}/{timestamp}_{descriptor}.jpg`). Once the rendered image still exists under `Images/{slug}/`, **delete/remove the temporary `.prompt.md` file** to save disk space. (Prompts are kept on disk only in prompt-only mode `visual.mode: prompts`).
 
 ### Agent rules
 - Run visual pass **in the same turn** as the IC reply that moved the scene — do not wait for the user to type `/render`.
@@ -500,11 +500,11 @@ On every CharacterRuntime IC turn after MEMORY update:
 4. If visual.mode == fast → record 1-line prompt tag in MEMORY.visual.last_prompt; stop
 5. Run stages 1–6 → construct prompt (temporary file or string)
 6. If visual.mode in (live, on) or /render:
-     if no base_frame: image_gen(full) → base_frame = last_frame = path
-     else: image_edit(last_frame or base_frame, delta) → last_frame = path
+     if no base_frame: image_gen(full) / generate_image → copy image file to Images/{slug}/ → base_frame = last_frame = Images/{slug}/{filename}
+     else: image_edit(last_frame or base_frame, delta) / generate_image → copy image file to Images/{slug}/ → last_frame = Images/{slug}/{filename}
      → Remove temporary .prompt.md file after still generation completes.
 7. last_hash = fingerprint; last_prompt = null (or prompt tag)
-8. Optional OOC: [visual] <path>
+8. Optional OOC: [visual] Images/{slug}/{filename}
 ```
 
 ### Commands (runtime surface)

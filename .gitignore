@@ -37,5 +37,12 @@ backups_*/
 Simulator/Private/
 Simulator/private/
 
+# Generated visual stills (local testing only)
+Images/*/*.jpg
+Images/*/*.png
+Images/*/*.jpeg
+Images/*/*.webp
+
+
 
 
