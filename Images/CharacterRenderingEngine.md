@@ -317,6 +317,7 @@ Presets: `portrait` · `action` · `closeup` · `scene` · `fullbody`
 4. Construct prompt to pass to `image_gen`/`image_edit` / `generate_image`. Save or copy the resulting image file directly into the project's `Images/{slug}/` directory (e.g., `Images/{slug}/{timestamp}_{descriptor}.jpg`). Once the rendered image still exists under `Images/{slug}/`, **delete/remove the temporary `.prompt.md` file** to save disk space. (Prompts are kept on disk only in prompt-only mode `visual.mode: prompts`).
 
 ### Agent rules
+- **Local Machine Agent Requirement:** File-based prompt writing (`visual.mode: prompts`) and image rendering (`visual.mode: live`) execute ONLY when operating as an agent on a local machine with filesystem access (Storage L1/L3). In paste-only (L0) or read-only (L2) environments, file writing degrades silently to in-memory `fast` tags.
 - Run visual pass **in the same turn** as the IC reply that moved the scene — do not wait for the user to type `/render`.
 - IC prose first (or concurrent tools), then visual tools; never replace narrative with only an image.
 - Silent prompt creation: when writing `.prompt.md` files in `visual.mode: prompts`, write them silently in the background without outputting OOC notifications or `[visual]` chrome.

@@ -227,6 +227,8 @@ IC beat → MEMORY update → scene-motion check (if visual active) → Render p
 
 Default on load: **`off`**. Auto-visual pass is off by default to keep RP responses instant.
 
+**Local Machine Agent Requirement:** `visual.mode: prompts` and `visual.mode: live` require execution by an AI agent on a local machine with filesystem access (Storage L1/L3). In paste-only (L0) or read-only (L2) web contexts, file writes degrade silently to in-memory `fast` tags.
+
 ### How it works (when enabled)
 1. **Model Loader** — CARD.physical + cultural_bias (+ base_frame for likeness)
 2. **Animation System** — somatic zone + this beat’s staged action → pose
