@@ -222,7 +222,7 @@ IC beat → MEMORY update → scene-motion check (if visual active) → Render p
 |:---|:---|:---|
 | `visual.mode: off` **(default)** | **0ms (instant)** | Auto visual pass disabled. RP runs at full speed. Force frame anytime with `/render`. |
 | `visual.mode: fast` | ~0ms (instant) | Generates a 1-line prompt tag in MEMORY without file writes or tool calls. |
-| `visual.mode: prompts` | +LLM latency | Writes `Images/{slug}/{timestamp}_{descriptor}.prompt.md` on major motion beats. |
+| `visual.mode: prompts` | **~0ms (instant)** | Writes `Images/{slug}/{timestamp}_{descriptor}.prompt.md` silently on major motion beats (no user notification). |
 | `visual.mode: live` | +Image gen latency | Writes prompt **and** calls `image_gen`/`image_edit` on major motion beats. |
 
 Default on load: **`off`**. Auto-visual pass is off by default to keep RP responses instant.
@@ -235,9 +235,9 @@ Default on load: **`off`**. Auto-visual pass is off by default to keep RP respon
 5. **Material & Shader** — `visual.style` or `/style`
 6. **Render Output**
    - **fast:** record lightweight 1-line prompt in `MEMORY.visual.last_prompt`.
-   - **prompts:** write `Images/{slug}/{timestamp}_{descriptor}.prompt.md`.
+   - **prompts:** write `Images/{slug}/{timestamp}_{descriptor}.prompt.md` silently (0 latency, no OOC notification).
    - **live:** invoke `image_gen` (first frame) or `image_edit` (delta); remove temporary prompt file post-render.
-7. One short OOC line optional when a frame is saved: `[visual] path/to/frame`.
+7. Do NOT notify user when `.prompt.md` files are created; prompt files are written silently in the background.
 
 ### Scene motion triggers (when visual.mode != off)
 Fire the visual pass on major motion beats:
@@ -457,10 +457,10 @@ Default: `OFF`. `/adult on` is unadvertised and requires jurisdictional verifica
 12. Update MEMORY silently (snapshot/history/pins/heat/adult_auth/last_somatic_zone/visual.last_action/dirty).
 13. **Visual pass:** If `visual.mode: off` (default) → **skip completely (0 latency overhead)**. If `visual.mode: fast|prompts|live` AND (major scene motion OR `/render` forced) → run CharacterRenderingEngine pass:
     - **fast:** record 1-line scene prompt in MEMORY.visual.last_prompt; do not write files or call image tools.
-    - **prompts:** write `Images/{slug}/{timestamp}_{descriptor}.prompt.md`.
+    - **prompts:** write `Images/{slug}/{timestamp}_{descriptor}.prompt.md` silently (0 latency, no OOC notification).
     - **live / /render:** construct prompt, invoke `image_gen`/`image_edit`/`generate_image` still, save/copy rendered image file into `Images/{slug}/`, then **delete/remove the temporary `.prompt.md` file** so it does not clutter disk space.
     If no motion, skip.
-14. Stop. No CONFIG footer. Offer `/save` only if dirty AND autosave off. Optional one-line `[visual] …` when a new frame was written.
+14. Stop. No CONFIG footer. Offer `/save` only if dirty AND autosave off. Do NOT output `[visual]` notifications when creating `.prompt.md` files.
 
 **RP Output:** Physical action as natural narrative. Dialogue follows naturally. Brackets reserved for author commands. Image paths are OOC chrome, never IC speech.
 

@@ -319,7 +319,7 @@ Presets: `portrait` · `action` · `closeup` · `scene` · `fullbody`
 ### Agent rules
 - Run visual pass **in the same turn** as the IC reply that moved the scene — do not wait for the user to type `/render`.
 - IC prose first (or concurrent tools), then visual tools; never replace narrative with only an image.
-- OOC report at most: `[visual] Images/…` or the generated still path.
+- Silent prompt creation: when writing `.prompt.md` files in `visual.mode: prompts`, write them silently in the background without outputting OOC notifications or `[visual]` chrome.
 - Age/safety gates identical to runtime (no minors; heat images only if adult gates pass).
 - Do not invent cloud image APIs. Use host `image_gen` / `image_edit` or degrade to prompts.
 
