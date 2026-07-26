@@ -48,6 +48,8 @@ FRAMEWORK_FILES = [
     "Characters/README.md",
     ".gitignore",
     "README.md",
+    "CHANGELOG.md",
+    "LICENSE.md",
 ]
 
 FRAMEWORK_DIRS = [
@@ -55,6 +57,7 @@ FRAMEWORK_DIRS = [
     "Framework/Psychology",
     "Framework/Prompts",
     "Simulator",
+    "scripts",
 ]
 
 NEW_BOOK_DIRS = [
