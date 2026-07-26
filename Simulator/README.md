@@ -27,6 +27,9 @@ Persistence: Character Pack (CARD + MEMORY) via Drive/local/paste — see the ru
 | Check a card in chat | This simulator, `/mode test` |
 | Private live RP | This simulator · `/adult on` when both are adults · keep packs private |
 
-## License
+## License & Disclaimers
 
-CC BY-SA 4.0 for the runtime text (root `LICENSE.md`). Your packs and private sessions are your data.
+CC BY-SA 4.0 for the runtime text (root [LICENSE.md](../LICENSE.md)). Your packs and private sessions are your data.
+
+**Compliance & 18+ Warning:** Private adult RP features (`/adult on`) are strictly restricted to adult users (18+) and canonically adult (18+) fictional characters in compliance with GitHub Terms of Service. See root **[DISCLAIMER.md](../DISCLAIMER.md)** for full terms.
+

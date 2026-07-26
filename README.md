@@ -186,3 +186,16 @@ CognitiveMiddleware operates under a hybrid licensing model:
 - 🔒 **Author-Local Materials**: Named character cards (`Characters/*.md` except `_template.md`), private state logs, and relationship maps are **Author-Private**. All rights reserved; excluded from public distribution and deployment scripts.
 
 Copyright (c) 2026 Cian Didymos. See [LICENSE.md](LICENSE.md) for full terms.
+
+---
+
+## Disclaimers & Compliance
+
+CognitiveMiddleware maintains strict compliance with GitHub Terms of Service and Acceptable Use Policies:
+
+- 🔞 **Content & Age Warning (18+):** Optional adult erotica mechanics (`Framework/Mechanics/erotica.md`) and simulator heat modes are strictly restricted to adult users (18+) and canonically adult (18+) fictional characters. Disabled by default.
+- 🧠 **Psychological Disclaimer:** Framework mechanics ("wound", "somatic engine", "Psyche Matrix") are literary tools for novel drafting, not medical or psychological advice.
+- 🤖 **AI Provider Compliance:** Users must adhere to their LLM provider's Terms of Service and Content Policies.
+
+For full legal terms, age gating details, and platform compliance guidelines, read **[DISCLAIMER.md](DISCLAIMER.md)**.
+

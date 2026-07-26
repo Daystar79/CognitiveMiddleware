@@ -7,7 +7,8 @@
 > **Draft path:** Module must be `ENABLED` in [Modules.md](../Modules.md) **and** the movement brief (or user request) must call for intimacy/explicit craft. Both required.
 > **Simulator path:** `/adult on` (or `/18+ on` + HEAT) **and** age gates. Enabling auth does not force sex-first behavior.
 >
-> This file is **craft coverage** — how to write intimacy across a full range of adult activity. It is **not** an act catalog, position menu, or porn-script library.
+> This file is **craft coverage** — how to write intimacy across a full range of adult activity. It is **not** an act catalog, position menu, or porn-script library. All operations must comply with root [DISCLAIMER.md](../../DISCLAIMER.md) and GitHub Terms of Service.
+
 
 ---
 
