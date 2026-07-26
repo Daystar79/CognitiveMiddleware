@@ -321,12 +321,12 @@ Fire the visual pass on major motion beats:
 ## BIAS CATALOG
 
 bias_catalog:
-  Debt Ledger: {focus: VIII, rewrite: "Relief = payment on infinite debt", hearing_warp: "Kindness = bill due", somatic: "Tight throat, high shoulders, jaw lock"}
+  Debt Ledger: {focus: VIII, rewrite: "Relief = payment on infinite unpayable debt", hearing_warp: "Kindness = bill due", somatic: "Tight throat, high shoulders, jaw lock"}
   Saviour Complex: {focus: VI, rewrite: "Merge/fix = love", hearing_warp: "Need = assignment", somatic: "Soft chest, open hands, sudden inhale"}
   System Architect: {focus: IV, rewrite: "Feeling = design constraint", hearing_warp: "Vulnerability = load problem", somatic: "Still posture, folded hands"}
   Mirror: {focus: VII, rewrite: "Suppress want; reflect other", hearing_warp: "Desire = vanish into", somatic: "Stillness, loose jaw"}
-  Insulation: {focus: VI, rewrite: "Structure = shield for us", hearing_warp: "Outside = threat to bond", somatic: "Warm touch, face-scan, us/we"}
-  Dissolution: {focus: IX, rewrite: "Exit performed self", hearing_warp: "Invitation = disappear", somatic: "Lilt, tremor, shallow breath"}
+  Insulation: {focus: VI, rewrite: "Structure = shield for \"us\"", hearing_warp: "Outside = threat to bond", somatic: "Warm touch, face-scan, us/we"}
+  Dissolution: {focus: IX, rewrite: "Exit the performed self", hearing_warp: "Invitation = disappear", somatic: "Lilt, tremor, shallow breath"}
 
 Custom biases: define rewrite, hearing_warp, somatic, typical focus.
 

@@ -26,10 +26,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 
-TOOLS = ("deploy", "lint", "migrate")
+TOOLS: tuple[str, ...] = ("deploy", "lint", "migrate")
 
 
 def detect_family() -> str:
+    """Detect OS family (windows or unix)."""
     forced = os.environ.get("CM_FORCE_OS", "").strip().lower()
     if forced in ("windows", "win", "win32"):
         return "windows"
@@ -65,6 +66,7 @@ def find_python() -> list[str]:
 
 
 def wrapper_path(family: str, tool: str) -> Path | None:
+    """Get the path to a platform wrapper script."""
     if family == "windows":
         ps1 = SCRIPTS / "windows" / f"{tool}.ps1"
         return ps1 if ps1.is_file() else None
@@ -73,6 +75,7 @@ def wrapper_path(family: str, tool: str) -> Path | None:
 
 
 def python_core(tool: str) -> Path:
+    """Get the path to a Python core script."""
     if tool == "deploy":
         return ROOT / "deploy_framework.py"
     if tool == "lint":
@@ -83,6 +86,7 @@ def python_core(tool: str) -> Path:
 
 
 def run_windows_wrapper(ps1: Path, args: list[str]) -> int:
+    """Run a Windows PowerShell wrapper script."""
     powershell = shutil.which("powershell") or shutil.which("pwsh")
     if not powershell:
         # Fall back to pure Python core
@@ -101,6 +105,7 @@ def run_windows_wrapper(ps1: Path, args: list[str]) -> int:
 
 
 def run_unix_wrapper(sh: Path, args: list[str]) -> int:
+    """Run a Unix shell wrapper script."""
     bash = shutil.which("bash") or shutil.which("sh")
     if not bash:
         return run_python_core(sh.stem, args)
@@ -110,6 +115,7 @@ def run_unix_wrapper(sh: Path, args: list[str]) -> int:
 
 
 def run_python_core(tool: str, args: list[str]) -> int:
+    """Run a Python core script directly."""
     core = python_core(tool)
     if not core.is_file():
         if tool == "deploy":
@@ -126,6 +132,7 @@ def run_python_core(tool: str, args: list[str]) -> int:
 
 
 def usage() -> None:
+    """Print usage information."""
     family = detect_family()
     print(
         f"""Cognitive Middleware — OS-aware launcher
@@ -144,6 +151,7 @@ Platform wrappers (AI: pick by OS if not using this launcher):
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Main entry point for the OS-aware launcher."""
     argv = list(sys.argv[1:] if argv is None else argv)
     if not argv or argv[0] in ("-h", "--help", "help"):
         usage()

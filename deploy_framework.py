@@ -19,6 +19,8 @@ It can:
 import os
 import shutil
 import sys
+from pathlib import Path
+from typing import List, Tuple
 
 # Define framework components to distribute
 # Core drafting entry: Main + Rules_Index + realm_data.yaml (via Psychology/) + cards template
@@ -82,13 +84,13 @@ __pycache__/
 *.pyc
 """
 
-def get_source_dir():
+def get_source_dir() -> str:
     return os.path.dirname(os.path.abspath(__file__))
 
-def get_parent_dir():
+def get_parent_dir() -> str:
     return os.path.dirname(get_source_dir())
 
-def get_book_directories(parent_dir):
+def get_book_directories(parent_dir: str) -> List[str]:
     ignored = {
         'Authors_Framework', 
         '.git', 
@@ -109,7 +111,7 @@ def get_book_directories(parent_dir):
             candidates.append(path)
     return sorted(candidates)
 
-def copy_file(src, dst):
+def copy_file(src: str, dst: str) -> None:
     """Copy a file, creating target directory if missing."""
     dst_dir = os.path.dirname(dst)
     if not os.path.exists(dst_dir):
@@ -117,7 +119,7 @@ def copy_file(src, dst):
     shutil.copyfile(src, dst)
     print(f"    Copied: {os.path.relpath(dst, get_parent_dir())}")
 
-def copy_directory(src_dir, dst_dir):
+def copy_directory(src_dir: str, dst_dir: str) -> None:
     """Recursively copy directory contents (sync/overwrite)."""
     if not os.path.exists(src_dir):
         return
@@ -135,9 +137,40 @@ def copy_directory(src_dir, dst_dir):
             shutil.copyfile(src_file, dst_file)
     print(f"    Synced folder: {os.path.relpath(dst_dir, get_parent_dir())}")
 
-def deploy_to_path(source_dir, target_dir):
+def validate_source_files(source_dir: str) -> Tuple[List[str], List[str]]:
+    """Validate that all framework files and directories exist.
+    Returns tuple of (missing_files, missing_dirs)."""
+    missing_files: List[str] = []
+    missing_dirs: List[str] = []
+    
+    for rel_file in FRAMEWORK_FILES:
+        src = os.path.join(source_dir, rel_file)
+        if not os.path.exists(src):
+            missing_files.append(rel_file)
+    
+    for rel_dir in FRAMEWORK_DIRS:
+        src = os.path.join(source_dir, rel_dir)
+        if not os.path.exists(src):
+            missing_dirs.append(rel_dir)
+    
+    return missing_files, missing_dirs
+
+
+def deploy_to_path(source_dir: str, target_dir: str) -> None:
     """Deploys framework to the target path. Initializes if new folder."""
     parent_dir = get_parent_dir()
+    
+    # Validate all source files exist before starting deployment
+    missing_files, missing_dirs = validate_source_files(source_dir)
+    if missing_files or missing_dirs:
+        print(f"\n[!] Cannot deploy: missing source files or directories")
+        for f in missing_files:
+            print(f"    Missing file: {f}")
+        for d in missing_dirs:
+            print(f"    Missing directory: {d}")
+        print("    Please ensure all framework files are present in the source directory.")
+        return
+    
     print(f"\n[+] Deploying framework to: {target_dir}")
     
     # Check if target is a new book directory (empty or doesn't exist)

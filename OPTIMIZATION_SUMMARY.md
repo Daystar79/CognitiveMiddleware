@@ -163,43 +163,41 @@ TOTAL                                 3,473w
 
 ---
 
-## 📁 FILES CREATED
+## 📁 FILES MODIFIED
 
-### Optimized Core Files
-- `Framework/Main_optimized.md` (1,360w)
-- `Framework/Rules_Index_optimized.md` (912w)
-- `Framework/Psychology/realm_data.yaml` (922w) — **REPLACES realm_index.md**
-- `Simulator/CharacterRuntime_optimized.md` (2,426w)
+### Optimized Core Files (Applied to Main Repository)
+- `Framework/Main.md` (optimized to ~1,360w)
+- `Framework/Rules_Index.md` (optimized to ~912w)
+- `Framework/Psychology/realm_data.yaml` (922w) — **REPLACES old realm_index.md**
+- `Simulator/CharacterRuntime.md` (optimized to ~2,426w)
 
-### Optimized Character Cards
-- `Characters/cass_optimized.md` (249w)
-- `Characters/helen_optimized.md` (345w)
-- `Characters/lior_optimized.md` (289w)
-- `Characters/nora_optimized.md` (279w)
-- `Characters/reed_optimized.md` (272w)
-- `Characters/wren_optimized.md` (262w)
+### Optimized Character Card Template
+- `Characters/_template.md` (optimized structure)
+- `Characters/_log_template.yaml` (optimized structure)
+
+**Note:** The optimization has been applied directly to the main framework files. The `_optimized.md` sibling files mentioned in earlier versions of this document are no longer needed as the optimization is now integrated into the primary files.
 
 ---
 
 ## 🔄 MIGRATION PATH
 
-### Option A: Full Replacement (Recommended)
-1. Replace original files with optimized versions:
+**Note:** This repository already contains the optimized framework files. The optimization process has been completed and applied directly to the main files.
+
+### For Users with Old Installations
+If you have an older installation of the framework with the pre-optimization files, you can:
+
+1. **Manual Migration:** Replace your old files with the current versions from this repository:
+   - `Framework/Main.md` (already optimized)
+   - `Framework/Rules_Index.md` (already optimized)
+   - `Framework/Psychology/realm_data.yaml` (replaces old realm_index.md)
+   - `Simulator/CharacterRuntime.md` (already optimized)
+
+2. **Fresh Deployment:** Use the deploy script to deploy the current optimized framework to your book project:
    ```bash
-   mv Framework/Main_optimized.md Framework/Main.md
-   mv Framework/Rules_Index_optimized.md Framework/Rules_Index.md
-   mv Framework/Psychology/realm_data.yaml Framework/Psychology/realm_index.md
-   mv Simulator/CharacterRuntime_optimized.md Simulator/CharacterRuntime.md
-   mv Characters/*_optimized.md Characters/
-   rm Characters/*_optimized.md  # Remove backup files
+   python3 scripts/run.py deploy [target_dir]
    ```
 
-2. Update README.md to reference realm_data.yaml instead of realm_index.md
-
-### Option B: Parallel Testing
-1. Test optimized files alongside originals
-2. Verify output consistency
-3. Gradual migration as confidence builds
+The deploy script will automatically copy the current (already optimized) framework files.
 
 ---
 
@@ -235,10 +233,19 @@ TOTAL                                 3,473w
 ### 2026-07-16 — Consistency Resolution
 - **Removed** duplicate `Framework/Psychology/realm_index.md` (kept `realm_data.yaml`)
 - **Updated** `deploy_framework.py` to reference `realm_data.yaml` instead of `realm_index.md`
-- **Standardized** all character cards to use `canon_adult: YES` (string) format
+- **Standardized** all character cards to use `canon_adult: true` (boolean) format for YAML best practices
 - **Standardized** all character cards to use Roman numerals (Realm I, II, III, etc.) for consistency with realm_data.yaml keys
 - **Added** Adult Mode section to Main.md for completeness
 - **Updated** template to match new character card format
+
+### 2026-07-26 — Current Fixes
+- **Fixed** linter.py frontmatter detection bug (excluded frontmatter `---` lines from horizontal rule counting)
+- **Fixed** deploy_framework.py to validate all source files exist before deployment
+- **Standardized** bias catalog definitions between Main.md and CharacterRuntime.md
+- **Removed** duplicate Relationships sections from character cards (consolidated into Relations.md)
+- **Updated** migrate_optimized.py with atomic file operations and better error handling
+- **Removed** author-local character sample files (as per LICENSE.md §3)
+- **Updated** OPTIMIZATION_SUMMARY.md to reflect current state
 
 ---
 

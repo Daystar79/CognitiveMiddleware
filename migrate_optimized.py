@@ -12,14 +12,25 @@ Run from the repo root (or any cwd — paths resolve from this file).
 
 from __future__ import annotations
 
+import os
 import shutil
 import sys
+import tempfile
 from datetime import date
 from pathlib import Path
+from typing import List, Tuple
 
 ROOT = Path(__file__).resolve().parent
 
-CORE_REPLACEMENTS = [
+
+def word_count(path: Path) -> int:
+    """Count words in a file."""
+    if not path.is_file():
+        return 0
+    return len(path.read_text(encoding="utf-8").split())
+
+
+CORE_REPLACEMENTS: List[Tuple[Path, Path]] = [
     (ROOT / "Framework" / "Main_optimized.md", ROOT / "Framework" / "Main.md"),
     (ROOT / "Framework" / "Rules_Index_optimized.md", ROOT / "Framework" / "Rules_Index.md"),
     (
@@ -32,13 +43,7 @@ CORE_REPLACEMENTS = [
     ),
 ]
 
-DEMO_CHARS = ("cass", "helen", "lior", "nora", "reed", "wren")
-
-
-def word_count(path: Path) -> int:
-    if not path.is_file():
-        return 0
-    return len(path.read_text(encoding="utf-8").split())
+DEMO_CHARS: Tuple[str, ...] = ("cass", "helen", "lior", "nora", "reed", "wren")
 
 
 def main() -> int:
@@ -50,10 +55,11 @@ def main() -> int:
         for name in DEMO_CHARS
         if not (ROOT / "Characters" / f"{name}_optimized.md").is_file()
     ]
-    if missing and char_missing:
+    if missing or char_missing:
         print("[!] No optimized source files found.")
         print("    This migration is only needed when *_optimized.* siblings exist.")
         print("    Current tree already uses the optimized framework layout.")
+        print("    All optimizations have been applied to the main files.")
         return 0
 
     backup_dir = ROOT / f"backups_{date.today().strftime('%Y%m%d')}"
@@ -71,9 +77,18 @@ def main() -> int:
         if not src.is_file():
             print(f"    [skip] missing {src.relative_to(ROOT)}")
             continue
-        shutil.copy2(src, dst)
-        src.unlink()
-        print(f"    {dst.relative_to(ROOT)}")
+        # Use atomic replacement: copy to temp, then replace
+        try:
+            temp_dst = dst.with_suffix('.tmp')
+            shutil.copy2(src, temp_dst)
+            os.replace(temp_dst, dst)  # Atomic on POSIX, raises on Windows if dst exists
+            src.unlink()
+            print(f"    {dst.relative_to(ROOT)}")
+        except Exception as e:
+            print(f"    [ERROR] Failed to replace {dst.relative_to(ROOT)}: {e}")
+            if temp_dst.exists():
+                temp_dst.unlink()
+            continue
 
     print("Replacing character cards...")
     for name in DEMO_CHARS:
@@ -82,9 +97,18 @@ def main() -> int:
         if not src.is_file():
             print(f"    [skip] missing {src.name}")
             continue
-        shutil.copy2(src, dst)
-        src.unlink()
-        print(f"    {dst.name}")
+        # Use atomic replacement
+        try:
+            temp_dst = dst.with_suffix('.tmp')
+            shutil.copy2(src, temp_dst)
+            os.replace(temp_dst, dst)
+            src.unlink()
+            print(f"    {dst.name}")
+        except Exception as e:
+            print(f"    [ERROR] Failed to replace {dst.name}: {e}")
+            if temp_dst.exists():
+                temp_dst.unlink()
+            continue
 
     print("\n=== Migration Complete ===\n")
     print("Word count verification (core):")
