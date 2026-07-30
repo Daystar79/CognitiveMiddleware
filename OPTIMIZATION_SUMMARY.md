@@ -210,7 +210,7 @@ The deploy script will automatically copy the current (already optimized) framew
 
 ### What Was NOT Changed
 - `Framework/linter.py` — utility, not context-loaded
-- `Framework/deploy_framework.py` — deployment script
+- `deploy_framework.py` — deployment script
 - `Framework/Modules.md` — module registry (required for verification)
 - `Characters/_template.md` — template file
 - `Characters/README.md` — directory documentation
