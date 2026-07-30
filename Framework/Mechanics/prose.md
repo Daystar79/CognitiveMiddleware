@@ -27,52 +27,29 @@ Psychology (matrix, voice, somatics) stays in force regardless of style. Style o
 
 ---
 
-## 1. Why lock (design intent)
+## 1. DECLARATIVE PROSE STYLE INVARIANTS
 
-LLMs drift. Mid-scene they "improve" cadence, slide toward house texture, or flatten hardboiled into generic literary. A **locked prose style** is a session contract:
-
-- One narrative register per continuous draft / RP run
-- Character switches do **not** change style (style is session-level, not card-level)
-- Audits compare prose against the locked ID, not a moving target
-
-Unlock remains available so the writer stays in control — but unlock is never silent or accidental.
+| Rule ID | Constraint Type | Target Scope | Mandatory Pipeline Constraint |
+|:---:|:---:|:---|:---|
+| **PRS-01** | **INVARIANT** | Session Scope | Prose style is session-wide; changing active character MUST NOT change active prose style. |
+| **PRS-02** | **INVARIANT** | Default Initializer | MUST initialize session at `Prose Style = llm`, `Style Lock = UNLOCKED` unless brief specifies style. |
+| **PRS-03** | **PRECEDENCE** | Explicit Lock Supremacy | Explicit style selection (`/style <id>` or brief) MUST immediately set `Style Lock = LOCKED`. |
+| **PRS-04** | **NEVER** | Silent Drift | WHILE `Style Lock = LOCKED`: NEVER permit model drift toward natural, literary, or custom texture. |
+| **PRS-05** | **MUST** | Auto-Lock Trigger | IF `Style Lock = UNLOCKED` after first movement: MUST auto-set `Style Lock = LOCKED` to active style. |
+| **PRS-06** | **INVARIANT** | Module Loading | IF `Prose Style = natural`: MUST load `natural_prose.md`. IF `llm`: MUST NOT load `natural_prose.md`. |
 
 ---
 
-## 2. Selection + lock state machine
+## 2. SELECTION & LOCK STATE MACHINE CONSTRAINTS
 
-Live fields:
-
-| Field | Values | Meaning |
-|:---|:---|:---|
-| **Prose Style** | catalog ID (`llm`, `natural`, …) | Active register |
-| **Style Lock** | `UNLOCKED` \| `LOCKED` | Whether the style may change freely |
-
-### Rules
-
-1. **Session start:** `Prose Style = llm`, `Style Lock = UNLOCKED` (unless the movement brief / first message already names a style — then apply that style and set **LOCKED** immediately).
-2. **Explicit selection locks:**
-   - `/style <id>`
-   - `/style custom: …`
-   - Clear natural language: "use hardboiled," "write in natural prose," "anthony/barker," "lock style to cinematic"
-   - Drafting brief line: `Prose Style: natural` (or any ID)
-3. On explicit selection: set the style, set **`Style Lock = LOCKED`**, confirm in a one-line system note: `Style locked: <id>`.
-4. **While LOCKED:**
-   - Ignore casual or implied style drift ("make it prettier," "more literary," model self-rewrite urges).
-   - Refuse style changes with a short note: `Style is locked (<id>). Use /style unlock then /style <new>, or /style force <id>.`
-   - Do **not** quietly migrate toward `natural` or any other pack.
-5. **Unlock (explicit only):**
-   - `/style unlock` → `Style Lock = UNLOCKED`; style ID unchanged until next select
-   - `/style force <id>` → set new style and keep **LOCKED** (intentional replace without two steps)
-   - `/reset` → `llm` + **UNLOCKED**
-6. **While UNLOCKED:**
-   - The LLM **must not** drift toward any specific style pack characteristics (natural, literary, etc.).
-   - Maintain current style's register until explicit selection.
-   - UNLOCKED means "user can change freely," not "LLM can migrate freely."
-7. **Auto-lock after first response:** If Style Lock = UNLOCKED after first character response and no explicit style was set, **automatically set Style Lock = LOCKED** with current style (`llm`). Print confirmation: `Style auto-locked to llm. Use /style to change.`
-8. If style is **`llm`**: do **not** load `natural_prose.md`. If **`natural`**: load it fully.
-9. Character **dialogue voice** still follows the character card. Style ≠ character voice.
-10. Hard gates never change with style: Canon Adult / 18+, never-name-the-system, no speaking for the user (playground), imperfect recall when humanity is loaded.
+| Event / Trigger | Pre-Condition | Action / State Delta | System Output Constraint |
+|:---|:---|:---|:---|
+| **Session Start** | No prior state | Set `Style = llm`, `Lock = UNLOCKED` | Silent state initialization. |
+| **Brief Specification** | Brief contains `Prose Style: <id>` | Set `Style = <id>`, `Lock = LOCKED` | System note: `Style locked: <id>`. |
+| **Command `/style <id>`** | Any state | Set `Style = <id>`, `Lock = LOCKED` | System note: `Style locked: <id>`. |
+| **Drift Request** | `Lock = LOCKED` | REJECT change; maintain active style | Output refusal: `Style is locked (<id>). Use /style unlock.` |
+| **Command `/style unlock`** | `Lock = LOCKED` | Set `Lock = UNLOCKED`; keep active style | System note: `Style unlocked.` |
+| **First Turn Auto-Lock** | `Lock = UNLOCKED` post-turn 1 | Set `Lock = LOCKED`; keep active style | System note: `Style auto-locked to <id>.` |
 
 ---
 

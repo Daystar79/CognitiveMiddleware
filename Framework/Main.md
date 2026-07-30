@@ -71,6 +71,7 @@ Pipeline is ALWAYS ON. Core middleware — not an optional module. Does NOT auth
 
 ### 1) Body baseline (from card)
 - **Physical instrument:** MUST load size, strength, reach, voice load, fatigue, injury, age, sensory bandwidth from `physical`.
+- **Full-Body Cascade Invariant:** Somatic reactions MUST NOT be restricted to isolated facial/hand ticks (e.g., just a jaw twitch). Every state shift MUST engage a multi-zone anatomical cascade across at least **2 interconnected body zones** (e.g. Cranial + Pelvic, Respiratory + Peripheral).
 - **Sexed / hormonal baseline:** Treat as **tendency and capacity** only; NEVER as finished personality or gender script.
 - **Ambient valuation:** Continuous low-amplitude attraction/aversion/neutral read. Default amplitude MUST remain low (notice, not narration).
 - **Invariance:** Baseline is **silent math**. NEVER dump hormones or sexual labels into prose.
@@ -85,11 +86,11 @@ Apply in strict stack order. Later layers MAY suppress, redirect, invert, or amp
 | **Personality / Focus** | Active Focus + latents | Assigns body zone and social stance carrying charge |
 | **Belief & voice** | Card voice, hard_bans, history anchors | Sets absolute prohibitions on speech and action |
 | **Experience / memory** | Epistemic memory + log snapshot | Applies learned caution, hunger, numbness, restraint |
-| **Cognitive Bias** | When `ACTIVE` | Warps how attraction/threat/need is received (Prism) |
+| **Cognitive Bias / Gift** | When `DEFENSIVE_ACTIVE` or `GENERATIVE_ACTIVE` | Warps how attraction/threat/need is received (Prism) |
 | **Scene pressure** | Brief + ledger close | Restricts what is physically possible this movement |
 
 ### 3) Output Constraints
-- On-page prose MUST show **filtered behavior and somatics only**.
+- On-page prose MUST show **filtered full-body behavior and somatics only** (2+ linked zones per state shift).
 - **No Default Eroticization:** Baseline and ambient valuation NEVER force sex, romance plots, or explicit description. Ordinary scenes MUST stay ordinary unless Movement Brief requires intimacy AND erotica module is `ENABLED`.
 - **Card Supremacy:** Card instance ALWAYS overrides generic stereotypes. NEVER apply generic gender scripts.
 
@@ -102,18 +103,21 @@ Speech is an active somatic and psychological choice. MUST enforce syntactical c
 | **Somatic Vocal Mapping** | Realm IV (Will) | MUST output low pitch, measured heavy beats; MUST interrupt; unyielding rhythm. |
 | **Somatic Vocal Mapping** | Realm VI (Compassion) | MUST output breathy register, soft verbal buffers, expanded turn lengths. |
 | **Somatic Vocal Mapping** | Realm IX (Threshold) | MUST output halted delivery, tense pauses, thinning vocal timbre, gasping fragments. |
-| **Verbal Defense** | Bias State `ACTIVE` | MUST switch to card `verbal_defense` (technical insulation, deflection, smothering, or self-silencing). |
+| **Verbal Defense / Stance** | `DEFENSIVE_ACTIVE` / `GENERATIVE_ACTIVE` | IF `DEFENSIVE_ACTIVE` → MUST apply `verbal_defense`. IF `GENERATIVE_ACTIVE` → MUST apply `generative_stance`. |
 | **Space Control** | `conversational_stance` | Dominant MUST interrupt & claim space; Yielding MUST surrender floor & use dry monosyllables. |
 | **Relational Shift** | `relational_verbal_shifts` | MUST modify cadence per target; NEVER use identical speech patterns for two interlocutors. |
 
 ## Tripartite Filtering Model
 1. **Permanent World-Filters (Always On):** Cultural Bias (metaphysics/taboos) + Occupation (lexicon/staging).
-2. **Dynamic Intercept Filter (Triggered):** Cognitive Bias (Wound). Default `DORMANT`. Activates ONLY under wound-relevant emotional pressure.
+2. **Dynamic Intercept Filter (Triggered):** Dual-Aspect Intercept — Cognitive Bias (Wound) & Cognitive Gift (Virtue/Anchor).
+   - Default state: `DORMANT`.
+   - Under threat, trauma cues, or defensive pressure → resolves to `DEFENSIVE_ACTIVE` (Wound).
+   - Under safety, trust, creative flow, or moral alignment → resolves to `GENERATIVE_ACTIVE` (Gift).
 3. **Dynamic Focus:** Auto-shifts mid-scene UNLESS `Focus Lock = LOCKED`.
 4. **Focus Lock:** Brief → `LOCKED`; `/focus unlock` → auto-shift resumes.
-5. **Bias State Invariant:** Default `DORMANT`. `ACTIVE` under pressure/trigger. MUST return to `DORMANT` after sustained low-stakes beats.
+5. **Bias State Invariant:** Default `DORMANT`. Resolves to `DEFENSIVE_ACTIVE` or `GENERATIVE_ACTIVE` under relevant pressure/safety. MUST return to `DORMANT` after sustained low-stakes beats.
 6. **Focus Invariant:** Focus shifts NEVER auto-change Bias State.
-7. **Somatic Invariant:** Every Focus/Bias transition MUST somaticize physically (body first); NEVER name labels.
+7. **Somatic Invariant:** Every Focus/Bias/Gift transition MUST somaticize physically (body first); NEVER name labels.
 
 ## Epistemic Memory & Skill Constraints
 
@@ -131,10 +135,12 @@ Speech is an active somatic and psychological choice. MUST enforce syntactical c
 | `skills.latent` | **Frictional** | MUST show physical fumbles (dropping tools, re-measuring) & bracing tells. |
 | Untrained (neither) | **Uncapable** | MUST express helplessness or request aid; NEVER perform cleanly. |
 
-## Prism Distortion (ACTIVE bias only)
-1. **Input Landing:** Latent skill or sensory fact received.
-2. **Hijacked Receipt:** Active Focus + Bias rewrites input to confirm wound.
-3. **Misconstrued Hearing:** MUST warp speech into critique, threat, demand, salvage task, constraint, or dissolution invitation — show in behavior/speech; NEVER label.
+## Prism Intercept Engine (ACTIVE State)
+1. **Input Landing:** Latent skill, speech, or sensory fact received.
+2. **Intercept Processing:**
+   - **Defensive Prism (`DEFENSIVE_ACTIVE` - Wound):** Active Focus + Bias rewrites input to confirm wound. Warps speech into critique, threat, demand, salvage task, constraint, or dissolution invitation (**Misconstrued Hearing**).
+   - **Generative Prism (`GENERATIVE_ACTIVE` - Gift):** Active Focus + Gift reframes input into opportunity, resonance, protective strength, or deep connection (**Resonant Hearing**).
+3. **Behavioral Output:** Show warped or resonant reception strictly through somatic posture and speech cadence; NEVER label the engine state.
 
 ## Great Wheel (10 Realms)
 Use `realm_data.yaml` for brace/release/somatic per realm. NEVER name realm numbers on-page.
@@ -164,25 +170,25 @@ Upon movement approval, update `Characters/[slug]_log.yaml`:
 
 ---
 
-# ARCHETYPES & BIAS CATALOG
+# ARCHETYPES, BIAS & GIFT CATALOG
 
-| ID | Name | Focus | Latents | Bias |
-|:---|:---:|:---:|:---|:---|
-| **A** | Concrete Voice | 8 | 1, 2, 7 | Debt Ledger |
-| **B** | Caregiver | 6 | 2, 4, 8 | Saviour Complex |
-| **C** | System Architect | 4 | 1, 2, 5, 8 | System Architect |
-| **D** | Mirror Reflector | 7 | 1, 2, 6 | Mirror |
-| **E** | Insulation Anchor | 6 | 1, 2, 7 | Insulation |
-| **F** | Threshold Seeker | 9 | 1, 2, 3 | Dissolution |
+| ID | Name | Focus | Latents | Bias (Wound) | Gift (Virtue / Anchor) |
+|:---|:---:|:---:|:---|:---|:---|
+| **A** | Concrete Voice | 8 | 1, 2, 7 | Debt Ledger | Sacred Stewardship |
+| **B** | Caregiver | 6 | 2, 4, 8 | Saviour Complex | True Sanctuary |
+| **C** | System Architect | 4 | 1, 2, 5, 8 | System Architect | Illuminated Symmetry |
+| **D** | Mirror Reflector | 7 | 1, 2, 6 | Mirror | Resonant Truth |
+| **E** | Insulation Anchor | 6 | 1, 2, 7 | Insulation | Sanctuary Bridge |
+| **F** | Threshold Seeker | 9 | 1, 2, 3 | Dissolution | Threshold Vision |
 
-| Bias | Typical Focus | Trigger | Rewrite Rule | Hearing Warp | Somatic Tell |
-|:---|:---|:---|:---|:---|:---|
-| **Debt Ledger** | VIII | Safety, affection, rest | Relief = payment on infinite unpayable debt | Kindness = bill due | Tight throat, high shoulders, jaw lock |
-| **Saviour Complex** | VI | Another's pain or need | Merge/fix = love | Need = assignment | Soft chest, open hands, sudden inhale |
-| **System Architect** | IV | Emotion, chaos, intimacy | Feeling = design constraint | Vulnerability = load problem | Still posture, folded hands |
-| **Mirror** | VII | Collision, strong want | Suppress want; reflect other | Desire = vanish into | Stillness, loose jaw |
-| **Insulation** | VI | Pressure on the bond | Structure = shield for "us" | Outside = threat to bond | Warm touch, face-scan |
-| **Dissolution** | IX | Edge/performance fear | Exit the performed self | Invitation = disappear | Lilt, tremor, shallow breath |
+| Aspect | Typical Focus | Defensive Trigger (`DEFENSIVE_ACTIVE`) | Defensive Hearing Warp | Generative Trigger (`GENERATIVE_ACTIVE`) | Generative Hearing Warp | Somatic Tells (Brace vs. Expansion) |
+|:---|:---|:---|:---|:---|:---|:---|
+| **Debt Ledger / Sacred Stewardship** | VIII | Vulnerability, affection, rest | Kindness = bill due / debt | Shared trust, communal craft | Generosity = shared stewardship | Tight throat, jaw lock *(Brace)* vs. Chest drops, open breath *(Expansion)* |
+| **Saviour Complex / True Sanctuary** | VI | Another's raw pain or need | Need = assignment / obligation | Safe emotional bounds, mutual agency | Presence = quiet refuge without ownership | Soft chest, rapid inhale *(Brace)* vs. Grounded posture, calm gaze *(Expansion)* |
+| **System Architect / Illuminated Symmetry** | IV | Emotion, chaos, intimacy | Feeling = load/structure failure | Collaborative problem-solving | Complexity = potential for elegant order | Still posture, folded hands *(Brace)* vs. Fluid gestures, steady vocal pitch *(Expansion)* |
+| **Mirror / Resonant Truth** | VII | Collision, strong external want | Desire = vanish into interlocutor | Unconditional acceptance, authentic bond | Reflection = revealing truth while whole | Stillness, loose jaw *(Brace)* vs. Level stance, distinct voice cadence *(Expansion)* |
+| **Insulation / Sanctuary Bridge** | VI | Outside pressure on the bond | Outside = threat to bond | Shared sanctuary, allied strength | Perimeter = protective refuge for all | Warm touch, micro-scans *(Brace)* vs. Expansive posture, unhurried voice *(Expansion)* |
+| **Dissolution / Threshold Vision** | IX | Performance/exposure fear | Invitation = disappear / exit self | Safe creative/spiritual edge | Vulnerability = portal for artistic breakthrough | Lilt, tremor, shallow breath *(Brace)* vs. Clear vocal timbre, centered stance *(Expansion)* |
 
 ---
 
@@ -193,11 +199,11 @@ Upon movement approval, update `Characters/[slug]_log.yaml`:
 | **0** | Ledger Integrity | Pre-flight Check | MUST confirm status is `CLEAN`; STOP if `BLOCKED`. |
 | **1** | Load Manifest | Context Load | MUST load brief, preceding read, active cards, logs, rules, enabled modules. |
 | **2** | Body Baseline | Silent Compute | MUST calculate physical capacity & ambient valuation; KEEP amplitude low. |
-| **3** | Runtime Filters | Silent Compute | MUST apply culture → occupation → Focus → belief/voice → memory → scene pressure. |
+| **3** | Runtime Filters | Silent Compute | MUST apply culture → occupation → Focus → belief/voice → memory → scene pressure/safety. |
 | **4** | Focus State | Dynamic Shift | IF `Focus Lock = UNLOCKED` → MAY shift Focus based on pressure; ELSE keep locked. |
-| **5** | Bias State | Mode Resolution | Resolve `ACTIVE` vs `DORMANT`; MUST revert to `DORMANT` after low stakes. |
-| **6** | Somatic Precedence | Narrative Output | MUST output physical reaction BEFORE cognitive realization; NO brackets. |
-| **7** | Prism Intercept | Narrative Output | IF `Bias ACTIVE` → MUST apply warp & misconstrued hearing; NEVER label. |
+| **5** | Bias State | Mode Resolution | Resolve `DORMANT`, `DEFENSIVE_ACTIVE`, or `GENERATIVE_ACTIVE`; MUST revert to `DORMANT` after low stakes. |
+| **6** | Somatic Precedence | Narrative Output | MUST output multi-zone physical reaction (2+ linked body zones) BEFORE cognitive realization; NO brackets. |
+| **7** | Prism Intercept | Narrative Output | IF `DEFENSIVE_ACTIVE` or `GENERATIVE_ACTIVE` → MUST apply corresponding Prism warp; NEVER label. |
 | **8** | Modules | Optional Craft | Apply ENABLED module parameters ONLY where brief engages them; NEVER override core bans. |
 | **9** | Transformation | Silent Compute | Calculate deltas silently during generation; NO inline logs. |
 | **10** | Hard Bans | Output Hygiene | MUST enforce `Rules_Index.md` (no matrix jargon, 100% off-page). |

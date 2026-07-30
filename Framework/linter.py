@@ -22,14 +22,21 @@ SYSTEM_LEAKS_PATTERNS: List[Tuple[re.Pattern, str, str]] = [
     (re.compile(r"\btransformation_weights\b", re.IGNORECASE), "Framework Jargon", "transformation_weights leak"),
     (re.compile(r"\btransformation_history\b", re.IGNORECASE), "Framework Jargon", "transformation_history leak"),
     (re.compile(r"\bPrism Distortion\b", re.IGNORECASE), "Framework Jargon", "Prism Distortion engine reference"),
+    (re.compile(r"\bGenerative Prism\b", re.IGNORECASE), "Framework Jargon", "Generative Prism engine reference"),
     (re.compile(r"\bGreat Wheel\b", re.IGNORECASE), "Framework Jargon", "Great Wheel reference"),
-    (re.compile(r"\b(trauma|reframe|coping mechanism|emotional wound|active wound|psychological wound|emotional trigger|psychological trigger|wound trigger)\b", re.IGNORECASE), "Psychological Labels (Therapy Speak)", "Psychological/therapy labels (show body instead)"),
-    (re.compile(r"\bDebt Ledger\b", re.IGNORECASE), "Engine Bias Names", "Debt Ledger bias name leak"),
-    (re.compile(r"\bSaviour Complex\b", re.IGNORECASE), "Engine Bias Names", "Saviour Complex bias name leak"),
-    (re.compile(r"\bSystem Architect\b", re.IGNORECASE), "Engine Bias Names", "System Architect bias name leak"),
-    (re.compile(r"\bMirror (bias|reflector)\b", re.IGNORECASE), "Engine Bias Names", "Mirror bias name leak"),
-    (re.compile(r"\bInsulation\b", re.IGNORECASE), "Engine Bias Names", "Insulation bias name leak"),
-    (re.compile(r"\bDissolution\b", re.IGNORECASE), "Engine Bias Names", "Dissolution bias name leak"),
+    (re.compile(r"\b(trauma|reframe|coping mechanism|emotional wound|active wound|psychological wound|emotional trigger|psychological trigger|wound trigger|cognitive gift|sacred anchor|virtue lens|self-actualiz\w+|empowerment|safe space|healing journey)\b", re.IGNORECASE), "Psychological Labels (Therapy Speak)", "Psychological/therapy labels (show body instead)"),
+    (re.compile(r"\bDebt Ledger\b", re.IGNORECASE), "Engine Bias & Gift Names", "Debt Ledger bias name leak"),
+    (re.compile(r"\bSaviour Complex\b", re.IGNORECASE), "Engine Bias & Gift Names", "Saviour Complex bias name leak"),
+    (re.compile(r"\bSystem Architect\b", re.IGNORECASE), "Engine Bias & Gift Names", "System Architect bias name leak"),
+    (re.compile(r"\bMirror (bias|reflector)\b", re.IGNORECASE), "Engine Bias & Gift Names", "Mirror bias name leak"),
+    (re.compile(r"\bInsulation\b", re.IGNORECASE), "Engine Bias & Gift Names", "Insulation bias name leak"),
+    (re.compile(r"\bDissolution\b", re.IGNORECASE), "Engine Bias & Gift Names", "Dissolution bias name leak"),
+    (re.compile(r"\bSacred Stewardship\b", re.IGNORECASE), "Engine Bias & Gift Names", "Sacred Stewardship gift name leak"),
+    (re.compile(r"\bTrue Sanctuary\b", re.IGNORECASE), "Engine Bias & Gift Names", "True Sanctuary gift name leak"),
+    (re.compile(r"\bIlluminated Symmetry\b", re.IGNORECASE), "Engine Bias & Gift Names", "Illuminated Symmetry gift name leak"),
+    (re.compile(r"\bResonant Truth\b", re.IGNORECASE), "Engine Bias & Gift Names", "Resonant Truth gift name leak"),
+    (re.compile(r"\bSanctuary Bridge\b", re.IGNORECASE), "Engine Bias & Gift Names", "Sanctuary Bridge gift name leak"),
+    (re.compile(r"\bThreshold Vision\b", re.IGNORECASE), "Engine Bias & Gift Names", "Threshold Vision gift name leak"),
     (re.compile(r"\b(look up|database|search the web|search web|as an AI|my database|retriev\w+ records|external search)\b", re.IGNORECASE), "Out-of-Character Lookup / Temporal Leaks", "Out-of-character AI lookup / temporal leak"),
     (re.compile(r"\b(it'?s important to remember|to be fair|let'?s look at this|while that is a common|actually, from a|safety guidelines?|safety protocols?|respectful conversation|inappropriate content|moral perspective|ethical considerations?|cannot fulfill this request)\b", re.IGNORECASE), "AI Safety / Preachy Tone Leaks", "AI safety tone / preachiness / correction leak"),
 ]
@@ -45,7 +52,7 @@ BANNED_PHRASES_PATTERNS: List[Tuple[re.Pattern, str, str]] = [
     (re.compile(r"\bfor a moment\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'for a moment'"),
     (re.compile(r"\ba long moment\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'a long moment'"),
     (re.compile(r"\bgenuinely\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'genuinely'"),
-    (re.compile(r"\b(wound|trigger|mirror)\b", re.IGNORECASE), "Contextual Watchlist (Warning Only)", "Watchlist term (verify context does not leak framework/therapy jargon)"),
+    (re.compile(r"\b(wound|trigger|mirror|gift|virtue)\b", re.IGNORECASE), "Contextual Watchlist (Warning Only)", "Watchlist term (verify context does not leak framework/therapy jargon)"),
 ]
 
 # Continuous action separators rule
@@ -60,18 +67,25 @@ SYSTEM_LEAKS = {
         (r"\btransformation_weights\b", "transformation_weights leak"),
         (r"\btransformation_history\b", "transformation_history leak"),
         (r"\bPrism Distortion\b", "Prism Distortion engine reference"),
+        (r"\bGenerative Prism\b", "Generative Prism engine reference"),
         (r"\bGreat Wheel\b", "Great Wheel reference"),
     ],
     "Psychological Labels (Therapy Speak)": [
-        (r"\b(trauma|reframe|coping mechanism|emotional wound|active wound|psychological wound|emotional trigger|psychological trigger|wound trigger)\b", "Psychological/therapy labels (show body instead)"),
+        (r"\b(trauma|reframe|coping mechanism|emotional wound|active wound|psychological wound|emotional trigger|psychological trigger|wound trigger|cognitive gift|sacred anchor|virtue lens|self-actualiz\w+|empowerment|safe space|healing journey)\b", "Psychological/therapy labels (show body instead)"),
     ],
-    "Engine Bias Names": [
+    "Engine Bias & Gift Names": [
         (r"\bDebt Ledger\b", "Debt Ledger bias name leak"),
         (r"\bSaviour Complex\b", "Saviour Complex bias name leak"),
         (r"\bSystem Architect\b", "System Architect bias name leak"),
         (r"\bMirror (bias|reflector)\b", "Mirror bias name leak"),
         (r"\bInsulation\b", "Insulation bias name leak"),
         (r"\bDissolution\b", "Dissolution bias name leak"),
+        (r"\bSacred Stewardship\b", "Sacred Stewardship gift name leak"),
+        (r"\bTrue Sanctuary\b", "True Sanctuary gift name leak"),
+        (r"\bIlluminated Symmetry\b", "Illuminated Symmetry gift name leak"),
+        (r"\bResonant Truth\b", "Resonant Truth gift name leak"),
+        (r"\bSanctuary Bridge\b", "Sanctuary Bridge gift name leak"),
+        (r"\bThreshold Vision\b", "Threshold Vision gift name leak"),
     ],
     "Out-of-Character Lookup / Temporal Leaks": [
         (r"\b(look up|database|search the web|search web|as an AI|my database|retriev\w+ records|external search)\b", "Out-of-character AI lookup / temporal leak"),
@@ -96,7 +110,7 @@ BANNED_PHRASES = {
         (r"\bgenuinely\b", "Repetitive filler 'genuinely'"),
     ],
     "Contextual Watchlist (Warning Only)": [
-        (r"\b(wound|trigger|mirror)\b", "Watchlist term (verify context does not leak framework/therapy jargon)"),
+        (r"\b(wound|trigger|mirror|gift|virtue)\b", "Watchlist term (verify context does not leak framework/therapy jargon)"),
     ],
 }
 

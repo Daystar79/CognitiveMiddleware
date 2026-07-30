@@ -6,14 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - 2026-07-24 - 2026-07-26
+## [Unreleased] - 2026-07-29
 
 ### Added
+- **Full-Body Anatomical Cascade Engine**: Expanded the somatic layer across 6 interconnected body zones (Cranial/Ocular, Vocal/Cervical, Thoracic/Respiratory, Abdominal/Visceral, Pelvic/Kinesthetic, Peripheral/Grounding). Enforced the **Multi-Zone Cascade Rule** requiring all physical tells to engage at least 2 linked body zones across `humanity.md`, `realm_data.yaml`, `Main.md`, and `Rules_Index.md`.
+- **Dual-Aspect Psyche Matrix (Wound & Gift)**: Expanded CognitiveMiddleware to include positive psychological dimensions alongside character wounds. Introduced `cognitive_gift`, `generative_anchor`, and `generative_stance` to character cards.
+- **Generative Prism Engine**: Implemented `GENERATIVE_ACTIVE` state and Generative Prism intercept processing (`Resonant Hearing`, open somatics, warm syntactical cadence under trust/flow/safety).
+- **Positive Archetype & Gift Catalog**: Expanded catalog pairing every Wound with its Generative Virtue counterpart (`Debt Ledger` ↔ `Sacred Stewardship`, `Saviour Complex` ↔ `True Sanctuary`, `System Architect` ↔ `Illuminated Symmetry`, `Mirror` ↔ `Resonant Truth`, `Insulation` ↔ `Sanctuary Bridge`, `Dissolution` ↔ `Threshold Vision`).
+- **Positive Psychological Hygiene & Linting**: Added hard bans in `Rules_Index.md` and automated regex checks in `linter.py` for positive therapy-speak (`cognitive gift`, `sacred anchor`, `virtue lens`, `self-actualization`, `empowerment`, `safe space`, `healing journey`) and engine gift names.
 - **Local Machine Agent Safeguards**: Added strict local machine agent requirement for prompt file write operations (`b9d29c8`).
 - **Silent Instant Prompt Generation**: Implemented fast, zero-latency image prompt tags and background prompt creation without blocking turn execution (`4297d03`).
 
 ### Changed
-- **Instruction-to-Constraint Optimization**: Converted imperative and procedural instructions across `Main.md`, `Rules_Index.md`, and `CharacterRuntime.md` into explicit declarative constraint tables using `MUST`, `NEVER`, `SCOPE`, `PRECEDENCE`, and `INVARIANT` blocks (`4465555`).
+- **Instruction-to-Constraint Optimization**: Converted informal, procedural drafting advice and narrative instructions across `humanity.md`, `voices.md`, `prose.md`, `Main.md`, and `Rules_Index.md` into explicit declarative constraint tables using `MUST`, `NEVER`, `SCOPE`, `PRECEDENCE`, and `INVARIANT` blocks.
 - **Live Image Still Routing**: Updated rendering specifications to save stills directly to `Images/{slug}/` and automatically purge transient `.prompt.md` files post-generation to conserve storage (`3d44403`, `4465555`).
 
 ---

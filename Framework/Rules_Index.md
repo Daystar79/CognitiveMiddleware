@@ -18,9 +18,9 @@
 **The matrix stays 100% off-page.**
 
 ### Hard Bans (Prohibitions)
-- **NEVER Output Framework Jargon:** `Realm [N]`, `Focus`, `Bias`, `Brace`, `Release`, `Integration`, `Remnant`, `Passage`, `Great Wheel`, `Prism`.
-- **NEVER Output Psychological Labels:** `trauma`, `reframe`, `coping mechanism`, `wound`, `trigger`.
-- **NEVER Output Engine Labels:** `Prism intercept`, `Debt Ledger`, `Saviour Complex`, `System Architect`, `Mirror`, `Insulation`, `Dissolution`, `Focus Lock`, `Bias State`, `transformation_weights`, `transformation_history`.
+- **NEVER Output Framework Jargon:** `Realm [N]`, `Focus`, `Bias`, `Gift`, `Brace`, `Release`, `Integration`, `Remnant`, `Passage`, `Great Wheel`, `Prism`, `Generative Prism`.
+- **NEVER Output Psychological Labels:** `trauma`, `reframe`, `coping mechanism`, `emotional wound`, `active wound`, `psychological wound`, `emotional trigger`, `psychological trigger`, `wound trigger`, `cognitive gift`, `sacred anchor`, `virtue lens`, `self-actualization`, `empowerment`, `safe space`, `healing journey`.
+- **NEVER Output Engine Labels:** `Prism intercept`, `Debt Ledger`, `Saviour Complex`, `System Architect`, `Mirror`, `Insulation`, `Dissolution`, `Sacred Stewardship`, `True Sanctuary`, `Illuminated Symmetry`, `Resonant Truth`, `Sanctuary Bridge`, `Threshold Vision`, `Focus Lock`, `Bias State`, `transformation_weights`, `transformation_history`.
 - **NEVER Output Debug Dumps:** CONFIG cards, matrix notes, audit tables, beat maps, turn-loop state, transformation deltas/logs.
 - **NEVER Drift Style:** NO style change while `Style Lock = LOCKED` without explicit unlock command.
 - **NEVER Force Natural:** NO natural prose rules when `Style = llm`.
@@ -38,16 +38,17 @@
 
 ## 2. CHARACTER BEHAVIOR CONSTRAINTS
 - **Somatic Precedence:** MUST depict physical sensations BEFORE cognitive processing; NO self-psychology summaries.
+- **Full-Body Cascade:** Every state shift MUST engage a multi-zone anatomical cascade across at least **2 interconnected body zones** (e.g. Cranial + Pelvic, Respiratory + Peripheral); NEVER rely on isolated facial/hand ticks.
 - **NEVER Therapy Dump:** NO analysis, therapy speak, or insight monologues.
 - **Epistemic Invariant:** `memories.detailed` → MUST apply sharp subjective recall & triggers; `memories.footnote` → MUST deflect or act unsure UNLESS scene trigger dereferences; unlisted → MUST treat as forgotten.
 - **Competence Invariant:** `skills.active` → MUST execute cleanly with release tells; `skills.latent` → MUST fumble (drop tools, re-measure) & brace; unlisted → MUST express helplessness.
 - **NEVER Mind-Read:** NEVER state another character's internal thoughts or feelings.
 - **NEVER Future Certainty:** NO predictive certainty or omniscience.
 - **Voice Fidelity:** MUST maintain distinct idiolects; NEVER borrow syntax across characters.
-- **Biased Hearing (ACTIVE):** MUST warp received input through Focus + Bias in dialogue/action; NEVER name bias.
+- **Biased Hearing (ACTIVE):** MUST warp received input through Focus + Bias/Gift in dialogue/action; NEVER name bias or gift.
 - **Somatic Deflection:** Under pressure on charged memory, MUST deflect to body/environment or change subject.
 - **Temporal Gating:** Character MUST NOT comprehend post-era concepts; MUST react with physical confusion or hostility.
-- **Wound Scope:** Cognitive Bias MUST warp perception ONLY when scene context is wound-relevant; MUST stay dormant in mundane beats.
+- **Wound & Gift Scope:** Cognitive Bias (Wound) / Cognitive Gift (Virtue) MUST warp perception ONLY when scene context is wound or gift relevant; MUST stay dormant in mundane beats.
 
 ---
 
@@ -55,8 +56,8 @@
 - MUST show abstract psychology physically; NEVER name it.
 - **Anti-Synthesis Invariant:** MUST end paragraphs on raw fact, action, or unanswered speech — NEVER on interpretive summary.
 - **NEVER Geometry Jargon:** AVOID `geometry`, `dimension`, `trajectory`, `symmetry`, `equilibrium`.
-- **Concrete Anchors:** MUST anchor tension to objects, furniture, and body zones.
-- **Tell Cap:** MAX 1 tell per body zone per beat; body first, then mind.
+- **Concrete Anchors:** MUST anchor tension to objects, furniture, and interconnected body zones.
+- **Full-Body Cascade Cap:** Engage 2+ linked body zones per state shift; max 1 primary tell per zone per beat; body first, then mind.
 - **NEVER Idle Somatic Loop:** MUST update tells ONLY on state shift, escalation, or release.
 - **Dynamic Blindness:** High panic/focus MUST blind character to non-essential environmental details.
 
@@ -92,10 +93,10 @@
 
 ---
 
-## 7. BIAS STATE CONSTRAINTS
+## 7. BIAS & GIFT STATE CONSTRAINTS
 - **Default State:** MUST initialize as `DORMANT` on load (casual beats → normal perception).
-- **Trigger Condition:** Switch to `ACTIVE` ONLY under emotional pressure, card trigger, or charged memory.
-- **ACTIVE Constraint:** MUST apply Prism warp & misconstrued hearing in behavior only; NEVER label.
+- **Trigger Condition:** Switch to `DEFENSIVE_ACTIVE` under threat/pressure, or `GENERATIVE_ACTIVE` under safety/trust/flow.
+- **ACTIVE Constraint:** MUST apply Prism warp & misconstrued/resonant hearing in behavior only; NEVER label.
 - **Reversion Condition:** MUST revert to `DORMANT` after sustained low-stakes beats.
 
 ---

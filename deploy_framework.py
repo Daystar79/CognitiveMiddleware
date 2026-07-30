@@ -98,6 +98,13 @@ def get_book_directories(parent_dir: str) -> List[str]:
         'Backups', 
         'Pathfinder_Campaign', 
         '.Trash-1000', 
+        '$RECYCLE.BIN',
+        'System Volume Information',
+        'tmp',
+        'Code',
+        'Keys',
+        'Legal',
+        'Provider',
         '__pycache__', 
         '.vscode', 
         '.idea'

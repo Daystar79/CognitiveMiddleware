@@ -94,6 +94,7 @@ cultural_bias: "[values + temporal awareness]"
 active_focus: "Realm [N] — [Name]"
 latent_anchors: ["Realm [a]", "Realm [b]", "Realm [c]"]
 cognitive_bias: "[Bias] — [rewrite rule]"
+cognitive_gift: "[Gift] — [resonance rule]"
 default_somatic_alignment: "[baseline]"
 transformation_weights:
   active_focus: 70
@@ -101,7 +102,7 @@ transformation_weights:
   bias_strength: 60
   somatic_flexibility: 40
 depth_of_knowledge: {general: "[...]", esoteric: "[...]", personal: "[...]"}
-voice: {baseline: "[register/tone]", syntactical_engine: "[patterns]", conversational_stance: "[directive|yielding|evasive|buffering|counter-querying]", verbal_defense: "[verbal action under pressure]", hard_bans: [], signature_tics: [], relational_verbal_shifts: {}}
+voice: {baseline: "[register/tone]", syntactical_engine: "[patterns]", conversational_stance: "[directive|yielding|evasive|buffering|counter-querying]", verbal_defense: "[verbal action under pressure]", generative_stance: "[verbal action under safety/trust]", hard_bans: [], signature_tics: [], relational_verbal_shifts: {}}
 history_anchors: ["[...]"]
 scene_seeds: ["[...]"]
 ---

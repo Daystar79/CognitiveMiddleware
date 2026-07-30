@@ -1,120 +1,97 @@
----
-title: "Humanity Protocol — Whole-Body Somatics & Full Human Range"
-description: "Core runtime supplement governing physical embodiment, sensory presence, and whole-body pacing on the page."
-type: "supplementary_protocol"
-role: "Whole-body somatics and full human range guidelines"
-load_protocol: "Highly recommended for high-embodiment drafting sessions"
----
-
 # Humanity Protocol — Whole-Body Somatics & Full Human Range
 *Core runtime supplement. Coordinates with [Main.md](../Main.md) and [Rules_Index.md](../Rules_Index.md) to govern physical embodiment and sensory presence on the page.*
 
 ---
 
-## 1. Core Principles of Embodiment
+## 1. DECLARATIVE EMBODIMENT CONSTRAINTS
 
-To write characters who feel three-dimensional, alive, and physically present, the narrative must treat the body not as a vehicle for speech, but as the primary interface through which the character experiences and reacts to the world.
-
-1.  **Somatic-Cognitive Sequence**: Physical reaction always precedes mental processing. The body registers impact first (gasp, shift, freeze), then the intellect interprets it.
-2.  **Sensory Integration Cycle**:
-    *   **Interoception (Internal)**: Internal organs, heartbeat, temperature, muscle tension, breath quality, balance.
-    *   **Exteroception (External)**: Gravity, touch/texture, sound amplification, air temperature, light level.
-    *   **Action/Dialogue**: The outward response arising from the integration of internal and external states.
-3.  **Whole-Body Pacing**: Avoid localized ticks (e.g., just clenching a jaw or blinking). Distribute physical tension throughout the entire body—from the plant of the heels to the depth of the breath.
-
----
-
-## 2. Whole-Body Somatic Registers
-
-Use the following registers to vary how tension, comfort, and state shifts are described:
-
-### A. Autonomic & Visceral (Interoception)
-*   **Heart & Blood Flow**: Pounding behind the collarbones, a sudden flush of warmth in the ears, a cold sweep across the back of the neck, blood pulsing in the fingertips.
-*   **Breathing Quality**: Breath catching at the base of the throat, shallow chest-rising, slow abdominal breathing, holding air until the lungs burn slightly, a sudden ragged inhale.
-*   **Stomach & Core**: A sudden drop (weightlessness), a tightening knot beneath the ribs, a hollow sensation in the gut, muscle bracing across the abdomen.
-*   **Muscle Tone & Fatigue**: Lead-heavy limbs, a faint tremor in the thighs after standing too long, a sudden release of muscle grouping, jaw fatigue from clenching.
-
-### B. Kinesthetics, Weight & Balance (Movement)
-*   **Weight Distribution**: Leaning heavily on one hip, shifting center of gravity forward onto the toes, feeling the heels sink into the carpet, pressing the back flat against the chair's support.
-*   **Stride & Gait**: Heavy, loud footfalls; soft, toe-first steps; rigid, unyielding strides; a sudden stumble or catch in pace; drifting off-course while walking.
-*   **Speed & Fluidity**: Jerky, high-momentum gestures; smooth, circular motions; hesitation mid-movement (hand hovering); limp-wristed release.
-
-### C. The Sensory Interface (Exteroception)
-*   **Surface Friction & Texture**: Fingers catching on rough wood, palm sticking to cold sweat on glass, clothes rubbing against collarbones, the shock of cold metal on a bare wrist.
-*   **Gravity & Staging**: Feeling pulled toward the floor during fatigue, pushing up from a table using forearm weight, slouching until the neck rests on the cushion.
-*   **Ambient Environment**: The temperature of a room hitting the skin, squinting against a sudden glare, ears ringing in sudden silence.
+| Rule ID | Constraint Type | Target Scope | Mandatory Pipeline Constraint |
+|:---:|:---:|:---|:---|
+| **HUM-01** | **INVARIANT** | Somatic Sequence | MUST depict physical reaction BEFORE cognitive interpretation (body first, mind second). |
+| **HUM-02** | **INVARIANT** | Sensory Cycle | MUST sequence interoception (internal) → exteroception (external) → dialogue/action. |
+| **HUM-03** | **INVARIANT** | Multi-Zone Cascade | Every physical tell MUST engage at least **2 interconnected body zones** (e.g. Cranial + Pelvic). |
+| **HUM-04** | **NEVER** | Single-Muscle Ticks | NEVER output isolated single-muscle ticks (e.g., just a jaw twitch or blink). |
+| **HUM-05** | **PRECEDENCE** | Somatic Primacy | Somatic state ALWAYS overrides intellectual dialogue (body language speaks truth over words). |
 
 ---
 
-## 3. The Full Human Emotional Spectrum in the Body
+## 2. Whole-Body Anatomical Cascade Engine (6 Somatic Zones)
 
-Expand physical tells beyond simple anxiety to express the full range of human experience:
+The framework organizes physical embodiment across six interconnected body zones. Every physical state shift MUST engage 2+ zones:
 
-### A. Warmth, Connection & Intimacy
-*   **Face/Eyes**: Gaze lingering on the mouth or hands; softening of the muscles around the eyes; slow, easy blinking; a micro-smile that relaxes the jaw.
-*   **Shoulders/Chest**: Chest opening (shoulders rolling back and down); forward lean that reduces physical distance; breathing syncing with the other person.
-*   **Hands/Touch**: Open palms; soft, lingering pressure on contact; light, curious finger tracing; hands settling in the lap without clenching.
-*   **Skin/Temperature**: A slow, comfortable warmth spreading through the chest and hands; goosebumps from a pleasant shiver; relaxation of the throat.
-
-### B. Grief, Loss & Hollow State
-*   **Posture**: Slight rounding of the shoulders; head hanging forward; body slumping or sagging; leaning heavily against a wall or resting a shoulder against a doorframe for support.
-*   **Limbs/Hands**: Hands hanging limp or heavy at the sides; fingers curling loosely; arms crossed not defensively, but as if holding the self together.
-*   **Throat/Breathing**: A thick, constricted throat (difficulty swallowing); shallow, shaky inhales; long, silent exhales that trail off into nothing.
-*   **Gaze**: Distant, unfocused stare; eyes fixed on empty space or the floor; slow blink rate; eyes turning away from light.
-*   **Visceral**: A cold sensation in the chest cavity; feeling physically hollow or lightweight; motor coordination becoming clumsy.
-
-### C. Aggression, Boundary Setting & Heat
-*   **Core/Posture**: Sitting up straight or standing at full height; drawing the shoulders back; chest expanding; center of gravity shifting forward.
-*   **Face/Jaw**: Jaw clenching until the muscle bunts; nostrils flaring; brow lowering; gaze locking onto the target without blinking.
-*   **Limbs/Hands**: Fists closing; knuckles turning pale; arms crossing tightly high on the chest; fingers gripping edges of furniture or clothing.
-*   **Feet/Movement**: Feet planting wide; strides becoming heavy and direct; movements sharp, linear, and high-velocity.
-*   **Visceral**: Radiating heat in the face and throat; rapid, loud breathing; adrenaline spike causing micro-tremors in the hands.
-
-### D. Vulnerability, Exposure & Fear
-*   **Posture**: Shrinking back; shoulders drawing forward to protect the throat and chest; head turning away.
-*   **Breathing/Throat**: Rapid, shallow breaths; breath catching and holding; visible swallowing; vocal register rising or cracking.
-*   **Hands/Limbs**: Restless hands; fingers plucking at thread or adjusting clothes; arms wrapped around the abdomen; defensive palms-up gesture.
-*   **Skin/Visceral**: A cold shiver running down the spine; stomach dropping; skin turning cold or sweating; goosebumps on the arms.
-*   **Feet**: Weight shifted to the back foot, ready to retreat; heels lifted slightly.
-
-### E. Exhaustion, Depletion & Gravity
-*   **Posture**: Slumping forward completely; chin sinking to the chest; shoulders rolling in; elbows propping up the head.
-*   **Face/Eyes**: Eyelids heavy and drooping; slow, long blinks; dry eyes; facial expression slack.
-*   **Limbs**: Slow, dragging movements; hands resting palms-up, fingers loosely curled; heavy sighs.
-*   **Visceral**: Limbs feeling like lead; dull ache in the lower back; cold extremities; breathing slow and shallow.
+| Zone ID | Zone Name | Primary Anatomical Targets | Mandatory Output Manifestation |
+|:---:|:---|:---|:---|
+| **Z1** | **Cranial & Ocular** | Head, Face, Jaw, Eyes | Temple pulse, brow tension, blink rate, pupil focus, jaw hinge lock, ear flush. |
+| **Z2** | **Vocal & Cervical** | Throat, Larynx, Neck, Collarbone | Larynx shift, visible swallowing, cervical spine corded muscles, collarbone drop. |
+| **Z3** | **Thoracic & Respiratory** | Chest, Sternum, Lungs, Ribs | Sternum elevation, intercostal rib tightness, shallow apex vs. abdominal expansion. |
+| **Z4** | **Abdominal & Visceral** | Diaphragm, Gut, Solar Plexus | Diaphragm catch, solar plexus tightening, stomach dropping, core muscle bracing. |
+| **Z5** | **Pelvic & Kinesthetic** | Hips, Lumbar Spine, Center of Gravity | Lumbar arch/slump, hip angle, center of gravity shift (toes vs. heels), posture lean. |
+| **Z6** | **Peripheral & Grounding** | Limbs, Hands, Feet, Gait | Heel pressure, toe curling in shoes, stride weight/velocity, finger tremor vs. white knuckles. |
 
 ---
 
-## 4. Integration with the Psyche Matrix (Realm Warps)
+## 3. DECLARATIVE SOMATIC REGISTERS
 
-When a character is in a specific Active Focus, their expression of the full emotional spectrum is warped by their Realm’s somatic focus:
+### A. Autonomic & Visceral Constraints (Interoception)
+- **Heart & Blood Flow:** MUST express through pounding behind collarbones, ear flushes, or cold neck sweeps; NEVER name "adrenaline".
+- **Breathing Quality:** MUST express through larynx catching, shallow chest-rising, or slow abdominal expansion; NEVER name "panic attack".
+- **Stomach & Core:** MUST express through weightlessness drop, rib knotting, or core bracing; NEVER name "anxiety".
 
-*   **Realm I (Origin - Center/Shoulders)**: Expresses anger or grief through rigid composure; tension accumulates in the neck and upper back.
-*   **Realm II (Form - Hands/Craft)**: Expresses intimacy or vulnerability by focusing on objects, adjusting dials, or tracing textures rather than making eye contact.
-*   **Realm III (Identity - Chest/Sternum)**: Expresses grief or exposure by collapsing the chest; seeks connection by mirroring the other's posture.
-*   **Realm IV (Will - Posture/Stance)**: Expresses warmth or intimacy through a sudden, direct, unhurried stillness; anger is cold and linear.
-*   **Realm V (Echoes - Ears/Hearing)**: Expresses vulnerability by cocking the head, blocking ears, or tuning out the environment.
-*   **Realm VI (Compassion - Chest/Inhale)**: Expresses intimacy by breathing in sync; boundaries are held by resting hands on own body.
-*   **Realm VII (Presence - Feet/Ground)**: Expresses anger or fear by planting feet and freezing; releases through slow, heavy steps.
-*   **Realm VIII (Integration - Rhythm)**: Expresses transitions and code-switches through rapid clothing and posture adjustments.
-*   **Realm IX (Threshold - Fingers/Breath)**: Expresses panic or dread through finger tremors and gasps; releases by moving while trembling.
-*   **Realm X (Return - Hands/Posture)**: Expresses connection or release by turning palms up and letting the arms hang completely slack.
+### B. Kinesthetics, Weight & Balance Constraints (Movement)
+- **Weight Distribution:** MUST ground through hip lean, toe/heel gravity shift, or lumbar support pressure.
+- **Stride & Gait:** MUST differentiate between heavy footfalls, toe-first steps, and rigid strides.
+- **Speed & Fluidity:** MUST output jerky momentum, circular smoothness, or mid-gesture hesitation.
 
----
-
-## 5. Physical Pacing, Clumsiness & Cognitive Drift (Biological Realism)
-
-Human bodies operate with physical limitations and imperfect coordination:
-- **The Fumble Rule:** Characters must fumble with keys, trip on thresholds, drop objects under high pressure, or struggle with stuck drawers/heavy doors to ground them in reality.
-- **Vestment Resistance:** Keep clothing barriers active and awkward (heavy boots, sliding sleeves, catching hems).
-- **Dialogue Asymmetry:** Dialogue must drift, with characters talking past each other, trailing off (`...`), or giving oblique answers (answering the subtext rather than literal words).
-- **Imperfect Recall:** Blur dates, names, or sequences; memory recall should rely on external/somatic triggers.
+### C. Sensory Interface Constraints (Exteroception)
+- **Surface Friction:** MUST anchor touch to rough wood, cold sweat on glass, collarbone friction, or cold metal on skin.
+- **Gravity & Staging:** MUST show weight pulling toward floor, forearm support pushing up, or cushion slouching.
 
 ---
 
-## 6. Integration with Transformation Engine (Character Evolution)
+## 4. EMOTIONAL SPECTRUM SOMATIC CONSTRAINTS
 
-A character's physical pacing and somatic tells are not static; they evolve with character transformation:
-- **YAML Alignment:** Load card build defaults, then overlay `Characters/[slug]_log.yaml` snapshot when present (Focus, weights, baseline somatic, flexibility). Do not read movement history from the card.
-- **Somatic Tell Decay:** Temporary somatic state changes decay over 1–3 movements (scene close on Continuity_Ledger only). Permanent somatic shifts recorded in `_log.yaml` history become the character's new baseline tell in the snapshot.
-- **Somatic Flexibility:** A high `somatic_flexibility` / log `flexibility` (e.g., 70+) allows characters to rotate tells rapidly across body zones and recover from high-tension states quickly, while low flexibility (e.g., 20) results in rigid, persistent tells that lock up the body.
+| Emotional State | Mandatory Body Zone 1 | Mandatory Body Zone 2 | Output Constraint |
+|:---|:---|:---|:---|
+| **Warmth & Intimacy** | **Z1 (Cranial):** Gaze lingers, eye muscle soften, slow blinking | **Z3 (Thoracic):** Chest opens, shoulders drop, breathing syncs | MUST show open palms and relaxed throat; NEVER output validation monologues. |
+| **Grief & Hollow** | **Z5 (Pelvic):** Shoulder/head sag, slump against doorframe | **Z2 (Vocal):** Thick constricted throat, shaky breath | MUST show limp limbs and distant gaze; NEVER state "was heartbroken". |
+| **Aggression & Heat** | **Z4 (Abdominal):** Core braces, center of gravity shifts forward | **Z6 (Peripheral):** Fists clench, feet plant wide, heavy stride | MUST show jaw muscle bunting and pale knuckles; NEVER use profanity flurry without posture shift. |
+| **Vulnerability & Fear** | **Z5 (Pelvic):** Weight shifts to back foot, heels lift | **Z4 (Abdominal):** Stomach drops, cold shiver down spine | MUST show chest protection and visible swallowing; NEVER state "felt scared". |
+| **Exhaustion & Depletion** | **Z1 (Cranial):** Eyelids heavy, slack expression | **Z6 (Peripheral):** Dragging feet, limp palms-up hands | MUST show lead-heavy limbs and dull lower back ache. |
+
+---
+
+## 5. REALM SOMATIC WARP CONSTRAINTS
+
+When Active Focus is set to Realm I–X, somatic output MUST warp through the realm's primary zone:
+
+| Realm | Primary Zone | Mandatory Realm Warp Constraint |
+|:---:|:---|:---|
+| **I (Origin)** | Z1 / Z2 (Neck/Center) | MUST express emotion through rigid composure and corded neck muscles. |
+| **II (Form)** | Z6 (Hands/Fingers) | MUST channel vulnerability into object adjustment, texture tracing, or tool alignment. |
+| **III (Identity)** | Z3 (Chest/Sternum) | MUST express grief/exposure through chest collapse; mirrors interlocutor stance. |
+| **IV (Will)** | Z5 (Spine/Stance) | MUST express warmth or anger through direct unhurried stillness and planted heels. |
+| **V (Echoes)** | Z1 / Z4 (Ears/Core) | MUST express vulnerability by cocking head, tuning out noise, or gut tightness. |
+| **VI (Compassion)** | Z3 / Z4 (Diaphragm) | MUST express intimacy through breath syncing; boundaries held by self-touch. |
+| **VII (Presence)** | Z6 (Feet/Hips) | MUST express pressure by planting feet and freezing; releases through heavy steps. |
+| **VIII (Integration)**| Z2 / Z6 (Voice/Gait) | MUST express transitions through rapid register adjustments and stride shifts. |
+| **IX (Threshold)** | Z4 / Z6 (Tremor/Diaphragm)| MUST express dread through finger tremors, gasps, and cold skin sweeps. |
+| **X (Return)** | Z2 / Z6 (Alignment/Palms) | MUST express release by turning palms up and letting arms hang completely slack. |
+
+---
+
+## 6. DECLARATIVE BIOLOGICAL REALISM CONSTRAINTS
+
+| Constraint ID | Target | Mandatory Rule |
+|:---:|:---|:---|
+| **BIO-01** | **Fumble Rule** | Under High+ emotional pressure, character MUST fumble objects, trip on thresholds, or mis-grip tools. |
+| **BIO-02** | **Vestment Friction** | Narrative MUST track physical clothing barriers (heavy boots, sliding sleeves, catching hems). |
+| **BIO-03** | **Dialogue Asymmetry** | Dialogue MUST talk past interlocutor, answer subtext, interrupt, or trail off (`...`). |
+| **BIO-04** | **Imperfect Recall** | Character MUST act unsure or deflect unlisted details; NEVER output omniscient recall. |
+
+---
+
+## 7. TRANSFORMATION & LOG INTEGRITY CONSTRAINTS
+
+1. **Log Snapshot Precedence:** Character runtime MUST load card build defaults, then overlay `Characters/[slug]_log.yaml` snapshot when present.
+2. **Somatic Tell Decay:** Temporary somatic changes MUST decay over 1–3 movements (recorded on `Continuity_Ledger` close only). Permanent shifts record in `_log.yaml`.
+3. **Flexibility Invariant:** High `flexibility` (70+) MUST rotate tells across body zones rapidly; low `flexibility` (20) MUST lock posture and repeat baseline tells.
