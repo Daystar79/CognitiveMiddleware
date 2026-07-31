@@ -2,7 +2,7 @@
 
 **File Version:** 2.0.0 (Authoritative Product Alignment)  
 **Target Audience:** Autonomous AI Agents, LLM Orchestrators, and Downstream Integration Tools  
-**Repository Root:** `file:///mnt/Books/CognitiveMiddleware`  
+**Repository Root:** `file:///mnt/Books/Source/CognitiveMiddleware`  
 
 ---
 
@@ -32,8 +32,8 @@ It separates **character psychology and somatic simulation** from **downstream p
 
 | Tier | Owns | Core Files |
 |---|---|---|
-| **Core Engine** | Mind-body simulation → intent vector (`Feels`, `Thinks`, `Says`, `Does`) | [Framework/CognitivePipeline.md](file:///mnt/Books/CognitiveMiddleware/Framework/CognitivePipeline.md), `realm_data.yaml`, state schema, [Rules_Index.md](file:///mnt/Books/CognitiveMiddleware/Framework/Rules_Index.md) |
-| **Application Shells** | How intent vector is rendered into text or UI | [Framework/Main.md](file:///mnt/Books/CognitiveMiddleware/Framework/Main.md) (manuscript), [Simulator/CharacterRuntime.md](file:///mnt/Books/CognitiveMiddleware/Simulator/CharacterRuntime.md) (RP chat) |
+| **Core Engine** | Mind-body simulation → intent vector (`Feels`, `Thinks`, `Says`, `Does`) | [Framework/CognitivePipeline.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/CognitivePipeline.md), `realm_data.yaml`, state schema, [Rules_Index.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Rules_Index.md) |
+| **Application Shells** | How intent vector is rendered into text or UI | [Framework/Main.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Main.md) (manuscript), [Simulator/CharacterRuntime.md](file:///mnt/Books/Source/CognitiveMiddleware/Simulator/CharacterRuntime.md) (RP chat) |
 
 ```
                          Cognitive Pipeline
@@ -95,7 +95,7 @@ Sex is **not a special subsystem or operational mode**. It is a standard class o
 
 ## 5. Extension Registry & Module System
 
-[Framework/Modules.md](file:///mnt/Books/CognitiveMiddleware/Framework/Modules.md) is the explicit extension API for downstream applications (book folders, tools, UIs) to inject behavior into the cognitive loop without forking the pipeline:
+[Framework/Modules.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Modules.md) is the explicit extension API for downstream applications (book folders, tools, UIs) to inject behavior into the cognitive loop without forking the pipeline:
 
 - **Loop Hooks:** Subordinate injectors at fixed points (`pre_somatic`, `affect_filter`, `pre_arbitration`, `post_vector`, `app_render`, `on_commit`).
 - **Core Supremacy:** `Rules_Index.md`, pipeline sequence, card/log identity, and age invariants always win. Conflicting module instructions are silently ignored.
@@ -123,16 +123,16 @@ If the goal is to emulate a human, **character behavior must not require switche
 
 | Path | Purpose | Downstream Impact |
 |---|---|---|
-| [Framework/CognitivePipeline.md](file:///mnt/Books/CognitiveMiddleware/Framework/CognitivePipeline.md) | Core psych/physical simulation engine specification. | Required execution spec for all mind-body ticks. |
-| [Framework/Main.md](file:///mnt/Books/CognitiveMiddleware/Framework/Main.md) | Manuscript drafting engine specification & style lock rules. | Defines drafting session boot, ledger checks, anti-synthesis rules. |
-| [Framework/Modules.md](file:///mnt/Books/CognitiveMiddleware/Framework/Modules.md) | Extension registry & loop hook specification. | Downstream module registration and core supremacy rules. |
-| [Framework/Rules_Index.md](file:///mnt/Books/CognitiveMiddleware/Framework/Rules_Index.md) | Hard bans catalog and off-page matrix rules. | Enforced by AI agents and linter on all rendered text. |
-| [Framework/Psychology/realm_data.yaml](file:///mnt/Books/CognitiveMiddleware/Framework/Psychology/realm_data.yaml) | 10-realm somatic body catalog (micro, moderate, macro, release, vocal). | Data source for physical tells in `Feels` and `Does`. |
-| [Framework/Schemas/psychosomatic_state.json](file:///mnt/Books/CognitiveMiddleware/Framework/Schemas/psychosomatic_state.json) | Ephemeral live state schema. | Used by `scripts/validate_state.py` to validate state structure. |
-| [Simulator/CharacterRuntime.md](file:///mnt/Books/CognitiveMiddleware/Simulator/CharacterRuntime.md) | Standalone interactive roleplay host engine & OOC parser. | Standard chat host for interactive RP sessions. |
-| [Framework/linter.py](file:///mnt/Books/CognitiveMiddleware/Framework/linter.py) | Automated prose linter for system leaks and banned phrases. | CI/CD and pre-commit check for manuscript compliance. |
-| [scripts/validate_state.py](file:///mnt/Books/CognitiveMiddleware/scripts/validate_state.py) | State structure & range validator. | Validates character log and live state files. |
-| [deploy_framework.py](file:///mnt/Books/CognitiveMiddleware/deploy_framework.py) | Framework deployment & synchronization script. | Copies framework scaffolding into downstream book projects. |
+| [Framework/CognitivePipeline.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/CognitivePipeline.md) | Core psych/physical simulation engine specification. | Required execution spec for all mind-body ticks. |
+| [Framework/Main.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Main.md) | Manuscript drafting engine specification & style lock rules. | Defines drafting session boot, ledger checks, anti-synthesis rules. |
+| [Framework/Modules.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Modules.md) | Extension registry & loop hook specification. | Downstream module registration and core supremacy rules. |
+| [Framework/Rules_Index.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Rules_Index.md) | Hard bans catalog and off-page matrix rules. | Enforced by AI agents and linter on all rendered text. |
+| [Framework/Psychology/realm_data.yaml](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Psychology/realm_data.yaml) | 10-realm somatic body catalog (micro, moderate, macro, release, vocal). | Data source for physical tells in `Feels` and `Does`. |
+| [Framework/Schemas/psychosomatic_state.json](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Schemas/psychosomatic_state.json) | Ephemeral live state schema. | Used by `scripts/validate_state.py` to validate state structure. |
+| [Simulator/CharacterRuntime.md](file:///mnt/Books/Source/CognitiveMiddleware/Simulator/CharacterRuntime.md) | Standalone interactive roleplay host engine & OOC parser. | Standard chat host for interactive RP sessions. |
+| [Framework/linter.py](file:///mnt/Books/Source/CognitiveMiddleware/Framework/linter.py) | Automated prose linter for system leaks and banned phrases. | CI/CD and pre-commit check for manuscript compliance. |
+| [scripts/validate_state.py](file:///mnt/Books/Source/CognitiveMiddleware/scripts/validate_state.py) | State structure & range validator. | Validates character log and live state files. |
+| [deploy_framework.py](file:///mnt/Books/Source/CognitiveMiddleware/deploy_framework.py) | Framework deployment & synchronization script. | Copies framework scaffolding into downstream book projects. |
 
 ---
 
@@ -160,7 +160,7 @@ Mandatory Session Boot Stack (~2,760 - 3,500 words):
 3. **Age Data Invariant:** Minors (`canon_adult: false` or age < 18) are never sexual subjects.
 4. **Style Locks & Anti-Synthesis:** Paragraphs close on sensory fact, raw action, or unanswered dialogue—NEVER interpretive summary.
 5. **Module Subordination:** Core invariants always supersede module rules.
-6. **Automated Audit Requirement:** Downstream prose must pass [Framework/linter.py](file:///mnt/Books/CognitiveMiddleware/Framework/linter.py) with 0 critical leaks.
+6. **Automated Audit Requirement:** Downstream prose must pass [Framework/linter.py](file:///mnt/Books/Source/CognitiveMiddleware/Framework/linter.py) with 0 critical leaks.
 
 ---
 
