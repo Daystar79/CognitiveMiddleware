@@ -58,62 +58,6 @@ BANNED_PHRASES_PATTERNS: List[Tuple[re.Pattern, str, str]] = [
 # Continuous action separators rule
 ACTION_SEPARATORS = re.compile(r"^---$")
 
-# Keep old definitions for backward compatibility (deprecated)
-SYSTEM_LEAKS = {
-    "Framework Jargon": [
-        (r"\bRealm (I|II|III|IV|V|VI|VII|VIII|IX|X|\d+)\b", "Realm [N] references on-page"),
-        (r"\bFocus Lock\b", "Focus Lock status leak"),
-        (r"\bBias State\b", "Bias State status leak"),
-        (r"\btransformation_weights\b", "transformation_weights leak"),
-        (r"\btransformation_history\b", "transformation_history leak"),
-        (r"\bPrism Distortion\b", "Prism Distortion engine reference"),
-        (r"\bGenerative Prism\b", "Generative Prism engine reference"),
-        (r"\bGreat Wheel\b", "Great Wheel reference"),
-    ],
-    "Psychological Labels (Therapy Speak)": [
-        (r"\b(trauma|reframe|coping mechanism|emotional wound|active wound|psychological wound|emotional trigger|psychological trigger|wound trigger|cognitive gift|sacred anchor|virtue lens|self-actualiz\w+|empowerment|safe space|healing journey)\b", "Psychological/therapy labels (show body instead)"),
-    ],
-    "Engine Bias & Gift Names": [
-        (r"\bDebt Ledger\b", "Debt Ledger bias name leak"),
-        (r"\bSaviour Complex\b", "Saviour Complex bias name leak"),
-        (r"\bSystem Architect\b", "System Architect bias name leak"),
-        (r"\bMirror (bias|reflector)\b", "Mirror bias name leak"),
-        (r"\bInsulation\b", "Insulation bias name leak"),
-        (r"\bDissolution\b", "Dissolution bias name leak"),
-        (r"\bSacred Stewardship\b", "Sacred Stewardship gift name leak"),
-        (r"\bTrue Sanctuary\b", "True Sanctuary gift name leak"),
-        (r"\bIlluminated Symmetry\b", "Illuminated Symmetry gift name leak"),
-        (r"\bResonant Truth\b", "Resonant Truth gift name leak"),
-        (r"\bSanctuary Bridge\b", "Sanctuary Bridge gift name leak"),
-        (r"\bThreshold Vision\b", "Threshold Vision gift name leak"),
-    ],
-    "Out-of-Character Lookup / Temporal Leaks": [
-        (r"\b(look up|database|search the web|search web|as an AI|my database|retriev\w+ records|external search)\b", "Out-of-character AI lookup / temporal leak"),
-    ],
-    "AI Safety / Preachy Tone Leaks": [
-        (r"\b(it'?s important to remember|to be fair|let'?s look at this|while that is a common|actually, from a|safety guidelines?|safety protocols?|respectful conversation|inappropriate content|moral perspective|ethical considerations?|cannot fulfill this request)\b", "AI safety tone / preachiness / correction leak"),
-    ],
-}
-
-BANNED_PHRASES = {
-    "Dialogue Tags & Markers": [
-        (r"\bwhispered\b", "Banned dialogue tag 'whispered'"),
-        (r"\bAre you okay\??", "Banned dialogue filler 'Are you okay?'"),
-        (r"\bI understand how you feel\b", "Banned dialogue filler 'I understand how you feel'"),
-        (r"\bsaid quietly\b", "Banned dialogue marker 'said quietly'"),
-        (r"\bsaid gently\b", "Banned dialogue marker 'said gently'"),
-    ],
-    "Filler Phrases (Watchlist)": [
-        (r"\blooked at\b", "Repetitive filler 'looked at'"),
-        (r"\bfor a moment\b", "Repetitive filler 'for a moment'"),
-        (r"\ba long moment\b", "Repetitive filler 'a long moment'"),
-        (r"\bgenuinely\b", "Repetitive filler 'genuinely'"),
-    ],
-    "Contextual Watchlist (Warning Only)": [
-        (r"\b(wound|trigger|mirror|gift|virtue)\b", "Watchlist term (verify context does not leak framework/therapy jargon)"),
-    ],
-}
-
 def audit_file(filepath: str) -> List[Dict[str, Any]]:
     """Audits a single file and returns a list of findings."""
     findings: List[Dict[str, Any]] = []

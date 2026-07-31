@@ -34,7 +34,6 @@ FRAMEWORK_FILES = [
     "Framework/Rules_Index.md",
     "Framework/Psychology/realm_data.yaml",
     "Framework/natural_prose.md",
-    "Framework/psyche_framework.md",      # stub → Main
     "Framework/Drafting_Workflow.md",     # stub → Main
     "Framework/formatting_rules.md",
     "Framework/Design_QA_Protocol.md",

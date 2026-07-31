@@ -17,6 +17,8 @@ Self-contained drop-in. Paste the whole file into a chat (no git required).
 
 Persistence: Character Pack (CARD + MEMORY) via Drive/local/paste — see the runtime file.
 
+**Private directory:** The `Private/` subdirectory contains author-local test files and runtime configurations. It is **git-ignored** and **not deployed** as part of the public framework. Do not commit private session files to version control.
+
 **Image layer:** Visual rendering via `Images/CharacterRenderingEngine.md` is **off by default** (`visual.mode: off`) for zero turn latency in RP. Force a frame anytime with `/render`, or toggle auto motion rendering with `/visual off|fast|prompts|live`.
 
 ## When to use what

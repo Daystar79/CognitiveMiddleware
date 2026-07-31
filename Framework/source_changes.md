@@ -40,7 +40,7 @@
 
 ## 2026-07-13 — Finish Main entry path (post-refactor cleanup) — **applied** (agent)
 
-- **Main.md:** Honest load protocol (always Main + Rules_Index + realm_index + cards); strip RP opening beat / CONFIG / `/debug`; add Prism §3c; de-B&L brief template; drafting-only execute loop; author commands cleaned.
+- **Main.md:** Honest load protocol (always Main + Rules_Index + realm_data.yaml + cards); strip RP opening beat / CONFIG / `/debug`; add Prism §3c; de-B&L brief template; drafting-only execute loop; author commands cleaned.
 - **Rules_Index.md:** Drafting-first; playground reduced to pointer; generic phrase watchlist; book-local watchlist optional.
 - **Stubs:** `psyche_framework.md`, `Drafting_Workflow.md` → point at Main (do not load for gen).
 - **Mechanics:** `humanity.md` / `voices.md` slimmed to optional supplements; prose.md marked optional detail.
@@ -62,8 +62,8 @@
 
 ## 2026-07-12 — Token Usage Optimization (Psychology Index) — **applied** (agent)
 
-- **Psychology Realm Index:** Created [realm_index.md](./Psychology/realm_index.md) (and its Web copy `Web/realm_index.md`) to consolidate the somatic focus, release/passage states, bracing/remnants, and keys of all 10 Realms in one dense document.
-- **Loading Protocol update:** Updated `psyche_framework.md` and its copy `Web/psyche_framework.md` to load only `realm_index.md` by default, reducing the token overhead of loading individual realm files by thousands of tokens. Individual realm files are now only loaded for deep somatic audits.
+- **Psychology Realm Data:** Created [realm_data.yaml](./Psychology/realm_data.yaml) to consolidate the somatic focus, release/passage states, bracing/remnants, and keys of all 10 Realms in one dense YAML document.
+- **Loading Protocol update:** Updated `psyche_framework.md` and its copy `Web/psyche_framework.md` to load only `realm_data.yaml` by default, reducing the token overhead of loading individual realm files by thousands of tokens. Individual realm files are now only loaded for deep somatic audits.
 
 ## 2026-07-12 — Refactor & Auditing — **applied** (agent)
 

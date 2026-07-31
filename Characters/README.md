@@ -35,8 +35,6 @@ Character cards are **pure YAML** (`.md` extension for tooling compatibility):
 - [`_template.md`](./_template.md) — **public** card scaffold (CC BY-SA 4.0)
 - [`_log_template.yaml`](./_log_template.yaml) — **public** log schema (CC BY-SA 4.0)
 - [`README.md`](./README.md) — this file (public format docs)
-- Demo cards (`reed`, `helen`, `cass`, `wren`, `nora`, `lior`) — **author-local testing only**; not open-licensed; not deployed
-- [`Relations.md`](./Relations.md) — **author-local** cast relationship map; not open-licensed; not deployed
 
 See [LICENSE.md](../LICENSE.md) §3 for the carve-out. Downstream projects should start from `_template.md` + `_log_template.yaml` only.
 
