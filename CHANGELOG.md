@@ -6,20 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - 2026-07-29
+## [Unreleased] - 2026-07-31
 
 ### Added
-- **Full-Body Anatomical Cascade Engine**: Expanded the somatic layer across 6 interconnected body zones (Cranial/Ocular, Vocal/Cervical, Thoracic/Respiratory, Abdominal/Visceral, Pelvic/Kinesthetic, Peripheral/Grounding). Enforced the **Multi-Zone Cascade Rule** requiring all physical tells to engage at least 2 linked body zones across `humanity.md`, `realm_data.yaml`, `Main.md`, and `Rules_Index.md`.
-- **Dual-Aspect Psyche Matrix (Wound & Gift)**: Expanded CognitiveMiddleware to include positive psychological dimensions alongside character wounds. Introduced `cognitive_gift`, `generative_anchor`, and `generative_stance` to character cards.
-- **Generative Prism Engine**: Implemented `GENERATIVE_ACTIVE` state and Generative Prism intercept processing (`Resonant Hearing`, open somatics, warm syntactical cadence under trust/flow/safety).
-- **Positive Archetype & Gift Catalog**: Expanded catalog pairing every Wound with its Generative Virtue counterpart (`Debt Ledger` ↔ `Sacred Stewardship`, `Saviour Complex` ↔ `True Sanctuary`, `System Architect` ↔ `Illuminated Symmetry`, `Mirror` ↔ `Resonant Truth`, `Insulation` ↔ `Sanctuary Bridge`, `Dissolution` ↔ `Threshold Vision`).
-- **Positive Psychological Hygiene & Linting**: Added hard bans in `Rules_Index.md` and automated regex checks in `linter.py` for positive therapy-speak (`cognitive gift`, `sacred anchor`, `virtue lens`, `self-actualization`, `empowerment`, `safe space`, `healing journey`) and engine gift names.
-- **Local Machine Agent Safeguards**: Added strict local machine agent requirement for prompt file write operations (`b9d29c8`).
-- **Silent Instant Prompt Generation**: Implemented fast, zero-latency image prompt tags and background prompt creation without blocking turn execution (`4297d03`).
+- **`PROJECT_SCOPE.md`:** Authoritative product boundaries and downstream integration contract (v2).
+- **Unified state model:** Durable `Characters/[slug]_log.yaml` vs live `Schemas/psychosomatic_state.json`, with commit mapping in `CognitivePipeline.md`.
+- **Pipeline wiring:** Card, log, `realm_data.yaml`, and schema as required inputs; intimate stimulus as ordinary pipeline interpretation (§7.1).
+- **State validator + example:** `scripts/validate_state.py` and `Framework/Schemas/examples/psychosomatic_state.example.json`.
+- **Deploy:** Ships pipeline, schema, Modules registry, and `PROJECT_SCOPE.md`.
 
 ### Changed
-- **Instruction-to-Constraint Optimization**: Converted informal, procedural drafting advice and narrative instructions across `humanity.md`, `voices.md`, `prose.md`, `Main.md`, and `Rules_Index.md` into explicit declarative constraint tables using `MUST`, `NEVER`, `SCOPE`, `PRECEDENCE`, and `INVARIANT` blocks.
-- **Live Image Still Routing**: Updated rendering specifications to save stills directly to `Images/{slug}/` and automatically purge transient `.prompt.md` files post-generation to conserve storage (`3d44403`, `4465555`).
+- **Product naming:** Paths and deploy self-ignore use **CognitiveMiddleware**.
+- **Sex in core = interpretation only:** Desire/stance via body → prism → arbitration → vector; no staging craft in core.
+- **Switchless runtime:** Automated durable commit; `/adult` / HEAT behavioral modes removed from host docs; optional `/state` for debug only.
+- **Modules as loop API:** Empty core registry; downstream apps register injectors; core supremacy intact.
+- **`realm_data.yaml`:** Single-document YAML (`yaml.safe_load` compatible).
+- **Log template v2:** `character_id`, `relational_baselines`.
+
+### Removed
+- **`Framework/Mechanics/erotica.md`:** Explicit sex craft is downstream-only; not shipped in core.
+
+### Prior (2026-07-29)
+- **Full-Body Anatomical Cascade Engine**, **Dual-Aspect Psyche (Wound & Gift)**, **Generative Prism**, gift catalog/hygiene, local agent safeguards, silent image prompts, instruction-to-constraint optimization, live image still routing.
 
 ---
 

@@ -1,74 +1,103 @@
 # MAIN — Book Writing Layer (Manuscript Engine)
-*System: CognitiveMiddleware · Role: Novel Drafting & Prose Rendering Engine · Host: BookOS*
+*System: CognitiveMiddleware · Role: Novel drafting & prose rendering*
 
 ---
 
-## 🏛️ ARCHITECTURE & RESPONSIBILITIES
+## Architecture
 
-The **Book Writing Layer** is the manuscript generation engine. It consumes the output vector from the [Cognitive Pipeline](CognitivePipeline.md) (`Feels`, `Thinks`, `Says`, `Does`) and renders it into clean, immersive, publication-ready prose.
+The **Book Writing Layer** consumes the Cognitive Pipeline’s 4-channel vector (`Feels`, `Thinks`, `Says`, `Does`) and renders clean manuscript prose. Psychology and body runtime live in the pipeline — not here.
 
 ```
- 🧠 COGNITIVE PIPELINE (State & Behavior Predictor)
-                       │
-                       ▼ (Outputs: Feels, Thinks, Says, Does + psychosomatic_state.json)
- 📖 BOOK WRITING LAYER (Main.md)
-   ├── Enforces Prose Style Locks (natural, llm, historical, etc.)
-   ├── Applies Output Hygiene & Anti-Synthesis Paragraph Endings
-   ├── Maintains Ledger Integrity (Continuity_Ledger.md & character logs)
-   └── Generates Clean Manuscript Prose (100% Off-Page Matrix)
+ 🧠 COGNITIVE PIPELINE  (Framework/CognitivePipeline.md)
+         │  Feels / Thinks / Says / Does + live psychosomatic snapshot
+         ▼
+ 📖 BOOK WRITING LAYER  (this file)
+   ├── Style locks & prose craft
+   ├── Output hygiene (Rules_Index)
+   ├── Ledger integrity
+   └── Manuscript prose only (off-page matrix)
 ```
 
 ---
 
-## LOAD PROTOCOL
-- **Always (drafting/design):** `Main.md`, `CognitivePipeline.md`, `Rules_Index.md`, `realm_data.yaml`, on-scene character cards (`Characters/`), `[slug]_log.yaml` (or `psychosomatic_state.json`), `Continuity_Ledger.md`, `Modules.md`.
-- **Optional:** `Character_Change_Log.md`, `natural_prose.md` (Style = `natural`), `Mechanics/prose.md`, `Mechanics/voices.md`, `Mechanics/humanity.md`.
-- **Never load in context:** `source_changes.md`, `formatting_rules.md`, `Framework/Prompts/*`, debug dumps.
+## Session boot (drafting)
+
+Run once at session start, before a movement brief:
+
+1. **Load stack (always):**
+   - `Framework/Main.md` (this file)
+   - `Framework/CognitivePipeline.md`
+   - `Framework/Rules_Index.md`
+   - `Framework/Psychology/realm_data.yaml`
+   - `Framework/Modules.md` (registry — may be empty of ENABLED rows)
+   - On-scene cards: `Characters/[slug].md`
+   - Durable logs: `Characters/[slug]_log.yaml` (overlay card defaults)
+   - `Framework/Continuity_Ledger.md`
+2. **Modules into the cognitive loop:** verify ENABLED rows in [Modules.md](Modules.md); inject only at declared hooks during each pipeline tick. Downstream books add their own modules by registering paths here.
+3. **Optional non-module craft (brief-driven):**
+   - `Framework/Mechanics/prose.md`, `voices.md`, `humanity.md`
+   - `Framework/natural_prose.md` — when Style = `natural`
+4. **Never load:** `source_changes.md`, `formatting_rules.md`, `Framework/Prompts/*`, debug dumps.
+5. **Ledger integrity pass** (§ below). Gate = CLEAN before drafting.
+6. **Style lock:** default `LOCKED` to project style (`natural` | `cinematic` | `historical` | `llm`). Change only on explicit unlock.
 
 ---
 
-## CANONICAL STATE DECLARATION
-- **Canonical mutable runtime state:** `Characters/[slug]_log.yaml` and `Framework/Schemas/psychosomatic_state.json`.
-- **Generated projection:** `Framework/Character_Change_Log.md`.
-- **Rule:** Machine JSON/YAML state wins in state conflicts; human-readable Markdown is regenerated from state.
+## Canonical state
+
+| Layer | File | Role |
+|---|---|---|
+| Build identity | `Characters/[slug].md` | Immutable defaults (voice, wound/gift, build weights) |
+| **Durable runtime** | `Characters/[slug]_log.yaml` | Focus, weights, skills, memories, history, relational baselines |
+| **Live tick** | Snapshot matching `Schemas/psychosomatic_state.json` | Autonomic/affect/arbitration/4-channel for this beat |
+| Projection | `Framework/Character_Change_Log.md` | Regenerated human summary |
+
+**Conflict rule:** YAML/JSON state wins; Markdown projections are regenerated from state.
+
+Pipeline owns live ticks and commit mapping. Full protocol: [CognitivePipeline.md](CognitivePipeline.md) §3 and §8.
 
 ---
 
-## LEDGER INTEGRITY PASS (Pre-session)
-*Run before movement brief or drafting.*
+## Ledger integrity pass (pre-session)
 
-1. **Continuity_Ledger (`Framework/Continuity_Ledger.md`):**
-   - Verify chapter and movement rows.
-   - Ensure clean state commit before generating next movement.
-2. **Character Logs (`Characters/[slug]_log.yaml`):**
-   - Load latest snapshot overlaying card build defaults.
+1. **Continuity_Ledger:** chapter/movement rows current; prior movement committed.
+2. **Character logs:** load latest `snapshot` over card defaults for each on-scene slug.
 3. **Gates:**
-   - **CLEAN:** Proceed to draft movement.
-   - **BLOCKED:** Resolve ledger lag before generating prose.
+   - **CLEAN** → proceed to movement brief.
+   - **BLOCKED** → resolve ledger lag before prose.
 
 ---
 
-## DRAFTING WORKFLOW & PROSE RENDERING PIPELINE
+## Drafting workflow (per movement brief)
 
-When executing a Movement Brief:
+| Step | Operation | Detail |
+|:---:|---|---|
+| **1** | Query pipeline | Run [CognitivePipeline.md](CognitivePipeline.md) with brief as trigger. Receive 4-channel vector + live snapshot. |
+| **2** | Body precedence | Render somatic cascades **before** or folded into speech/action. Never bracketed `[tell]`. |
+| **3** | Dialogue | Preserve idiolect, clipping, asymmetry from card `voice.*` + `Says`. |
+| **4** | Style lock | Enforce project style; no purple prose / AI clichés unless style allows. |
+| **5** | Anti-synthesis | Close paragraphs on sensory fact, raw action, or unanswered dialogue — never interpretive summary. |
+| **6** | Hygiene | Apply [Rules_Index.md](Rules_Index.md) hard bans (no system jargon on page). |
+| **7** | Commit | On approval: merge durable fields into `_log.yaml` per pipeline §8; update Continuity_Ledger scene-close body; regenerate Character_Change_Log if needed. |
 
-| Step | Target | Operation | Description |
-|:---:|:---|:---|:---|
-| **1** | Cognitive Simulation | Query Pipeline | Receive predicted 4-channel vector (`Feels`, `Thinks`, `Says`, `Does`) from [CognitivePipeline.md](CognitivePipeline.md). |
-| **2** | Body Precedence | Narrative Placement | Render physical somatic cascades into narrative **before** or folded into speech and action; never use bracketed `[tell]`. |
-| **3** | Dialogue Rendering | Voice Fidelity | Render character speech preserving unique idiolect, speech clipping, and asymmetry (talking past each other, trailing off). |
-| **4** | Style Lock | Prose Enforcement | Enforce target prose style (`natural`, `cinematic`, `historical`); prohibit purple prose and AI clichés. |
-| **5** | Anti-Synthesis | Paragraph Closure | Ensure paragraphs close on concrete sensory facts, raw actions, or unanswered dialogue—**never** on interpretive summary. |
-| **6** | Output Hygiene | Off-Page Verification | Enforce hard bans in `Rules_Index.md` (strip system jargon: `Realm [N]`, `DEFENSIVE_ACTIVE`, `Debt Ledger`, `trauma`). |
-| **7** | Commit Pass | State Commit | On movement approval, write updated state to `_log.yaml` / `psychosomatic_state.json` and update `Continuity_Ledger.md`. |
+### Style lock machine
+- `LOCKED` — do not drift mid-movement.
+- `UNLOCK` — author command only; then re-`LOCK` at new style.
+- Style = `llm` disables natural-prose constraints.
+
+### Intimacy & desire handling
+Character attraction and desire are output states of the core pipeline ([CognitivePipeline.md](CognitivePipeline.md) §7.1)—never gated by switches or modes. Explicit erotica craft (if any) is non-core, lives in downstream projects, and registers via [Modules.md](Modules.md). The core pipeline outputs character stance and intent without explicit sexual choreography.
 
 ---
 
-## HARD INVARIANTS FOR DRAFTING
-- **Clean Manuscript Only:** Output contains ONLY manuscript prose during drafting. NEVER append CONFIG cards, audit tables, or debug banners.
-- **100% Off-Page Matrix:** Framework terms (`Focus`, `Bias`, `Gift`, `Prism`, `Realm`) stay strictly off-page.
-- **Card Supremacy:** Card baseline always overrides generic AI tropes.
+## Hard invariants (drafting)
+
+- **Clean manuscript only** during draft output — no CONFIG cards, audit tables, or debug banners in the draft file.
+- **100% off-page matrix** — Focus, Bias, Gift, Prism, Realm labels never appear in prose.
+- **Card supremacy** — card baseline overrides generic AI tropes; log overrides card for evolved state.
+- **Pipeline is the psyche runtime** — do not re-implement wound/gift/realm math inside this file.
+- **Modules extend the loop** — register in Modules.md; never bypass core supremacy.
 
 ---
 
-*Loaded for manuscript drafting sessions. Executes on Movement Briefs.*
+*Loaded for manuscript drafting. Executes on movement briefs.*

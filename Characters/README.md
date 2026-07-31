@@ -2,15 +2,16 @@
 
 Named fictional people are the **unit of load**. Archetypes A–F are voice/matrix templates only ([Main.md](../Framework/Main.md), [voices.md](../Framework/Mechanics/voices.md)).
 
-## Card vs log
+## Card vs log vs live snapshot
 
 | File | Role |
 |:---|:---|
-| `Characters/[slug].md` | **Identity / build sheet** — voice, bias name, build-default weights, history anchors |
-| `Characters/[slug]_log.yaml` | **Runtime matrix** — snapshot + movement history; overrides card Focus/weights/somatic when present |
-| [`_log_template.yaml`](./_log_template.yaml) | Schema scaffold for new logs |
+| `Characters/[slug].md` | **Identity / build sheet** — voice, wound/gift, build-default weights, history anchors |
+| `Characters/[slug]_log.yaml` | **Durable runtime** — snapshot + history; overrides card Focus/weights/somatic when present |
+| Live snapshot | **Per-tick** psychosomatic state (`Framework/Schemas/psychosomatic_state.json`) from the Cognitive Pipeline |
+| [`_log_template.yaml`](./_log_template.yaml) | Schema scaffold for new durable logs |
 
-Do **not** write movement deltas or `transformation_history` onto the card. Evolution commits go to the log (and [Character_Change_Log.md](../Framework/Character_Change_Log.md)). Scene close goes to [Continuity_Ledger.md](../Framework/Continuity_Ledger.md).
+Do **not** write movement deltas onto the card. Durable evolution commits go to the log (see [CognitivePipeline.md](../Framework/CognitivePipeline.md) §8 and [Character_Change_Log.md](../Framework/Character_Change_Log.md)). Scene close goes to [Continuity_Ledger.md](../Framework/Continuity_Ledger.md).
 
 ## Card format
 
@@ -24,11 +25,11 @@ Character cards are **pure YAML** (`.md` extension for tooling compatibility):
 ## Drafting flow
 
 1. Author names on-scene characters.
-2. System loads `Characters/[slug].md` (or a pasted card).
-3. Overlay `Characters/[slug]_log.yaml` snapshot when present (Focus, weights, baseline somatic, bias_strength).
-4. Silent live state: Focus, Latents, Bias, Somatic, and Voice.
-5. [Main.md](../Framework/Main.md) + [Rules_Index.md](../Framework/Rules_Index.md) + [realm_data.yaml](../Framework/Psychology/realm_data.yaml) execute on movement/scene — no bare archetype letter.
-6. On approval: update Continuity_Ledger + character log (not the card).
+2. Load `Characters/[slug].md` (or a pasted card).
+3. Overlay `Characters/[slug]_log.yaml` when present.
+4. Run [CognitivePipeline.md](../Framework/CognitivePipeline.md) with realm_data + trigger → live snapshot + 4-channel vector.
+5. [Main.md](../Framework/Main.md) + [Rules_Index.md](../Framework/Rules_Index.md) render manuscript prose.
+6. On approval: commit durable fields to log + Continuity_Ledger (not the card).
 
 ## Files
 

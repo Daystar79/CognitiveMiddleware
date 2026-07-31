@@ -1,9 +1,6 @@
----
-title: "Psychology Realm Data - Compressed"
-description: "Ten realms somatic profiles in highly compressed YAML format"
-type: "core_framework"
-load_protocol: "Always load for drafting"
----
+# Psychology Realm Data (compressed)
+# Core framework — always load with Cognitive Pipeline.
+# Single-document YAML (safe for yaml.safe_load).
 
 realms:
   I:

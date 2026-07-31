@@ -53,4 +53,4 @@ scene_seeds:
   - "[Alternate seed]"
 ---
 
-*Load: Fast Load YAML. Copy matrix, voice, somatic, adult-gate to silent state. Overlay Characters/[slug]_log.yaml snapshot when present. 18+ OFF. Enable only if brief/request AND Canon Adult YES. Run Focus brace/release from realm_data.yaml. Never name system terms in speech.*
+*Load: Fast-load YAML into Cognitive Pipeline silent state. Overlay Characters/[slug]_log.yaml when present. Query Framework/CognitivePipeline.md per beat. Age invariant: minors are never sexual subjects. Brace/release from realm_data.yaml. Never name system terms in speech.*

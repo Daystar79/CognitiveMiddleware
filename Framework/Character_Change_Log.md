@@ -7,7 +7,7 @@ schema_version: 1
 # Character Change Log
 *Matrix evolution ledger — consolidated quick reference for the author.*
 
-**Individual logs** (`Characters/[slug]_log.yaml`) are the canonical mutable runtime state and the primary technical runtime data source loaded during drafting. **YAML always wins:** If this consolidated Markdown file differs from an individual YAML log, the YAML log wins and this consolidated file is regenerated.
+**Individual logs** (`Characters/[slug]_log.yaml`) are the **durable** mutable runtime state (focus, weights, skills, memories, history, relational baselines). **Live** per-tick snapshots follow `Framework/Schemas/psychosomatic_state.json` and are owned by the Cognitive Pipeline — they are not a second durable source of truth. **YAML always wins:** If this consolidated Markdown file differs from an individual YAML log, the YAML log wins and this consolidated file is regenerated.
 
 **This file** is a generated, human-readable quick reference projection for all character snapshots and history. Routine post-movement saves should update the individual log files and regenerate or synchronize this consolidated log as part of the Post-Movement State Commit.
 
@@ -39,7 +39,7 @@ On **every approved movement**, execute the Post-Movement State Commit:
 ### Load order (next design/draft)
 0. **Ledger Integrity Pass** (Main.md) — clean empty/placeholder ledgers first
 1. On-scene character cards (identity, voice, bias name, build defaults)
-2. **Canonical mutable runtime state:** per-slug `_log.yaml` snapshot (overrides card Focus / weights / baseline somatic / bias_strength when present)
+2. **Durable runtime state:** per-slug `_log.yaml` snapshot (overrides card Focus / weights / baseline somatic / bias_strength when present). Live ticks: pipeline snapshot schema.
 3. Continuity_Ledger latest **real** row (scene time, props, close body state)
 
 ### Integrity notes for this file

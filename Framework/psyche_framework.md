@@ -1,9 +1,12 @@
 # Psyche Framework — SUPERSEDED
 
-**This file is a stub.** Psyche Matrix runtime lives in **[Main.md](./Main.md) §3** (including Prism Distortion).
+**This file is a stub.** Character psychological / physical runtime lives in:
 
-Realm somatics: **[Psychology/realm_data.yaml](./Psychology/realm_data.yaml)**.  
+- **[CognitivePipeline.md](./CognitivePipeline.md)** — mind-body sequence, arbitration, state commit
+- **[Psychology/realm_data.yaml](./Psychology/realm_data.yaml)** — realm somatic catalogs
+- **[Schemas/psychosomatic_state.json](./Schemas/psychosomatic_state.json)** — live snapshot shape
+
+Manuscript rendering: **[Main.md](./Main.md)**.  
 Hard bans: **[Rules_Index.md](./Rules_Index.md)**.
 
-Do **not** load this file for generation. Load `Main.md` + `Rules_Index.md` + `realm_data.yaml` + on-scene cards.
-
+Do **not** load this stub for generation.

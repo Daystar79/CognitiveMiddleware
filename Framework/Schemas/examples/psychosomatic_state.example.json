@@ -1,0 +1,56 @@
+{
+  "character_id": "example_slug",
+  "timestamp_or_movement": "chapter_1_m2",
+  "autonomic_state": {
+    "arousal": 35,
+    "stress": 55,
+    "fatigue": 20,
+    "pain": 0,
+    "primary_somatic_zones": [
+      "Z2_Vocal_Cervical",
+      "Z3_Thoracic_Respiratory"
+    ],
+    "autonomic_surge": false
+  },
+  "affective_state": {
+    "primary_emotion": "guarded_anger",
+    "secondary_emotion": "curiosity",
+    "emotional_intensity": 60,
+    "impulse": "hold the doorframe; do not step fully in"
+  },
+  "subconscious_bias": {
+    "active_wound": "Insulation",
+    "active_gift": "",
+    "bias_state": "DEFENSIVE_ACTIVE",
+    "perceptual_warp": "help reads as intrusion until trust proven"
+  },
+  "relational_vectors": {
+    "interlocutor_slug": {
+      "emotional_safety": 40,
+      "attraction_physical": 25,
+      "attraction_emotional": 30,
+      "respect_competence": 70,
+      "status_dynamic": "equals",
+      "resentment_friction": 20,
+      "perceived_reciprocity": {
+        "perceived_liking": 35,
+        "perceived_threat": 25
+      },
+      "relational_anchors": ["shared_job_site"]
+    }
+  },
+  "priority_arbitration": {
+    "winning_drive": "maintain_boundary",
+    "salience_score": 78,
+    "competing_drives": [
+      { "drive_name": "maintain_boundary", "salience": 78 },
+      { "drive_name": "seek_connection", "salience": 42 }
+    ]
+  },
+  "output_vector": {
+    "feels": "Throat tight; breath high under the sternum; weight on the balls of the feet.",
+    "thinks": "If they push once more, leave. Don't explain.",
+    "says": "You can stand there. I'm not opening the rest of it.",
+    "does": "Keeps one hand on the door edge; does not fully face them; glances past their shoulder to the hall."
+  }
+}

@@ -25,6 +25,7 @@ CM_FORCE_OS=unix    python3 scripts/run.py lint Drafts/
 | `deploy` | Push framework scaffolds to a sibling book folder | `… deploy MyNovel` |
 | `lint` | Scan drafts for system leaks / banned fillers | `… lint Drafts/` |
 | `migrate` | One-time `*_optimized` file promotion (no-op if none) | `… migrate` |
+| `validate_state.py` | Check a psychosomatic JSON snapshot against the schema | `python3 scripts/validate_state.py [file]` |
 
 ## Layout
 

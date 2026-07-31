@@ -1,8 +1,8 @@
 # Project Disclaimer & GitHub Terms of Service Compliance
 
-**Project:** CognitiveMiddleware (Psyche Matrix / Authors Framework)  
+**Project:** CognitiveMiddleware  
 **Maintainer:** Cian Didymos  
-**Last Updated:** July 26, 2026  
+**Last Updated:** July 31, 2026  
 
 ---
 
@@ -16,41 +16,41 @@ This repository is maintained in strict accordance with the [GitHub Terms of Ser
 
 ---
 
-## 2. 🔞 Adult Content & Age Restriction Warning (18+)
+## 2. Adult Content & Character Eligibility Invariants
 
-CognitiveMiddleware contains an optional adult intimacy craft module ([Framework/Mechanics/erotica.md](file:///mnt/Books/Authors_Framework/Framework/Mechanics/erotica.md)) and an interactive chat simulator mode (`/adult on` in [Simulator/CharacterRuntime.md](file:///mnt/Books/Authors_Framework/Simulator/CharacterRuntime.md)).
+CognitiveMiddleware models human psychology and somatic reactions under pressure, including how adult characters interpret intimate and relational stimulus.
 
-- **18+ Requirement:** All optional adult roleplay, HEAT modes, and erotica drafting protocols are strictly intended for adult users who are **18 years of age or older** (or the legal age of majority in their jurisdiction).
-- **Fictional Character Gating:** Framework protocols mandate that explicit intimate craft can ONLY activate if all participating fictional characters are explicitly marked with `canon_adult: true` and have an established age $\ge 18$.
-- **Disabled by Default:** All adult modules and modes remain completely disabled by default in both the drafting pipeline and the simulator.
+- **18+ Requirement:** Any downstream deployment, adult roleplay host, or manuscript drafting session involving intimate themes is strictly intended for users who are **18 years of age or older** (or the legal age of majority in their jurisdiction).
+- **Fictional Character Eligibility Invariant:** Minors are never sexual subjects. In intimate/relational modeling, characters are eligible subjects only if explicitly defined as `canon_adult: true` with an established age ≥ 18. This is a safety and ToS identity invariant, not a behavior toggle.
+- **Decoupled Craft:** The core engine models character mind-body state and interpretation (attraction, arousal, safety, refusal, stance). Explicit erotica presentation craft is non-core, lives in downstream application modules, and is never shipped as part of the core runtime.
 
 ---
 
-## 3. 🧠 Medical & Mental Health Disclaimer
+## 3. Medical & Mental Health Disclaimer
 
-CognitiveMiddleware uses terminology such as *"Psyche Matrix"*, *"somatic tells"*, *"wound warps"*, *"cognitive bias"*, and *"degradation protocols"*.
+CognitiveMiddleware uses terminology such as *"Cognitive Pipeline"*, *"somatic tells"*, *"wound warps"*, *"cognitive bias"*, and *"degradation protocols"*.
 
 - **Literary Narrative Tools Only:** These concepts, schemas, and algorithms are literary frameworks created solely for fictional character development, dramatic conflict modeling, and novel drafting.
 - **No Medical/Therapeutic Advice:** Nothing in this repository constitutes medical, psychiatric, psychological, or clinical advice, diagnosis, or treatment. It is not a therapeutic tool or mental health intervention.
 
 ---
 
-## 4. 🤖 Third-Party AI Service & Platform Compliance
+## 4. Third-Party AI Service & Platform Compliance
 
-CognitiveMiddleware operates as a file-native prompt engineering and cognitive middle layer intended to be loaded into Large Language Model (LLM) interfaces (such as OpenAI ChatGPT, Anthropic Claude, Google Gemini, or local runtimes like Ollama/LM Studio).
+CognitiveMiddleware operates as a file-native prompt engineering and cognitive middle layer intended to be loaded into Large Language Model (LLM) interfaces (such as OpenAI ChatGPT, Anthropic Claude, Google Gemini, xAI Grok, or local runtimes like Ollama/LM Studio).
 
 - **User Responsibility:** Users are independently responsible for ensuring that their prompts, character cards, movement briefs, and outputs comply with the Terms of Service, Acceptable Use Policies, and Content Guidelines of whichever third-party AI provider or platform they choose to use.
 - **No Immunity:** Using CognitiveMiddleware does not exempt users from external AI platform safety policies or content filters.
 
 ---
 
-## 5. ✍️ Intellectual Property & User Rights
+## 5. Intellectual Property & User Rights
 
-- **Framework Licensing:** Software utilities (`.py` scripts) are licensed under the **MIT License**. Framework specifications and markdown documentation are licensed under **CC BY-SA 4.0** (see [LICENSE.md](file:///mnt/Books/Authors_Framework/LICENSE.md)).
+- **Framework Licensing:** Software utilities (`.py` scripts) are licensed under the **MIT License**. Framework specifications and markdown documentation are licensed under **CC BY-SA 4.0** (see [LICENSE.md](LICENSE.md)).
 - **User Ownership:** All original character cards, worldbuilding materials, movement briefs, and manuscript prose generated by authors using CognitiveMiddleware remain 100% the private property and exclusive copyright of the respective author/user.
 
 ---
 
-## 6. ⚠️ Limitation of Liability
+## 6. Limitation of Liability
 
 THIS REPOSITORY AND ALL ASSOCIATED FILES, UTILITIES, SCRIPTS, AND DOCUMENTATION ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE REPOSITORY.

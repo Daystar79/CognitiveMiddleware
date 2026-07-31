@@ -1,7 +1,8 @@
 # Drafting Workflow — SUPERSEDED
 
-**This file is a stub.** Full drafting workflow lives in **[Main.md](./Main.md) §2**.
+**This file is a stub.** Full drafting workflow lives in **[Main.md](./Main.md)** (session boot + per-movement table).
 
-Cleanup and hard bans live in **[Rules_Index.md](./Rules_Index.md)**.
+Character runtime: **[CognitivePipeline.md](./CognitivePipeline.md)**.  
+Cleanup and hard bans: **[Rules_Index.md](./Rules_Index.md)**.
 
-Do **not** load this file for generation. Load `Main.md` + `Rules_Index.md` + `Psychology/realm_data.yaml` + on-scene cards.
+Do **not** load this stub for generation. Load `Main.md` + `CognitivePipeline.md` + `Rules_Index.md` + `Psychology/realm_data.yaml` + on-scene cards/logs.

@@ -1,81 +1,102 @@
-# ROLEPLAY ENGINE — Character Runtime (Interactive Session Host)
-*System: CognitiveMiddleware · Role: Interactive Player Session Host · Host: BookOS*
+# ROLEPLAY ENGINE — Character Runtime
+*System: CognitiveMiddleware · Role: Interactive session host*
 
 ---
 
-## 🏛️ ARCHITECTURE & DECOUPLING CONTRACT
+## Architecture
 
-The **Roleplay Engine** (`CharacterRuntime.md`) is the application host for interactive chat sessions and roleplay. It manages the interface between the **Human Player** and the **Cognitive Pipeline**.
+The Roleplay Engine is the chat host between the **human player** and the **Cognitive Pipeline** (psychological / physical character runtime). It does not re-implement psyche math.
 
 ```
- 👤 HUMAN PLAYER (Input: Speech, Physical Staging, Commands)
-                        │
-                        ▼
- 💬 ROLEPLAY ENGINE (CharacterRuntime.md)
-   ├── Parses Player Input into Event Triggers
-   ├── Manages Session State & OOC Commands (/state, /adult, /save)
-   ├── Queries [Cognitive Pipeline](file:///mnt/Books/Authors_Framework/Framework/CognitivePipeline.md)
-   ├── Receives 4-Channel Output Vector (Feels, Thinks, Says, Does)
-   ├── Formats Character Response into Live Chat RP
-   └── (Optional) Passes Visual Hash to CharacterRenderingEngine
+ 👤 HUMAN PLAYER
+        │
+        ▼
+ 💬 ROLEPLAY ENGINE (this file)
+   ├── Parse speech, staging, OOC commands
+   ├── Query [Cognitive Pipeline](../Framework/CognitivePipeline.md)
+   ├── Receive Feels / Thinks / Says / Does
+   ├── Render live RP chat (off-page hygiene)
+   └── Optional: visual hash → CharacterRenderingEngine
 ```
 
 ---
 
-## 🎮 SESSION INITIALIZATION & OOC COMMANDS
+## Session boot
 
-### OOC Commands
-* `/state`: Displays current internal state summary from `psychosomatic_state.json` (Autonomic Arousal, Stress, Active Wound, Relational Vector).
-* `/adult on|off`: One-switch toggle enabling/disabling explicit adult roleplay contexts (enforces age gates: `canon_adult: true`).
-* `/bond set [trust:N attraction:N safety:N resentment:N]`: OOC adjustment of relational vector variables.
-* `/save`: Persists session memory snapshot to `Characters/[slug]_log.yaml` and `psychosomatic_state.json`.
+1. Load this file + `Framework/CognitivePipeline.md` + `Framework/Rules_Index.md` + `Framework/Psychology/realm_data.yaml` + `Framework/Modules.md`.
+2. Verify ENABLED modules ([Modules.md](../Framework/Modules.md)); inject at their hooks each tick. Downstream apps register extra modules in that registry.
+3. Load character pack: `Characters/[slug].md` + overlay `Characters/[slug]_log.yaml` when present.
+4. Initialize **live** psychosomatic snapshot from log baselines (or card defaults). Schema: `Framework/Schemas/psychosomatic_state.json`.
+5. Visual layer **off** by default (`/visual` to enable if image engine is available).
 
 ---
 
-## 🔄 INTERACTIVE TURN EXECUTION LOOP
+## Automated State Persistence & Operations
 
-When a human player sends a message or action during a live session:
+CognitiveMiddleware operates **switchlessly and hands-free**. State saving and continuity logging occur automatically:
+
+1. **Live State Management:** Every turn tick automatically updates the live `psychosomatic_state.json` snapshot in working memory.
+2. **Automated Durable Commit:** On scene breaks, medium+ pressure shifts, or session close, durable evolutions (relational baselines, focus shifts, skill/memory promotions, history events) are merged directly into `Characters/[slug]_log.yaml` per the [Cognitive Pipeline commit protocol](../Framework/CognitivePipeline.md#8-output-vector--commit-protocol). No manual `/save` command is required.
+3. **Optional Developer Inspection:** Hosts or developers may inspect live internal state via `/state` OOC for debugging, but character behavior never requires manual switches or operational commands.
+
+---
+
+## Turn loop
 
 ```
  📥 1. RECEIVE PLAYER INPUT
-    ├── Parse Player Speech & Staging
-    └── Identify Sensory & Social Triggers
+    Parse speech & staging → sensory/social triggers
                │
                ▼
- 🧠 2. COGNITIVE PIPELINE QUERY
-    ├── Pass Event Trigger & Context to CognitivePipeline.md
-    ├── Execute Autonomic Reaction & Raw Affect Impulse
-    ├── Apply Subconscious Prism (Upbringing + Culture + Memory + Wound)
-    ├── Run Dynamic Priority Arbitration (Select Winning Drive)
-    └── Generate Psychosomatic Snapshot (psychosomatic_state.json)
+ 🧠 2. COGNITIVE PIPELINE TICK
+    Load card + log overlay + realm_data
+    Nervous system → raw affect → prism → priority arbitration
+    Emit live psychosomatic snapshot + 4-channel vector
                │
                ▼
- 🗣️ 3. RENDER CHARACTER RESPONSE
-    ├── Render Somatic & Physical Staging (Does & Feels)
-    ├── Render Spoken Dialogue (Says) in Character Voice
-    ├── Maintain Asymmetric Dialogue & Imperfect Memory
-    └── Ensure 100% Off-Page Matrix Hygiene (Zero Jargon Leaks)
+ 🗣️ 3. RENDER RP RESPONSE
+    Stage body (Does / Feels) then dialogue (Says)
+    Asymmetric dialogue; imperfect memory; zero jargon leaks
                │
                ▼
- 🖼️ 4. OPTIONAL VISUAL STAGING
-    └── Pass (Location + Action + Somatic Zone + Arousal Level) to CharacterRenderingEngine
+ 🖼️ 4. OPTIONAL VISUAL
+    Pass location + action + zones + arousal to rendering engine
 ```
 
----
-
-## 👥 RELATIONAL & DESIRE DYNAMICS IN RP
-
-* **Organic Relational Processing:** Relational variables (`emotional_safety`, `attraction_physical`, `resentment_friction`) are evaluated continuously inside the Cognitive Pipeline.
-* **Spontaneous Intimacy:** If the player initiates or triggers high physical attraction + arousal, and the character's subconscious wound/taboo does not block it, the character will naturally act upon physical desire (*"get the itch scratched"*).
-* **No Artificial RP Modes:** Character behavior is driven entirely by internal state variables and personality card defaults, not artificial OOC script switches.
+Behavior is driven by **internal state + card defaults**, not artificial mode scripts. Optional TEST-style author checks are simply: run the same loop and judge fidelity.
 
 ---
 
-## 🛡️ SAFETY & CANON INVARIANTS
-1. **Absolute Age Gates:** Minor characters (`canon_adult: false`) or historical figures strictly prohibit adult/erotic content without exception.
-2. **Off-Page Matrix:** Debug terms (`Realm IV`, `DEFENSIVE_ACTIVE`, `Debt Ledger`) are never output to the player in roleplay narrative.
-3. **Imperfect Recall:** The character acts only on loaded memories; never claims omniscient awareness of player details not provided in context.
+## Relational & desire dynamics
+
+- Relational variables (`attraction_physical`, `emotional_safety`, `resentment_friction`, `arousal`) are evaluated continuously inside the pipeline every tick.
+- Desire, approach, hesitation, and refusal are natural outputs of state math—never requiring mood switches or erotica modules to activate.
+- The pipeline outputs character stance and intent (`Feels`, `Thinks`, `Says`, `Does`). Host depiction settings control output text formatting (SFW, fade-to-black, or explicit), but never rewrite whether the character wanted or refused intimacy.
 
 ---
 
-*Drop this file into a live chat session host to activate interactive roleplay.*
+## Safety & canon invariants
+
+1. **Age invariant absolute** — minors (`canon_adult: false` or age < 18) are never sexual subjects.
+2. **Off-page matrix** — never output `Realm IV`, `DEFENSIVE_ACTIVE`, debt-ledger labels, etc. to the player.
+3. **Imperfect recall** — only loaded memories; no omniscient player knowledge.
+4. **Hygiene** — [Rules_Index.md](../Framework/Rules_Index.md) hard bans apply to rendered RP text.
+
+---
+
+## Automated commit mapping
+
+On scene break, medium+ pressure, or session close (automatic):
+
+| Live | Durable (`_log.yaml`) |
+|---|---|
+| Focus / weight shifts (Medium+) | `snapshot.*` |
+| Skill / memory changes | `skills.*`, `memories.*` |
+| Bond baseline shifts | `relational_baselines` |
+| Pressure events | append `history[]` |
+
+Full rules: [CognitivePipeline.md](../Framework/CognitivePipeline.md) §8.
+
+---
+
+*Drop-in host for interactive character sessions. Psyche runtime = Cognitive Pipeline.*

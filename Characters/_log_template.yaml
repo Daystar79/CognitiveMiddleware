@@ -1,15 +1,17 @@
-# Character runtime log — copy to Characters/[slug]_log.yaml
-# Primary technical source for matrix evolution during drafting.
-# Card (Characters/[slug].md) holds identity + build defaults only.
+# Character durable runtime log — copy to Characters/[slug]_log.yaml
+# CognitiveMiddleware: one character runtime, two layers:
+#   Durable = this file (across movements/sessions)
+#   Live    = psychosomatic snapshot (Schemas/psychosomatic_state.json) per tick
 #
 # Seed snapshot from the card's transformation_weights / default_somatic_alignment
 # with as_of: build. Append history only after approved movements with Medium+
-# pressure or durable shifts.
+# pressure or durable shifts. On commit, map live → fields below (pipeline §8).
 ---
-schema_version: 1
+schema_version: 2
 revision: 1
-updated_at: 2026-07-17T00:00:00Z
+updated_at: 2026-07-31T00:00:00Z
 last_commit_id: chapter_1_m2
+character_id: "[slug]"
 snapshot:
   active_focus: "[e.g. VIII — Integration]"
   latent_weights:
@@ -26,5 +28,9 @@ skills:
 memories:
   detailed: []
   footnote: []
+# Durable bond baselines (0–100 scales). Live vectors start from these each session.
+relational_baselines: {}
+# optional: last live snapshot (or path). Ephemeral; not a second source of truth.
+# live: null
 temporary_effects: []
 history: []

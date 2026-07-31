@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Framework Deployment & Scaffolding Script
-----------------------------------------
-This script distributes the Authors Psyche Matrix Framework and writing mechanics
-to other book folders in the same parent directory as this repo.
+CognitiveMiddleware Framework Deployment & Scaffolding Script
+-------------------------------------------------------------
+Distributes the Cognitive Pipeline, book-writing layer, simulator, and craft
+mechanics to other book folders in the same parent directory as this repo.
 
 Launch (OS-aware):
   python scripts/run.py deploy [target]
@@ -22,17 +22,18 @@ import sys
 from pathlib import Path
 from typing import List, Tuple
 
-# Define framework components to distribute
-# Core drafting entry: Main + Rules_Index + realm_data.yaml (via Psychology/) + cards template
+# Core: Cognitive Pipeline + Main + Rules + realm_data + state schema + templates.
 #
 # NOT deployed (author-local only; see LICENSE.md §3):
 #   - Named character cards (Characters/*.md except _template + README)
-#   - Characters/Relations.md
-# Simulator/ is public — drop-in CharacterRuntime (pack load/save, modes).
+#   - Characters/Relations.md / filled logs
+# Simulator/ is public — drop-in CharacterRuntime.
 FRAMEWORK_FILES = [
     "Framework/Main.md",
+    "Framework/CognitivePipeline.md",
     "Framework/Rules_Index.md",
     "Framework/Psychology/realm_data.yaml",
+    "Framework/Schemas/psychosomatic_state.json",
     "Framework/natural_prose.md",
     "Framework/Drafting_Workflow.md",     # stub → Main
     "Framework/formatting_rules.md",
@@ -51,11 +52,14 @@ FRAMEWORK_FILES = [
     "README.md",
     "CHANGELOG.md",
     "LICENSE.md",
+    "DISCLAIMER.md",
+    "PROJECT_SCOPE.md",
 ]
 
 FRAMEWORK_DIRS = [
     "Framework/Mechanics",
     "Framework/Psychology",
+    "Framework/Schemas",
     "Framework/Prompts",
     "Simulator",
     "scripts",
@@ -90,13 +94,15 @@ def get_parent_dir() -> str:
     return os.path.dirname(get_source_dir())
 
 def get_book_directories(parent_dir: str) -> List[str]:
+    # Self + legacy symlink name + non-book trees
     ignored = {
-        'Authors_Framework', 
-        '.git', 
-        '.obsidian', 
-        'Backups', 
-        'Pathfinder_Campaign', 
-        '.Trash-1000', 
+        'CognitiveMiddleware',
+        'Authors_Framework',  # legacy symlink → this repo
+        '.git',
+        '.obsidian',
+        'Backups',
+        'Pathfinder_Campaign',
+        '.Trash-1000',
         '$RECYCLE.BIN',
         'System Volume Information',
         'tmp',
@@ -104,9 +110,10 @@ def get_book_directories(parent_dir: str) -> List[str]:
         'Keys',
         'Legal',
         'Provider',
-        '__pycache__', 
-        '.vscode', 
-        '.idea'
+        'CharacterSimulator.UI',  # separate .NET app tree
+        '__pycache__',
+        '.vscode',
+        '.idea',
     }
     candidates = []
     if not os.path.exists(parent_dir):
@@ -225,7 +232,7 @@ def main():
     parent_dir = get_parent_dir()
     
     print("==================================================")
-    print("      Psyche Matrix Framework Deployer            ")
+    print("      CognitiveMiddleware Framework Deployer      ")
     print("==================================================")
     
     # Check if target path is provided via command line

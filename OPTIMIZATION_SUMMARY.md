@@ -54,7 +54,7 @@
 **Changes:**
 - Removed verbose workflow descriptions
 - Compressed load protocol to bullet points
-- Streamlined module verification protocol
+- Streamlined load protocol (module registry for loop injectors)
 - Removed redundant explanations
 - Updated reference from realm_index.md to realm_data.yaml
 - **All framework logic intact**
@@ -205,13 +205,14 @@ The deploy script will automatically copy the current (already optimized) framew
 
 ### Mechanics/ Directory
 - **Not modified** per user requirement (required for drafting)
-- Contains: prose.md, voices.md, humanity.md, erotica.md
+- Contains: prose.md, voices.md, humanity.md (explicit craft modules live downstream only)
 - These remain available as optional load
 
 ### What Was NOT Changed
 - `Framework/linter.py` — utility, not context-loaded
 - `deploy_framework.py` — deployment script
-- `Framework/Modules.md` — module registry (required for verification)
+- `Framework/CognitivePipeline.md` — character psych/physical runtime (always for drafting/RP)
+- `Framework/Modules.md` — downstream module registry (injectors into the cognitive loop)
 - `Characters/_template.md` — template file
 - `Characters/README.md` — directory documentation
 - `Characters/Relations.md` — relationship mapping
