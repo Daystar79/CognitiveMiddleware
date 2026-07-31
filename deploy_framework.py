@@ -12,8 +12,12 @@ Launch (OS-aware):
 
 It can:
 1. Initialize a brand-new book folder with the correct structure and framework files.
-2. Update/sync the framework in an existing book folder without touching custom files.
-3. Automatically detect existing book folders and present an interactive selection menu.
+2. Update/sync the framework in an *allowlisted* book folder without touching custom files.
+3. Present an interactive selection menu of allowlisted targets only.
+
+IMPORTANT: This never scans the whole drive as deploy targets. Only names in
+DEPLOY_ALLOWLIST (or an explicit CLI path) receive framework files. That prevents
+accidental deploys into Keys/, Legal/, Provider/, etc.
 """
 
 import os
@@ -21,6 +25,17 @@ import shutil
 import sys
 from pathlib import Path
 from typing import List, Tuple
+
+# Explicit book / app workspaces that may receive framework deploys.
+# Add a folder name here when you intentionally onboard a new downstream project.
+# Sibling dirs on /mnt/Books that are NOT listed are never bulk-deployed.
+DEPLOY_ALLOWLIST = frozenset({
+    "Midlayer",
+    "BeliefAndLove",
+    "A Wanderers Guide To the Gates",
+    "history_of_the_great_wheel",
+    "CharacterSimulator",
+})
 
 # Core: Cognitive Pipeline + Main + Rules + realm_data + state schema + templates.
 #
@@ -93,36 +108,35 @@ def get_source_dir() -> str:
 def get_parent_dir() -> str:
     return os.path.dirname(get_source_dir())
 
-def get_book_directories(parent_dir: str) -> List[str]:
-    # Self + legacy symlink name + non-book trees
-    ignored = {
-        'CognitiveMiddleware',
-        'Authors_Framework',  # legacy symlink → this repo
-        '.git',
-        '.obsidian',
-        'Backups',
-        'Pathfinder_Campaign',
-        '.Trash-1000',
-        '$RECYCLE.BIN',
-        'System Volume Information',
-        'tmp',
-        'Code',
-        'Keys',
-        'Legal',
-        'Provider',
-        'CharacterSimulator.UI',  # separate .NET app tree
-        '__pycache__',
-        '.vscode',
-        '.idea',
+def is_blocked_target(target_dir: str) -> bool:
+    """Hard-block deploys into the framework itself and known non-book trees."""
+    name = os.path.basename(os.path.abspath(target_dir).rstrip(os.sep))
+    blocked = {
+        "CognitiveMiddleware",
+        "Authors_Framework",
+        "CharacterSimulator.UI",  # .NET UI — not a framework book tree
+        "Keys",
+        "Legal",
+        "Provider",
+        "Backups",
+        "tmp",
+        "Code",
+        ".obsidian",
+        ".git",
     }
-    candidates = []
+    return name in blocked
+
+
+def get_book_directories(parent_dir: str) -> List[str]:
+    """Return only allowlisted downstream project paths that currently exist."""
     if not os.path.exists(parent_dir):
-        return candidates
-    for name in os.listdir(parent_dir):
+        return []
+    candidates: List[str] = []
+    for name in sorted(DEPLOY_ALLOWLIST):
         path = os.path.join(parent_dir, name)
-        if os.path.isdir(path) and name not in ignored:
+        if os.path.isdir(path):
             candidates.append(path)
-    return sorted(candidates)
+    return candidates
 
 def copy_file(src: str, dst: str) -> None:
     """Copy a file, creating target directory if missing."""
@@ -169,10 +183,26 @@ def validate_source_files(source_dir: str) -> Tuple[List[str], List[str]]:
     return missing_files, missing_dirs
 
 
-def deploy_to_path(source_dir: str, target_dir: str) -> None:
-    """Deploys framework to the target path. Initializes if new folder."""
+def deploy_to_path(source_dir: str, target_dir: str, *, force: bool = False) -> None:
+    """Deploys framework to the target path. Initializes if new folder.
+
+    By default the target basename must be on DEPLOY_ALLOWLIST (or force=True
+    for an explicit intentional deploy of a new name after confirmation).
+    """
     parent_dir = get_parent_dir()
-    
+    target_name = os.path.basename(os.path.abspath(target_dir).rstrip(os.sep))
+
+    if is_blocked_target(target_dir):
+        print(f"\n[!] Refusing deploy into blocked path: {target_name}")
+        print("    This is the framework repo itself or a non-book workspace.")
+        return
+
+    if not force and target_name not in DEPLOY_ALLOWLIST:
+        print(f"\n[!] Refusing deploy into '{target_name}' — not on DEPLOY_ALLOWLIST.")
+        print("    Add the folder name to DEPLOY_ALLOWLIST in deploy_framework.py")
+        print("    if this is an intentional downstream book/app project.")
+        return
+
     # Validate all source files exist before starting deployment
     missing_files, missing_dirs = validate_source_files(source_dir)
     if missing_files or missing_dirs:
@@ -183,7 +213,7 @@ def deploy_to_path(source_dir: str, target_dir: str) -> None:
             print(f"    Missing directory: {d}")
         print("    Please ensure all framework files are present in the source directory.")
         return
-    
+
     print(f"\n[+] Deploying framework to: {target_dir}")
     
     # Check if target is a new book directory (empty or doesn't exist)
@@ -235,54 +265,68 @@ def main():
     print("      CognitiveMiddleware Framework Deployer      ")
     print("==================================================")
     
-    # Check if target path is provided via command line
-    if len(sys.argv) > 1:
-        target = sys.argv[1]
-        # Resolve target relative to parent directory if it's not absolute
+    # CLI: deploy [name-or-path] [--force]
+    args = [a for a in sys.argv[1:] if a != "--force"]
+    force = "--force" in sys.argv[1:]
+
+    if args:
+        target = args[0]
         if not os.path.isabs(target):
-            # Check if user passed a path containing separators or just a name
             if os.path.sep in target:
                 target = os.path.abspath(target)
             else:
                 target = os.path.join(parent_dir, target)
-        
-        deploy_to_path(source_dir, target)
+        deploy_to_path(source_dir, target, force=force)
         return
-        
-    # Interactive Mode
+
+    # Interactive Mode — allowlisted targets only
     books = get_book_directories(parent_dir)
-    
+
+    print("\nDeploy targets are allowlisted (not every folder on this drive).")
+    print(f"Allowlist: {', '.join(sorted(DEPLOY_ALLOWLIST))}")
     print("\nAvailable options:")
-    print("  [0] Create a new book folder")
-    
+    print("  [0] Create a new book folder (must confirm; add to allowlist for later bulk updates)")
+
     for i, book_path in enumerate(books, start=1):
         name = os.path.basename(book_path)
         print(f"  [{i}] Update existing book: {name}")
-        
+
     if books:
-        print(f"  [A] Update ALL existing book folders ({len(books)} found)")
-        
+        print(f"  [A] Update ALL allowlisted books ({len(books)} found)")
+
     print("  [Q] Quit")
-    
+
     try:
         choice = input("\nSelect an option: ").strip().lower()
     except (KeyboardInterrupt, EOFError):
         print("\nExiting.")
         return
-    
-    if choice == 'q':
+
+    if choice == "q":
         print("Exiting.")
         return
-    elif choice == '0':
+    elif choice == "0":
         new_name = input("Enter the name of the new book folder: ").strip()
         if not new_name:
             print("Invalid name. Exiting.")
             return
+        if is_blocked_target(os.path.join(parent_dir, new_name)):
+            print(f"[!] Name '{new_name}' is blocked.")
+            return
+        confirm = input(
+            f"Create/deploy into '{new_name}'? "
+            f"Remember to add it to DEPLOY_ALLOWLIST for future bulk updates. (y/n): "
+        ).strip().lower()
+        if confirm != "y":
+            print("Operation cancelled.")
+            return
         target = os.path.join(parent_dir, new_name)
-        deploy_to_path(source_dir, target)
-    elif choice == 'a' and books:
-        confirm = input(f"Are you sure you want to update ALL {len(books)} books? (y/n): ").strip().lower()
-        if confirm == 'y':
+        deploy_to_path(source_dir, target, force=True)
+    elif choice == "a" and books:
+        confirm = input(
+            f"Update ALL {len(books)} allowlisted books? (y/n): "
+        ).strip().lower()
+        if confirm == "y":
             for book_path in books:
                 deploy_to_path(source_dir, book_path)
         else:
