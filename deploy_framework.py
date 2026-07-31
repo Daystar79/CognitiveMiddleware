@@ -26,9 +26,10 @@ import sys
 from pathlib import Path
 from typing import List, Tuple
 
-# Explicit book / app workspaces that may receive framework deploys.
-# Add a folder name here when you intentionally onboard a new downstream project.
-# Sibling dirs on /mnt/Books that are NOT listed are never bulk-deployed.
+# Active downstream products only (receive framework deploys).
+# Completed manuscripts stay OFF this list — do not bulk-update them:
+#   BeliefAndLove, A Wanderers Guide To the Gates, history_of_the_great_wheel
+# CharacterSimulator.UI is a separate .NET host (blocked), not a Framework tree.
 DEPLOY_ALLOWLIST = frozenset({
     "Midlayer",
     "CharacterSimulator",
