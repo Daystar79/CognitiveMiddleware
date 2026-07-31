@@ -31,9 +31,6 @@ from typing import List, Tuple
 # Sibling dirs on /mnt/Books that are NOT listed are never bulk-deployed.
 DEPLOY_ALLOWLIST = frozenset({
     "Midlayer",
-    "BeliefAndLove",
-    "A Wanderers Guide To the Gates",
-    "history_of_the_great_wheel",
     "CharacterSimulator",
 })
 
