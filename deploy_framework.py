@@ -61,12 +61,19 @@ FRAMEWORK_FILES = [
     "Characters/_template.md",
     "Characters/_log_template.yaml",
     "Characters/README.md",
+    "PROJECT_SCOPE.md",
+    # Product identity files (README/CHANGELOG/LICENSE/DISCLAIMER/.gitignore)
+    # are only seeded for *new* empty book folders — never overwrite an existing
+    # downstream project's branding (e.g. CharacterSimulator README).
+]
+
+# Seeded only when initializing a brand-new empty target directory.
+NEW_BOOK_IDENTITY_FILES = [
     ".gitignore",
     "README.md",
     "CHANGELOG.md",
     "LICENSE.md",
     "DISCLAIMER.md",
-    "PROJECT_SCOPE.md",
 ]
 
 FRAMEWORK_DIRS = [
@@ -242,7 +249,23 @@ def deploy_to_path(source_dir: str, target_dir: str, *, force: bool = False) -> 
             copy_file(src, dst)
         else:
             print(f"    [WARNING] Source file not found: {rel_file}")
-            
+
+    # Identity files: only when creating a new book, or if the target file is missing
+    if is_new:
+        print("  -> Seeding new-book identity files...")
+        for rel_file in NEW_BOOK_IDENTITY_FILES:
+            src = os.path.join(source_dir, rel_file)
+            dst = os.path.join(target_dir, rel_file)
+            if os.path.exists(src):
+                copy_file(src, dst)
+    else:
+        for rel_file in NEW_BOOK_IDENTITY_FILES:
+            src = os.path.join(source_dir, rel_file)
+            dst = os.path.join(target_dir, rel_file)
+            if os.path.exists(src) and not os.path.exists(dst):
+                copy_file(src, dst)
+                print(f"    (seeded missing identity file: {rel_file})")
+
     # Copy framework directories
     for rel_dir in FRAMEWORK_DIRS:
         src = os.path.join(source_dir, rel_dir)
@@ -251,9 +274,20 @@ def deploy_to_path(source_dir: str, target_dir: str, *, force: bool = False) -> 
             copy_directory(src, dst)
         else:
             print(f"    [WARNING] Source directory not found: {rel_dir}")
-            
+
+    # Remove core-retired files that must not linger in downstream trees
+    retired = [
+        "Framework/Mechanics/erotica.md",
+    ]
+    for rel in retired:
+        stale = os.path.join(target_dir, rel)
+        if os.path.isfile(stale):
+            os.remove(stale)
+            print(f"    Removed retired file: {rel}")
+
     print(f"[✓] Deployment to '{os.path.basename(target_dir)}' completed successfully!")
     print("  (Skipped author-local only: named character cards, Relations.md)")
+    print("  (Skipped overwriting existing product README/CHANGELOG/LICENSE/DISCLAIMER)")
 
 def main():
     source_dir = get_source_dir()
