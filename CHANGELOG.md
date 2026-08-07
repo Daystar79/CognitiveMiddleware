@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 - **`PROJECT_SCOPE.md`:** Authoritative product boundaries and downstream integration contract (v2).
+- **§8.3 Implementation Language Boundary:** CognitiveMiddleware stays file-native + Python ops; C# / Rust / Go (or other) runtimes are downstream consumers only (v2.0.1).
 - **Unified state model:** Durable `Characters/[slug]_log.yaml` vs live `Schemas/psychosomatic_state.json`, with commit mapping in `CognitivePipeline.md`.
 - **Pipeline wiring:** Card, log, `realm_data.yaml`, and schema as required inputs; intimate stimulus as ordinary pipeline interpretation (§7.1).
 - **State validator + example:** `scripts/validate_state.py` and `Framework/Schemas/examples/psychosomatic_state.example.json`.

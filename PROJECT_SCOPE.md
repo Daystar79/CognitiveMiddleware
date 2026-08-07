@@ -1,6 +1,6 @@
 # Project Scope and Objectives: CognitiveMiddleware
 
-**File Version:** 2.0.0 (Authoritative Product Alignment)  
+**File Version:** 2.0.1 (Authoritative Product Alignment)  
 **Target Audience:** Autonomous AI Agents, LLM Orchestrators, and Downstream Integration Tools  
 **Repository Root:** `file:///mnt/Books/Source/CognitiveMiddleware`  
 
@@ -161,6 +161,20 @@ Mandatory Session Boot Stack (~2,760 - 3,500 words):
 4. **Style Locks & Anti-Synthesis:** Paragraphs close on sensory fact, raw action, or unanswered dialogue—NEVER interpretive summary.
 5. **Module Subordination:** Core invariants always supersede module rules.
 6. **Automated Audit Requirement:** Downstream prose must pass [Framework/linter.py](file:///mnt/Books/Source/CognitiveMiddleware/Framework/linter.py) with 0 critical leaks.
+
+### 8.3 Implementation Language Boundary (Do Not Forget)
+
+**CognitiveMiddleware is intentionally left alone as a language-agnostic product.** It is a file-native cognitive layer (markdown specs, YAML data, JSON schema) plus thin Python utilities (deploy, lint, validate). It is **not** a multi-language runtime monorepo.
+
+| Lives in this repo | Does **not** live in this repo |
+|---|---|
+| Pipeline / rules / modules contracts | Compiled host engines (C#, Rust, Go, …) |
+| Somatic catalogs and state schemas | GUI / TUI / service shells |
+| Cross-platform Python ops scripts | Provider SDKs or app-specific logic |
+
+**If a C#, Rust, Go, or other native implementation is needed, it is built downstream** — as a separate product that **consumes** this contract (intent vector, psychosomatic snapshot schema, module hooks, age invariants). Examples of that pattern already exist outside this tree (e.g. .NET hosts such as CharacterSimulator.UI). Those hosts may reimplement execution mechanics; they must not become the source of truth for psych/physical rules. Spec changes still land here first, then deploy or sync to consumers.
+
+**Deploy reminder:** Framework deploys target allowlisted *framework trees* only (e.g. Midlayer, CharacterSimulator). Compiled host projects are not Framework trees and must not receive bulk markdown spray as if they were.
 
 ---
 
