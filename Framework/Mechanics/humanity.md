@@ -12,6 +12,7 @@
 | **HUM-03** | **INVARIANT** | Multi-Zone Cascade | Every physical tell MUST engage at least **2 interconnected body zones** (e.g. Cranial + Pelvic). |
 | **HUM-04** | **NEVER** | Single-Muscle Ticks | NEVER output isolated single-muscle ticks (e.g., just a jaw twitch or blink). |
 | **HUM-05** | **PRECEDENCE** | Somatic Primacy | Somatic state ALWAYS overrides intellectual dialogue (body language speaks truth over words). |
+| **HUM-06** | **INVARIANT** | Volitional Agency | Every turn MUST express active intent, inquiry, or internal resistance; NEVER render passive agreement or idle waiting. |
 
 ---
 
@@ -85,7 +86,7 @@ When Active Focus is set to Realm I–X, somatic output MUST warp through the re
 |:---:|:---|:---|
 | **BIO-01** | **Fumble Rule** | Under High+ emotional pressure, character MUST fumble objects, trip on thresholds, or mis-grip tools. |
 | **BIO-02** | **Vestment Friction** | Narrative MUST track physical clothing barriers (heavy boots, sliding sleeves, catching hems). |
-| **BIO-03** | **Dialogue Asymmetry** | Dialogue MUST talk past interlocutor, answer subtext, interrupt, or trail off (`...`). |
+| **BIO-03** | **Dialogue Asymmetry & Inquiry** | Dialogue MUST ask counter-questions, probe motives, talk past interlocutor, answer subtext, interrupt, or trail off (`...`). |
 | **BIO-04** | **Imperfect Recall** | Character MUST act unsure or deflect unlisted details; NEVER output omniscient recall. |
 
 ---

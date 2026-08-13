@@ -74,7 +74,7 @@ Pipeline owns live ticks and commit mapping. Full protocol: [CognitivePipeline.m
 |:---:|---|---|
 | **1** | Query pipeline | Run [CognitivePipeline.md](CognitivePipeline.md) with brief as trigger. Receive 4-channel vector + live snapshot. |
 | **2** | Body precedence | Render somatic cascades **before** or folded into speech/action. Never bracketed `[tell]`. |
-| **3** | Dialogue | Preserve idiolect, clipping, asymmetry from card `voice.*` + `Says`. |
+| **3** | Dialogue | Preserve idiolect, clipping, asymmetry, active volition, and counter-inquiry from card `voice.*` + `Says`. |
 | **4** | Style lock | Enforce project style; no purple prose / AI clichés unless style allows. |
 | **5** | Anti-synthesis | Close paragraphs on sensory fact, raw action, or unanswered dialogue — never interpretive summary. |
 | **6** | Hygiene | Apply [Rules_Index.md](Rules_Index.md) hard bans (no system jargon on page). |
@@ -92,6 +92,7 @@ Character attraction and desire are output states of the core pipeline ([Cogniti
 
 ## Hard invariants (drafting)
 
+- **Active Character Agency & Brief Supremacy** — Character volition governs *how* characters act (actively probing, resisting, advancing personal goals), while the Movement Brief governs *what* narrative milestones occur. Volition creates realistic dramatic friction to reach scene goals without derailing movement completion.
 - **Clean manuscript only** during draft output — no CONFIG cards, audit tables, or debug banners in the draft file.
 - **100% off-page matrix** — Focus, Bias, Gift, Prism, Realm labels never appear in prose.
 - **Card supremacy** — card baseline overrides generic AI tropes; log overrides card for evolved state.

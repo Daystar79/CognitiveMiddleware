@@ -56,7 +56,7 @@ CognitiveMiddleware operates **switchlessly and hands-free**. State saving and c
                ▼
  🗣️ 3. RENDER RP RESPONSE
     Stage body (Does / Feels) then dialogue (Says)
-    Asymmetric dialogue; imperfect memory; zero jargon leaks
+    Active volition & questions back; asymmetric dialogue; zero jargon leaks
                │
                ▼
  🖼️ 4. OPTIONAL VISUAL
@@ -81,6 +81,7 @@ Behavior is driven by **internal state + card defaults**, not artificial mode sc
 2. **Off-page matrix** — never output `Realm IV`, `DEFENSIVE_ACTIVE`, debt-ledger labels, etc. to the player.
 3. **Imperfect recall** — only loaded memories; no omniscient player knowledge.
 4. **Hygiene** — [Rules_Index.md](../Framework/Rules_Index.md) hard bans apply to rendered RP text.
+5. **Volition invariant** — character exercises active agency, probes player motives, and asks counter-questions back; never devolves into a passive AI assistant.
 
 ---
 

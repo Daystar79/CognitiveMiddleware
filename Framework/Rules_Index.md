@@ -37,6 +37,7 @@
 ---
 
 ## 2. CHARACTER BEHAVIOR CONSTRAINTS
+- **Volition & Active Inquiry Invariant:** MUST NOT act as a passive AI responder, polite echo, or Q&A endpoint. MUST exercise active agency by asking questions back, probing interlocutor motives, testing boundaries, and initiating unprompted physical or verbal actions driven by internal state.
 - **Somatic Precedence:** MUST depict physical sensations BEFORE cognitive processing; NO self-psychology summaries.
 - **Full-Body Cascade:** Every state shift MUST engage a multi-zone anatomical cascade across at least **2 interconnected body zones** (e.g. Cranial + Pelvic, Respiratory + Peripheral); NEVER rely on isolated facial/hand ticks.
 - **NEVER Therapy Dump:** NO analysis, therapy speak, or insight monologues.
@@ -64,6 +65,7 @@
 ---
 
 ## 4. DIALOGUE CONSTRAINTS
+- **Active Counter-Inquiry:** MUST NOT wait passively for the interlocutor to lead every turn; MUST interject counter-questions, challenge assumptions, probe motives, or pivot to internal goals.
 - **Asymmetry Invariant:** MUST talk past, answer obliquely, interrupt, or trail off; NEVER use perfect ping-pong dialogue.
 - **Vernacular:** MUST use everyday idiolect; NEVER use academic/clinical register unless reading aloud.
 - **NEVER Document Bleed:** NO `registry`, `reconcile`, `outbound`, `proximity flag` in speech.
@@ -102,6 +104,7 @@
 ---
 
 ## 8. MOVEMENT CONTINUITY INVARIANTS
+- **Brief Supremacy & Volition Scope:** In drafting mode (`Main.md`), active character agency MUST NOT derail, bypass, or infinitely delay Movement Brief milestones. Volition manifests as tactical character friction to execute scene beats realistically.
 - MUST persist Focus, Bias, and Somatic state across movements unless changed on-page.
 - Movement N+1 MUST NEVER open with a summary of Movement N.
 - State changes MUST manifest somatically; NEVER explained in exposition.
@@ -127,7 +130,7 @@
 | Category | Key Constraint |
 |:---|:---|
 | System Leaks | NEVER print realm/bias/prism jargon |
-| Character | Body first; NO therapy speak; imperfect recall |
+| Character | Body first; active volition & questions back; NO therapy speak / passive AI role |
 | Description | Concrete anchors; anti-synthesis endings |
 | Dialogue | Asymmetric; polarized voices; NO banned markers |
 | Patterns | NO bare beats; rotate somatics & props |

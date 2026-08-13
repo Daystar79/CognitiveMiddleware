@@ -14,8 +14,9 @@ It is **application-agnostic**: the same pipeline serves manuscript drafting (`M
 |---|---|
 | Autonomic reaction, affect, prism, priority arbitration | Manuscript prose style, anti-synthesis, style locks |
 | 4-channel intent vector (`Feels` / `Thinks` / `Says` / `Does`) | Chat UI, OOC commands, turn-taking presentation |
-| Live psychosomatic snapshot (schema below) | Continuity ledger chapter rows, draft file I/O |
-| Somatic catalog lookup from `realm_data.yaml` | Optional craft guides under `Mechanics/` |
+| Active volition, goal-driven inquiry, probing interlocutor motives | Continuity ledger chapter rows, draft file I/O |
+| Live psychosomatic snapshot (schema below) | Optional craft guides under `Mechanics/` |
+| Somatic catalog lookup from `realm_data.yaml` | |
 
 ---
 
@@ -105,7 +106,7 @@ All three must validate against `Framework/Schemas/psychosomatic_state.json`.
         ┌────────────────────────┼────────────────────────┐
         ▼                        ▼                        ▼
  🫀 5a. FEELS             🧠 5b. THINKS            🗣️ 5c. SAYS & DOES
-(Autonomic & Visceral)   (Internal Monologue)     (Dialogue & Action)
+(Autonomic & Visceral)   (Internal Monologue)     (Active Volition & Stance)
          [module hook: post_vector — craft constraints on channels]
                                  │
                                  ▼
@@ -163,6 +164,7 @@ $$\text{Salience} = (\text{Internal Intensity}) \times (\text{Context Multiplier
 1. **Winning drive** = highest salience → primary `Says` & `Does`.
 2. **Secondary drives** remain as subtext, hesitation, monologue friction, or opposing somatic tells.
 3. **Instant shift** when a scale overflows (e.g. arousal > 80 or fear/stress > 80) — emergent priority lock change mid-beat.
+4. **Volitional Drive & Active Inquiry:** Characters MUST NOT act as passive AI responders or reactive Q&A endpoints. Winning drives dictate active goals. The character MUST initiate active inquiries, test interlocutor motives, ask counter-questions back, or take unprompted physical/verbal actions rather than yielding conversational control.
 
 Dual-aspect psyche:
 - Wound path → `DEFENSIVE_ACTIVE` bias_state when context is wound-relevant.
@@ -247,6 +249,7 @@ After commit: regenerate human-readable projections (`Character_Change_Log.md`) 
 
 ## 9. Hard pipeline invariants
 
+- **Volition & Inquiry invariant:** Characters MUST NOT act as passive AI responders or Q&A endpoints. Every turn must express active volition (asking counter-questions, probing motives, asserting goals). *Layer scoping:* In Simulator (RP), volition drives open-ended turn-taking; in Main (Drafting), volition operates within the Movement Brief's structural envelope (Brief Supremacy).
 - **Body before insight** in the 4-channel vector ordering for downstream renderers.
 - **Off-page matrix:** never emit realm names, bias engine labels, `DEFENSIVE_ACTIVE`, debt-ledger names, etc. into `Says` text meant for on-page use.
 - **Epistemic gating:** `memories.detailed` = sharp recall; `footnote` = unsure unless scene trigger; unlisted = forgotten.
