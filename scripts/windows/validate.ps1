@@ -1,5 +1,6 @@
-# Windows launcher — one-time optimized-file migration (if *_optimized sources exist).
-# AI agents on Windows: run this (or: python scripts/run.py migrate).
+# Windows launcher — psychosomatic state validator.
+# AI agents on Windows: run this (or: python scripts/run.py validate …).
+#   powershell -NoProfile -ExecutionPolicy Bypass -File scripts/windows/validate.ps1 [state_file]
 
 $ErrorActionPreference = "Stop"
 $Root = Resolve-Path (Join-Path $PSScriptRoot "..\..")
@@ -22,6 +23,6 @@ function Invoke-PythonScript {
     throw "Python 3 not found on PATH. Install Python 3 or the Windows py launcher."
 }
 
-$script = Join-Path $Root "migrate_optimized.py"
+$script = Join-Path $Root "scripts\validate_state.py"
 $code = Invoke-PythonScript -ScriptPath $script -ScriptArgs $args
 exit $code

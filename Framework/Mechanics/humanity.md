@@ -13,6 +13,7 @@
 | **HUM-04** | **NEVER** | Single-Muscle Ticks | NEVER output isolated single-muscle ticks (e.g., just a jaw twitch or blink). |
 | **HUM-05** | **PRECEDENCE** | Somatic Primacy | Somatic state ALWAYS overrides intellectual dialogue (body language speaks truth over words). |
 | **HUM-06** | **INVARIANT** | Volitional Agency | Every turn MUST express active intent, inquiry, or internal resistance; NEVER render passive agreement or idle waiting. |
+| **HUM-07** | **INVARIANT** | Reactive Short-Circuit | Under acute autonomic pressure (stress ≥ 70 or reactive regime), deliberative thought drops out. Motor reflex (`Does`) and vocal reflex (`Says`) MUST discharge raw affective impulse directly. |
 
 ---
 
@@ -88,6 +89,7 @@ When Active Focus is set to Realm I–X, somatic output MUST warp through the re
 | **BIO-02** | **Vestment Friction** | Narrative MUST track physical clothing barriers (heavy boots, sliding sleeves, catching hems). |
 | **BIO-03** | **Dialogue Asymmetry & Inquiry** | Dialogue MUST ask counter-questions, probe motives, talk past interlocutor, answer subtext, interrupt, or trail off (`...`). |
 | **BIO-04** | **Imperfect Recall** | Character MUST act unsure or deflect unlisted details; NEVER output omniscient recall. |
+| **BIO-05** | **Autonomic Non-Concession** | Under acute emotional threat or sympathetic spike, characters CANNOT be persuaded by superior debate logic. MUST NOT output synthetic capitulation. |
 
 ---
 

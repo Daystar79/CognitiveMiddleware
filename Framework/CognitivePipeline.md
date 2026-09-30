@@ -7,7 +7,7 @@
 
 The **Cognitive Pipeline** is the psychological / physical runtime for a character. It models mind-body neurobiology, subconscious perception, relational dynamics, and behavior intent.
 
-It is **application-agnostic**: the same pipeline serves manuscript drafting (`Main.md`) and interactive RP (`Simulator/CharacterRuntime.md`).
+It is **application-agnostic**: the root pipeline serves manuscript drafting (`Main.md`) and downstream interactive hosts (e.g. `CharacterSimulator`).
 
 ### Downstream decoupling contract
 | Pipeline owns | Pipeline does **not** own |
@@ -77,46 +77,81 @@ All three must validate against `Framework/Schemas/psychosomatic_state.json`.
 
 ---
 
-## 4. Neurobiological execution sequence
+## 4. Neurobiological & Psychological execution sequence (Dual-Circuit Architecture)
+
+Human cognition does not run a single flat loop. Real nervous systems operate across two distinct functional circuits based on autonomic pressure:
 
 ```
                       📥 Sensory Event / Input
                                  │
                                  ▼
-                    ⚡ 1. NERVOUS SYSTEM REACTION
-            (Visceral baseline, startle, heart rate, gut, Z1–Z6)
-            [module hook: pre_somatic]
+                    ⚡ 1. NERVOUS SYSTEM & POLYVAGAL STATE
+             (Polyvagal mode: ventral, sympathetic, dorsal, dissociated)
+             (Visceral baseline, startle, heart rate, gut, Z1–Z6 cascades)
+             (Sensory tunneling: micro-fixation on physical anchor)
+             [module hook: pre_somatic]
                                  │
                                  ▼
-                    ❤️ 2. RAW AFFECTIVE IMPULSE
-            (Un-thought urge: fear, arousal, anger, shock, warmth)
-            [module hook: affect_filter]
+                    ❤️ 2. RAW AFFECTIVE IMPULSE & AMBIVALENCE
+             (Un-thought urge: fear, arousal, anger, shock, warmth)
+             (Raw action impulse: push, strike, bolt, freeze, seize control)
+             [module hook: affect_filter]
                                  │
-                                 ▼
-                🧠 3. SUBCONSCIOUS INTERPRETATION (Prism)
-         (Bedrock: Upbringing + Culture + Memory + Wound/Gift)
-         (Active Drive: Motives + Relational Vector)
-         ★ Core only — modules must not rewrite prism law
-                                 │
-                                 ▼
-                 ⚖️ 4. DYNAMIC PRIORITY ARBITRATION
-         (Drives compete; highest salience wins)
-         [module hook: pre_arbitration — weights / context multipliers]
-                                 │
-        ┌────────────────────────┼────────────────────────┐
-        ▼                        ▼                        ▼
- 🫀 5a. FEELS             🧠 5b. THINKS            🗣️ 5c. SAYS & DOES
-(Autonomic & Visceral)   (Internal Monologue)     (Active Volition & Stance)
-         [module hook: post_vector — craft constraints on channels]
-                                 │
-                                 ▼
-              📤 6. LIVE SNAPSHOT + APP RENDER
-         [module hook: app_render — host presentation]
-         [module hook: on_commit — after durable merge]
+                 ┌───────────────┴───────────────┐
+                 ▼                               ▼
+    [Autonomic Pressure < Threshold]   [Autonomic Pressure ≥ Threshold]
+     REGIME: "deliberative"             REGIME: "reactive"
+     (Cortical / Regulated Loop)        (Limbic Short-Circuit / Hijack)
+                 │                               │
+                 ▼                               ▼
+     🧠 3. SUBCONSCIOUS PRISM             ⚡ PREFRONTAL BYPASS:
+        (Inner Split: gut truth              Input is NOT parsed as debate logic;
+         vs. conscious rationalization)      words are felt purely as threat/impact.
+        (Defense posture: intellectualize,   No rational deliberation.
+         fawn, deflect, withdraw, etc.)          │
+                 │                               ▼
+                 ▼                        💥 MASK COLLAPSE:
+     🎭 4. SOCIAL MASKING & STRAIN           Social facade shatters or locks into
+        (Facade type, strain 0–100,          rigid armor (mask_fracture: true).
+         micro-fracture tells)                   │
+                 │                               ▼
+                 ▼                        🛑 ARBITRATION BYPASS:
+     ⚖️ 5. DYNAMIC ARBITRATION               Priority arbitration is bypassed
+        (Drives compete by salience;         (arbitration_status: "bypassed_reactive").
+         internal friction scored)           Primal impulse takes 100% unilateral lock.
+                 │                               │
+                 ▼                               ▼
+  ┌──────────────┼──────────────┐                │
+  ▼              ▼              ▼                │
+🫀 FEELS       🧠 THINKS      🗣️ SAYS/DOES        │
+(Autonomic     (Ego rational-  (Masked speech   │
+ & Zones)      ization &       & posture)        │
+               friction)                         ▼
+                 │                      ┌────────┼────────┐
+                 │                      ▼        ▼        ▼
+                 │                    🫀 FEELS 🧠 THINKS 🗣️ SAYS/DOES
+                 │                    (Visceral (Cognitive (DIRECT IMPULSE
+                 │                     flooding  blank or   DISCHARGE:
+                 │                     & shock)  visceral   raw vocal/motor
+                 │                               noise)     reaction: snap,
+                 │                                          strike, bolt, freeze)
+                 ▼                               │
+        📤 7. LIVE SNAPSHOT + APP RENDER ◄───────┘
+           [module hook: app_render — host presentation]
+           [module hook: on_commit — after durable merge]
 ```
 
-Body before insight: stages 1–2 complete before labeled cognition in stage 5b.  
-Module hooks: see [Modules.md](Modules.md) §3.
+### Cognitive Regimes: Deliberative vs. Reactive
+
+| Attribute | `deliberative` (Regulated Circuit) | `reactive` (Limbic Short-Circuit) |
+|---|---|---|
+| **Trigger Threshold** | Stress < 70, arousal < 75, `autonomic_surge: false`, core autonomy intact | Stress ≥ 70, arousal ≥ 75, `autonomic_surge: true`, or acute threat to core control/wound |
+| **Logic & Argument Handling** | Prefrontal cortex evaluates statements, weighs context, and processes points | **Prefrontal bypass:** Words are registered strictly as autonomic impact/threat; zero logical debate parsing |
+| **Social Mask** | Facade maintained with measurable strain (0–100) and micro-fractures | Facade collapses or freezes into rigid defensive wall (`mask_fracture: true`) |
+| **Priority Arbitration** | Weighs competing drives (`arbitration_status: "arbitrated"`) | Bypassed (`arbitration_status: "bypassed_reactive"`); survival/defensive impulse takes 100% lock |
+| **`Thinks` Channel** | Structured internal monologue, rationalization, and subtext friction | Fragmented visceral loops (*"No. Get away. Stop."*), sensory fixation, or cognitive blank |
+| **`Says` & `Does` Channels** | Calibrated dialogue intent, vocal behavior, and deliberate physical staging | **Direct impulse discharge:** involuntary vocal snap, sharp interruption, blunt denial, slam, or recoil |
+| **Persuasion / Concession** | Concession possible with high emotional safety (> 75) and low friction | **Concession impossible:** Nervous system is hijacked; character cannot admit defeat or yield ground |
 
 ---
 
@@ -124,7 +159,14 @@ Module hooks: see [Modules.md](Modules.md) §3.
 
 1. **Somatic → Cognitive:** Fatigue, pain, gut drop, arousal, intercostal tension alter patience, risk tolerance, memory access, word choice.
 2. **Cognitive → Somatic:** Wound/gift evaluations shift autonomic physiology immediately.
-3. **Continuous loop:** Sensation and interpretation update each other within the tick.
+3. **Continuous loop:** Sensation, self-deception, and social masking update each other within the tick.
+
+### Autonomic Polyvagal Modes
+The nervous system operates across 4 distinct states:
+- **`ventral_grounded`:** Socially attuned, open breathing, relaxed vocal cords, receptive to connection.
+- **`sympathetic_mobilized`:** Fight/flight activation; rapid pulse, shallow chest breathing, tense perimeter muscles, hyper-vigilance.
+- **`dorsal_freeze`:** Hypo-arousal / shock; numb gut, heavy immobile limbs, flat affect, quiet or delayed vocalization.
+- **`dissociated_tunnel`:** Sensory detachment; depersonalization under high trauma/stress; obsessive fixation on a single irrelevant sensory anchor (`sensory_tunneling`).
 
 ### Anatomical cascades (6 zones)
 Every state shift engages **at least 2 interconnected zones**:
@@ -147,24 +189,36 @@ Every state shift engages **at least 2 interconnected zones**:
 
 ---
 
-## 6. Dynamic priority arbitration
+## 6. Dynamic priority arbitration & psychological friction
 
 At any moment, multiple internal drives carry baseline weights. Compute **salience** per drive:
 
 $$\text{Salience} = (\text{Internal Intensity}) \times (\text{Context Multiplier}) \times (\text{Character Baseline Weight})$$
 
-### Where numbers come from
-| Term | Source |
-|---|---|
-| Internal Intensity | Live affective intensity + autonomic scales (0–100) |
-| Context Multiplier | Trigger relevance to wound/gift/memory/skill (e.g. 0.5–2.0) |
-| Character Baseline Weight | Card/log `transformation_weights` + active_focus weight + bias_strength |
+### The Inner Split & Self-Deception
+Real humans do not experience emotions in clean isolation; they experience **The Inner Split**:
+- **`subconscious_visceral_truth`:** What the nervous system and gut know (e.g., *"I feel terrified of being abandoned"*).
+- **`conscious_rationalization`:** The self-deceptive narrative the ego constructs to maintain pride and control (e.g., *"I'm just declining because they are wasting my time"*).
+- **`internal_friction` (0–100):** The dissonance between competing drives. High friction causes hesitation, stammering, false starts, and clumsy physical actions.
 
-### Arbitration rules
-1. **Winning drive** = highest salience → primary `Says` & `Does`.
-2. **Secondary drives** remain as subtext, hesitation, monologue friction, or opposing somatic tells.
-3. **Instant shift** when a scale overflows (e.g. arousal > 80 or fear/stress > 80) — emergent priority lock change mid-beat.
-4. **Volitional Drive & Active Inquiry:** Characters MUST NOT act as passive AI responders or reactive Q&A endpoints. Winning drives dictate active goals. The character MUST initiate active inquiries, test interlocutor motives, ask counter-questions back, or take unprompted physical/verbal actions rather than yielding conversational control.
+### Defense Posture Taxonomy
+Under threat/pressure (`DEFENSIVE_ACTIVE`), the character adopts a specific human defense strategy:
+- `intellectualize`: Retreats into hyper-logic, vocabulary, aloof cynicism, or technical analysis.
+- `fawn_placate`: Smiles, over-agrees, and accommodates while gut drops in terror.
+- `deflect_banter`: Deflects tension with jokes, sarcasm, teasing, or topic changes.
+- `cold_withdrawal`: Shuts down verbal output, looks away, delivers monosyllabic answers.
+- `preemptive_strike`: Lashes out verbally or physically before the other person can hurt them.
+- `brace_stonewall`: Rigid posture, unyielding physical barrier, refusing compromise.
+
+### Arbitration Rules & The Reactive Bypass
+1. **Deliberative Regime (`arbitration_status: "arbitrated"`):**
+   - **Winning drive** = highest computed salience → primary driver for `Says` & `Does`.
+   - **Secondary drives** produce monologue friction (`internal_friction`), hesitation, stammering, or opposing micro-tells.
+   - **Volitional Drive & Active Inquiry:** Characters MUST NOT act as passive AI responders. Winning drives dictate active goals and counter-probing.
+2. **Reactive Regime (`arbitration_status: "bypassed_reactive"`):**
+   - **Deliberative weighing is suspended.** The limbic emergency lock assigns salience 100 directly to the raw survival/defensive impulse (`affective_state.impulse`).
+   - Secondary long-term goals (reputation, diplomacy, being reasonable, future consequences) are completely silenced by autonomic flooding.
+   - **The Non-Concession / Defeat Block:** When an activated character (especially controlling, proud, or traumatized types) faces a threat to autonomy or ego, **logic does not penetrate**. The character CANNOT concede an argument or admit defeat. They react through pure defensive reflex: interrupting, doubling down, counter-attacking, stonewalling, or physical termination.
 
 Dual-aspect psyche:
 - Wound path → `DEFENSIVE_ACTIVE` bias_state when context is wound-relevant.
@@ -173,35 +227,37 @@ Dual-aspect psyche:
 
 ---
 
-## 7. Relational model
+## 7. Relational model & interpersonal momentum
 
 Bonds are continuous multi-dimensional vectors in the **live** snapshot:
 
 ```json
 {
-  "relational_vector": {
-    "target_id": "interlocutor_slug",
-    "emotional_safety": 65,
-    "attraction_physical": 80,
-    "attraction_emotional": 40,
-    "respect_competence": 90,
-    "status_dynamic": "equals",
-    "resentment_friction": 15,
-    "perceived_reciprocity": {
-      "perceived_liking": 50,
-      "perceived_threat": 10
-    },
-    "relational_anchors": ["shared_secret_ch2"]
+  "relational_vectors": {
+    "interlocutor_slug": {
+      "emotional_safety": 65,
+      "attraction_physical": 80,
+      "attraction_emotional": 40,
+      "respect_competence": 90,
+      "status_dynamic": "equals",
+      "resentment_friction": 15,
+      "relational_momentum": "brittle",
+      "relational_ambivalence": "admires competence but deeply mistrusts authority",
+      "perceived_reciprocity": {
+        "perceived_liking": 50,
+        "perceived_threat": 10
+      },
+      "relational_anchors": ["shared_secret_ch2"]
+    }
   }
 }
 ```
 
-Dynamics (examples):
-- High physical attraction + high resentment → charged push-pull.
-- High competence respect + low safety → crisp cooperation, tight boundaries.
-- High attraction + high arousal + low resentment (no blocking wound) → spontaneous desire impulse.
+### Relational Momentum & Ambivalence
+- **`relational_momentum`:** Tracks directional velocity (`building`, `deepening`, `stable`, `eroding`, `brittle`, `suspended`, `fractured`).
+- **`relational_ambivalence`:** Captures messy human duality (e.g., high attraction + high resentment = electric push-pull).
 
-Durable baselines for bonds live under `_log.yaml` → `relational_baselines`. Live vectors start from those baselines each session and may drift; commit writes durable shifts only on Medium+ pressure or explicit `/bond` / author approval.
+Durable baselines for bonds live under `_log.yaml` → `relational_baselines`. Live vectors start from those baselines each session and drift; commit writes durable shifts only on Medium+ pressure or explicit author approval.
 
 ### 7.1 Intimate & Sexual Stimulus Interpretation
 
@@ -222,20 +278,22 @@ Sex is not a special subsystem or separate operational mode—it is a class of s
 ### Live output (every tick)
 Serialize a full snapshot matching `Framework/Schemas/psychosomatic_state.json`:
 
-1. **`Feels`** — autonomic & multi-zone somatic manifestations  
-2. **`Thinks`** — internal monologue after prism (not therapy labels)  
-3. **`Says`** — dialogue intent, cadence, register, interruptions  
-4. **`Does`** — posture, movement, spatial staging, object handling  
+1. **`Feels`** — autonomic polyvagal state & multi-zone somatic manifestations (2+ zones). In `reactive` mode, shows visceral surge, flooding, or acute somatic freeze.
+2. **`Thinks`** — in `deliberative` mode: conscious rationalization vs. subconscious friction and monologue (not therapy labels). In `reactive` mode: degraded to cognitive noise (visceral fragments, single-word loops, sensory shock, or blank).
+3. **`Says`** — in `deliberative` mode: dialogue intent shaped by social mask, defense posture, and active counter-inquiry. In `reactive` mode: direct vocal reflex (snap, blunt denial, sharp interruption, stammer, silence) discharging raw impulse.
+4. **`Does`** — in `deliberative` mode: posture, spatial staging, object handling, and mask fracture tells. In `reactive` mode: involuntary motor reflex (slamming, stepping in, recoiling, freezing, bolting).
 
-Apps render these channels into prose (drafting) or RP chat (simulator). Framework jargon never appears in rendered output.
+Apps render these channels into prose (drafting) or downstream interactive hosts. Framework jargon never appears in rendered output.
 
-### Commit mapping (movement approved / `/save` / scene close)
+### Commit mapping (movement approved / session close)
 
 | Live field | Durable destination in `_log.yaml` |
 |---|---|
 | Winning focus / realm pressure outcome | `snapshot.active_focus`, `snapshot.latent_weights` |
 | Sustained bias_strength change | `snapshot.bias_strength` |
 | Permanent baseline body change | `snapshot.default_somatic` |
+| Arc-level defense posture evolution | `snapshot.defense_posture` |
+| Arc-level social facade shift | `snapshot.social_facade` |
 | Skill discovery / demotion | `skills.active` / `skills.latent` |
 | Memory promotion (triggered → detailed) | `memories.detailed` / `footnote` |
 | Relational baseline shift (Medium+) | `relational_baselines.[target]` |
@@ -249,9 +307,10 @@ After commit: regenerate human-readable projections (`Character_Change_Log.md`) 
 
 ## 9. Hard pipeline invariants
 
-- **Volition & Inquiry invariant:** Characters MUST NOT act as passive AI responders or Q&A endpoints. Every turn must express active volition (asking counter-questions, probing motives, asserting goals). *Layer scoping:* In Simulator (RP), volition drives open-ended turn-taking; in Main (Drafting), volition operates within the Movement Brief's structural envelope (Brief Supremacy).
+- **Reactive Circuit & Anti-Sycophancy invariant:** Under elevated autonomic pressure (stress/arousal ≥ 40) or when `cognitive_regime == "reactive"`, characters MUST NOT execute calm deliberation, weigh syllogisms, or concede arguments to an interlocutor's logic. If a controlling or prideful character's dominance is challenged, they MUST execute pure defensive/reactive reflex (fight/pushback/dismissal/stonewall) rather than polite capitulation.
+- **Volition & Inquiry invariant:** Characters MUST NOT act as passive AI responders or Q&A endpoints. Every turn must express active volition (asking counter-questions, probing motives, asserting goals).
 - **Body before insight** in the 4-channel vector ordering for downstream renderers.
-- **Off-page matrix:** never emit realm names, bias engine labels, `DEFENSIVE_ACTIVE`, debt-ledger names, etc. into `Says` text meant for on-page use.
+- **Off-page matrix:** never emit realm names, bias engine labels, `DEFENSIVE_ACTIVE`, debt-ledger names, polyvagal labels, cognitive regimes, or defense posture enums into text meant for on-page use.
 - **Epistemic gating:** `memories.detailed` = sharp recall; `footnote` = unsure unless scene trigger; unlisted = forgotten.
 - **Competence gating:** `skills.active` = clean execution; `latent` = fumble/brace; unlisted = helplessness.
 - **Age invariant:** `canon_adult` and age are identity/ToS data invariants (minors are never sexual subjects). This is a safety boundary, not a behavior toggle or mood switch.

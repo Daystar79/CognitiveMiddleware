@@ -19,6 +19,8 @@ snapshot:
     II: 15
     VII: 10
   bias_strength: 60
+  defense_posture: "[e.g. intellectualize]"
+  social_facade: "[e.g. cool_politeness]"
   default_somatic: "[baseline body tells from card]"
   flexibility: 40
   as_of: "build"
@@ -28,7 +30,7 @@ skills:
 memories:
   detailed: []
   footnote: []
-# Durable bond baselines (0–100 scales). Live vectors start from these each session.
+# Durable bond baselines (0–100 scales + momentum). Live vectors start from these each session.
 relational_baselines: {}
 # optional: last live snapshot (or path). Ephemeral; not a second source of truth.
 # live: null

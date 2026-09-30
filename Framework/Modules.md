@@ -1,20 +1,20 @@
 # Modules Index — CognitiveMiddleware
 *Extension registry for the Cognitive Pipeline. Downstream applications register modules here to inject into the cognitive loop.*
 
-Load with the pipeline and the active app host ([Main.md](./Main.md) or `Simulator/CharacterRuntime.md`).
+Load with the pipeline and the active app host ([Main.md](./Main.md) or downstream application renderer).
 
 ---
 
 ## 1. Purpose
 
 The **Cognitive Pipeline** is the fixed psychological / physical character runtime.  
-The **module system** is how downstream applications (book projects, simulators, tools) **add optional behavior into that loop** without forking the core engine.
+The **module system** is how downstream applications (book projects, host tools) **add optional behavior into that loop** without forking the core engine.
 
 | Layer | Role |
 |---|---|
 | **Core pipeline** | Always on: nervous system → affect → prism → arbitration → 4-channel vector |
 | **Modules** | Optional, registry-gated injectors at defined loop hooks |
-| **App hosts** | Main / CharacterRuntime render output; they do not re-implement psyche |
+| **App hosts** | Main / downstream renderers present output; they do not re-implement psyche |
 
 Modules are **not** a second personality engine. They supply domain constraints, craft rules, genre pacing, or app-specific filters that run *inside* the pipeline tick under core supremacy.
 
@@ -136,10 +136,10 @@ Planned / not shipped (examples only — add when real files exist):
 
 ## 8. Session boot integration
 
-**Always load this registry file** when running drafting or RP so agents know what is enabled.
+**Always load this registry file** when running drafting or downstream sessions so agents know what is enabled.
 
 - **Pipeline:** execute core sequence; at each hook, apply ENABLED modules for that hook.
-- **Main / CharacterRuntime:** still own presentation; `app_render` modules refine host output only.
+- **Main / Downstream hosts:** still own presentation; `app_render` modules refine host output only.
 
 There is no separate “module runtime.” Modules are **configuration for the cognitive loop**.
 

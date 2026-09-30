@@ -1,6 +1,6 @@
 # Scripts — Windows & Unix
 
-Cross-platform launchers for deploy, lint, and migrate. Shared logic lives in Python; OS-specific wrappers only choose the right shell and Python binary.
+Cross-platform launchers for deploy, lint, and validate. Shared logic lives in Python; OS-specific wrappers only choose the right shell and Python binary.
 
 ## AI / agent rule (pick by OS)
 
@@ -24,30 +24,30 @@ CM_FORCE_OS=unix    python3 scripts/run.py lint Drafts/
 |:---|:---|:---|
 | `deploy` | Push framework scaffolds to a sibling book folder | `… deploy MyNovel` |
 | `lint` | Scan drafts for system leaks / banned fillers | `… lint Drafts/` |
-| `migrate` | One-time `*_optimized` file promotion (no-op if none) | `… migrate` |
-| `validate_state.py` | Check a psychosomatic JSON snapshot against the schema | `python3 scripts/validate_state.py [file]` |
+| `validate` | Check a psychosomatic JSON snapshot against the schema | `… validate [state.json]` |
 
 ## Layout
 
 ```
 scripts/
   run.py                 # OS-aware dispatcher (preferred)
+  validate_state.py      # State schema and range validator
   README.md              # this file
   unix/
     deploy.sh
     lint.sh
-    migrate.sh
+    validate.sh
   windows/
     deploy.ps1  deploy.cmd
     lint.ps1    lint.cmd
-    migrate.ps1 migrate.cmd
+    validate.ps1 validate.cmd
 ```
 
 Core implementations (cross-platform Python):
 
 - `deploy_framework.py`
 - `Framework/linter.py`
-- `migrate_optimized.py`
+- `scripts/validate_state.py`
 
 ## Humans
 

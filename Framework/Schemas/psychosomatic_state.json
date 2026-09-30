@@ -7,6 +7,7 @@
     "autonomic_state",
     "affective_state",
     "subconscious_bias",
+    "social_mask",
     "relational_vectors",
     "priority_arbitration"
   ],
@@ -21,8 +22,34 @@
     },
     "autonomic_state": {
       "type": "object",
-      "required": ["arousal", "stress", "fatigue", "pain", "primary_somatic_zones"],
+      "required": [
+        "polyvagal_mode",
+        "cognitive_regime",
+        "arousal",
+        "stress",
+        "fatigue",
+        "pain",
+        "primary_somatic_zones"
+      ],
       "properties": {
+        "polyvagal_mode": {
+          "type": "string",
+          "enum": [
+            "ventral_grounded",
+            "sympathetic_mobilized",
+            "dorsal_freeze",
+            "dissociated_tunnel"
+          ],
+          "description": "Autonomic nervous mode: ventral (grounded/attuned), sympathetic (mobilized fight/flight), dorsal (shutdown/freeze), or dissociated (detached/tunnel vision)"
+        },
+        "cognitive_regime": {
+          "type": "string",
+          "enum": [
+            "deliberative",
+            "reactive"
+          ],
+          "description": "Operational cognitive circuit: 'deliberative' (cortical/regulated loop with arbitration, masking, and reasoned speech) vs 'reactive' (limbic short-circuit where acute emotional pressure or adrenaline bypasses arbitration into direct visceral reaction)"
+        },
         "arousal": { "type": "integer", "minimum": 0, "maximum": 100 },
         "stress": { "type": "integer", "minimum": 0, "maximum": 100 },
         "fatigue": { "type": "integer", "minimum": 0, "maximum": 100 },
@@ -41,22 +68,45 @@
             ]
           }
         },
+        "sensory_tunneling": {
+          "type": "string",
+          "description": "Obsessive fixation on a trivial sensory anchor during high stress or freeze (e.g. 'frayed hem of coat', 'ticking clock')"
+        },
         "autonomic_surge": { "type": "boolean" }
       }
     },
     "affective_state": {
       "type": "object",
-      "required": ["primary_emotion", "secondary_emotion", "emotional_intensity", "impulse"],
+      "required": [
+        "primary_emotion",
+        "secondary_emotion",
+        "emotional_intensity",
+        "impulse"
+      ],
       "properties": {
         "primary_emotion": { "type": "string" },
         "secondary_emotion": { "type": "string" },
         "emotional_intensity": { "type": "integer", "minimum": 0, "maximum": 100 },
-        "impulse": { "type": "string", "description": "Raw un-thought-out reaction urge (flinch, reach, blurt, freeze)" }
+        "impulse": {
+          "type": "string",
+          "description": "Raw un-thought-out reaction urge (flinch, reach, blurt, freeze, retreat)"
+        },
+        "ambivalence": {
+          "type": "string",
+          "description": "Simultaneous conflicting emotional impulses (e.g. 'craves connection while fearing exposure')"
+        }
       }
     },
     "subconscious_bias": {
       "type": "object",
-      "required": ["active_wound", "active_gift", "bias_state"],
+      "required": [
+        "active_wound",
+        "active_gift",
+        "bias_state",
+        "subconscious_visceral_truth",
+        "conscious_rationalization",
+        "defense_posture"
+      ],
       "properties": {
         "active_wound": { "type": "string" },
         "active_gift": { "type": "string" },
@@ -64,7 +114,55 @@
           "type": "string",
           "enum": ["DORMANT", "DEFENSIVE_ACTIVE", "GENERATIVE_ACTIVE"]
         },
-        "perceptual_warp": { "type": "string", "description": "Subconscious reinterpretation of incoming input" }
+        "perceptual_warp": {
+          "type": "string",
+          "description": "Subconscious reinterpretation of incoming input"
+        },
+        "subconscious_visceral_truth": {
+          "type": "string",
+          "description": "What the gut/body instinctively knows (e.g. 'Terrified of being discarded')"
+        },
+        "conscious_rationalization": {
+          "type": "string",
+          "description": "The ego's self-deceptive narrative justification (e.g. 'I am just being practical and saving time')"
+        },
+        "defense_posture": {
+          "type": "string",
+          "enum": [
+            "none",
+            "intellectualize",
+            "fawn_placate",
+            "deflect_banter",
+            "cold_withdrawal",
+            "preemptive_strike",
+            "brace_stonewall"
+          ],
+          "description": "Active psychological survival stance under pressure"
+        }
+      }
+    },
+    "social_mask": {
+      "type": "object",
+      "required": ["facade_type", "mask_strain", "mask_fracture"],
+      "properties": {
+        "facade_type": {
+          "type": "string",
+          "description": "Social presentation style (e.g. 'cool_politeness', 'cheerful_competence', 'aloof_neutrality')"
+        },
+        "mask_strain": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Effort required to maintain social composure under pressure (0 = relaxed, 100 = near collapse)"
+        },
+        "mask_fracture": {
+          "type": "boolean",
+          "description": "Whether internal pressure causes the facade to crack this tick"
+        },
+        "fracture_tell": {
+          "type": "string",
+          "description": "The micro-leak where the mask slips (e.g. 'voice catches on syllable; knuckles blanch on desk')"
+        }
       }
     },
     "relational_vectors": {
@@ -84,8 +182,28 @@
           "attraction_physical": { "type": "integer", "minimum": 0, "maximum": 100 },
           "attraction_emotional": { "type": "integer", "minimum": 0, "maximum": 100 },
           "respect_competence": { "type": "integer", "minimum": 0, "maximum": 100 },
-          "status_dynamic": { "type": "string", "enum": ["dominant", "yielding", "equals", "deference"] },
+          "status_dynamic": {
+            "type": "string",
+            "enum": ["dominant", "yielding", "equals", "deference"]
+          },
           "resentment_friction": { "type": "integer", "minimum": 0, "maximum": 100 },
+          "relational_momentum": {
+            "type": "string",
+            "enum": [
+              "building",
+              "deepening",
+              "stable",
+              "eroding",
+              "brittle",
+              "suspended",
+              "fractured"
+            ],
+            "description": "Directional velocity of the bond"
+          },
+          "relational_ambivalence": {
+            "type": "string",
+            "description": "Contradiction in relational feelings (e.g. 'craves praise from them but deeply resents their authority')"
+          },
           "perceived_reciprocity": {
             "type": "object",
             "properties": {
@@ -104,8 +222,22 @@
       "type": "object",
       "required": ["winning_drive", "salience_score", "competing_drives"],
       "properties": {
-        "winning_drive": { "type": "string", "description": "Drive seizing top priority lock" },
+        "winning_drive": {
+          "type": "string",
+          "description": "Drive seizing top priority lock"
+        },
         "salience_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "arbitration_status": {
+          "type": "string",
+          "enum": ["arbitrated", "bypassed_reactive"],
+          "description": "Whether drives were deliberated across weights ('arbitrated') or preempted by limbic emergency lock ('bypassed_reactive')"
+        },
+        "internal_friction": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Degree of cognitive dissonance and resistance between competing drives (0 = clear unity, 100 = paralyzed conflict)"
+        },
         "competing_drives": {
           "type": "array",
           "items": {
@@ -122,10 +254,22 @@
       "type": "object",
       "required": ["feels", "thinks", "says", "does"],
       "properties": {
-        "feels": { "type": "string", "description": "Somatic & visceral manifestations" },
-        "thinks": { "type": "string", "description": "Internal monologue / conscious rationalization" },
-        "says": { "type": "string", "description": "Spoken dialogue intent" },
-        "does": { "type": "string", "description": "Physical action, posture, and staging" }
+        "feels": {
+          "type": "string",
+          "description": "Somatic & visceral manifestations across 2+ body zones"
+        },
+        "thinks": {
+          "type": "string",
+          "description": "Internal monologue: reasoned rationalization in deliberative mode; fragmented sensory noise, visceral loop, or cognitive blank in reactive mode"
+        },
+        "says": {
+          "type": "string",
+          "description": "Spoken dialogue intent: shaped by social facade and defense posture in deliberative mode; raw vocal reflex (snap, blunt denial, sharp interruption, stammer, silence) in reactive mode"
+        },
+        "does": {
+          "type": "string",
+          "description": "Physical action: deliberate staging and tells in deliberative mode; involuntary motor reflex (slam, step in, recoil, freeze, bolt) in reactive mode"
+        }
       }
     }
   }

@@ -72,13 +72,14 @@ Pipeline owns live ticks and commit mapping. Full protocol: [CognitivePipeline.m
 
 | Step | Operation | Detail |
 |:---:|---|---|
-| **1** | Query pipeline | Run [CognitivePipeline.md](CognitivePipeline.md) with brief as trigger. Receive 4-channel vector + live snapshot. |
-| **2** | Body precedence | Render somatic cascades **before** or folded into speech/action. Never bracketed `[tell]`. |
-| **3** | Dialogue | Preserve idiolect, clipping, asymmetry, active volition, and counter-inquiry from card `voice.*` + `Says`. |
-| **4** | Style lock | Enforce project style; no purple prose / AI clichés unless style allows. |
-| **5** | Anti-synthesis | Close paragraphs on sensory fact, raw action, or unanswered dialogue — never interpretive summary. |
-| **6** | Hygiene | Apply [Rules_Index.md](Rules_Index.md) hard bans (no system jargon on page). |
-| **7** | Commit | On approval: merge durable fields into `_log.yaml` per pipeline §8; update Continuity_Ledger scene-close body; regenerate Character_Change_Log if needed. |
+| **1** | Query pipeline | Run [CognitivePipeline.md](CognitivePipeline.md) with brief as trigger. Receive 4-channel vector + live snapshot (`polyvagal_mode`, `cognitive_regime`, inner split, mask strain/fracture). |
+| **2** | Body precedence | Render somatic cascades (2+ zones) and mask fracture tells **before** or folded into speech/action. Never bracketed `[tell]`. |
+| **3** | Dialogue & Mask | Preserve idiolect, clipping, asymmetry, active volition, and counter-inquiry from card `voice.*` + `Says`. In deliberative mode: filter through facade and posture. In reactive mode: render as raw vocal reflex (snap, blunt denial, sharp interruption, stammer, silence). |
+| **4** | Internal Monologue | In deliberative mode: express ego rationalization in `Thinks` while action leaks visceral truth. In reactive mode: render `Thinks` as fragmented visceral loops, sensory shock, or cognitive blank. |
+| **5** | Style lock | Enforce project style; no purple prose / AI clichés unless style allows. |
+| **6** | Anti-synthesis | Close paragraphs on sensory fact, raw action, or unanswered dialogue — never interpretive summary. |
+| **7** | Hygiene | Apply [Rules_Index.md](Rules_Index.md) hard bans (no system jargon, polyvagal labels, cognitive regimes, or posture enums on page). |
+| **8** | Commit | On approval: merge durable fields into `_log.yaml` per pipeline §8; update Continuity_Ledger scene-close body; regenerate Character_Change_Log if needed. |
 
 ### Style lock machine
 - `LOCKED` — do not drift mid-movement.
@@ -92,6 +93,7 @@ Character attraction and desire are output states of the core pipeline ([Cogniti
 
 ## Hard invariants (drafting)
 
+- **Reactive Primacy & Anti-Sycophancy** — Characters under acute stress or in reactive regime do not calmly concede debates or act as reasonable consensus-seekers. Characters fight, deflect, or withdraw according to their archetype.
 - **Active Character Agency & Brief Supremacy** — Character volition governs *how* characters act (actively probing, resisting, advancing personal goals), while the Movement Brief governs *what* narrative milestones occur. Volition creates realistic dramatic friction to reach scene goals without derailing movement completion.
 - **Clean manuscript only** during draft output — no CONFIG cards, audit tables, or debug banners in the draft file.
 - **100% off-page matrix** — Focus, Bias, Gift, Prism, Realm labels never appear in prose.

@@ -6,26 +6,42 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [Unreleased] - 2026-07-31
+## [Unreleased] - 2026-08-18
 
 ### Added
+- **Humanized State Machine Evolution:**
+  - **Dual-Circuit Cognitive Architecture:** Added `cognitive_regime` (`deliberative` vs. `reactive`) to `autonomic_state` and `arbitration_status` (`arbitrated` vs. `bypassed_reactive`) to `priority_arbitration`. In `reactive` mode (acute stress ≥ 70, adrenaline surge, or core control threat), prefrontal deliberation is bypassed, social masks collapse, and raw affective `impulse` discharges directly into `Does` and `Says` as pure motor/vocal reflex.
+  - **Anti-Sycophancy & Non-Concession Invariant:** Added explicit hard ban in `Rules_Index.md`, `CognitivePipeline.md`, and `CharacterRuntime.md` against synthetic surrender or conceding arguments to interlocutor logic when activated or when dominant/controlling/prideful traits are challenged.
+  - **Autonomic Polyvagal Modes:** Added `polyvagal_mode` (`ventral_grounded`, `sympathetic_mobilized`, `dorsal_freeze`, `dissociated_tunnel`) and `sensory_tunneling` anchor tracking in `Framework/Schemas/psychosomatic_state.json`.
+  - **The Inner Split & Self-Deception:** Added `subconscious_visceral_truth` (gut reality) vs. `conscious_rationalization` (ego self-deceptive narrative) to `subconscious_bias`.
+  - **Defense Posture Taxonomy:** Added `defense_posture` enum (`intellectualize`, `fawn_placate`, `deflect_banter`, `cold_withdrawal`, `preemptive_strike`, `brace_stonewall`).
+  - **Social Masking & Persona Strain:** Added `social_mask` block tracking `facade_type`, `mask_strain` (0–100), `mask_fracture`, and `fracture_tell`.
+  - **Relational Momentum & Ambivalence:** Added `relational_momentum` (`building`, `deepening`, `stable`, `eroding`, `brittle`, `suspended`, `fractured`) and `relational_ambivalence`.
+  - **Cognitive Dissonance & Friction:** Added `internal_friction` (0–100) to priority arbitration to model hesitation, ambivalence, and resistance between competing drives.
 - **`PROJECT_SCOPE.md`:** Authoritative product boundaries and downstream integration contract (v2).
 - **§8.3 Implementation Language Boundary:** CognitiveMiddleware stays file-native + Python ops; C# / Rust / Go (or other) runtimes are downstream consumers only (v2.0.1).
 - **Unified state model:** Durable `Characters/[slug]_log.yaml` vs live `Schemas/psychosomatic_state.json`, with commit mapping in `CognitivePipeline.md`.
 - **Pipeline wiring:** Card, log, `realm_data.yaml`, and schema as required inputs; intimate stimulus as ordinary pipeline interpretation (§7.1).
 - **State validator + example:** `scripts/validate_state.py` and `Framework/Schemas/examples/psychosomatic_state.example.json`.
 - **Deploy:** Ships pipeline, schema, Modules registry, and `PROJECT_SCOPE.md`.
+- **Automated test suite:** Added `tests/test_framework.py` covering state schema validation, linter patterns, and deploy decoupling.
 
 ### Changed
+- **Root Cognition Layer Focus:** Decoupled `CharacterRuntime` and `Simulator/` from CognitiveMiddleware; interactive chat host runtimes are housed in downstream projects (`CharacterSimulator`, `Simulacra`). CognitiveMiddleware remains purely the root psychological and physical cognition layer.
 - **Product naming:** Paths and deploy self-ignore use **CognitiveMiddleware**.
 - **Sex in core = interpretation only:** Desire/stance via body → prism → arbitration → vector; no staging craft in core.
 - **Switchless runtime:** Automated durable commit; `/adult` / HEAT behavioral modes removed from host docs; optional `/state` for debug only.
 - **Modules as loop API:** Empty core registry; downstream apps register injectors; core supremacy intact.
 - **`realm_data.yaml`:** Single-document YAML (`yaml.safe_load` compatible).
 - **Log template v2:** `character_id`, `relational_baselines`.
+- **Toolchain launcher & validation:** Integrated `validate` into `scripts/run.py` and added platform wrappers (`scripts/unix/validate.sh`, `scripts/windows/validate.ps1`, `scripts/windows/validate.cmd`).
+- **Linter synchronization & accuracy:** Updated `Framework/linter.py` to audit new engine terms, polyvagal labels, defense postures, mask variables, and banned dialogue/beat markers, with contextual checks avoiding false positives on common English vocabulary.
+- **Deployment hardening:** `deploy_framework.py` now preserves Unix file permissions (`+x`) via `shutil.copy2`, prunes `__pycache__` and private dirs from traversal, and cleans up retired files/directories in downstream targets.
 
 ### Removed
+- **`Simulator/` & `Images/`:** Removed standalone chat host and rendering engine from this root cognition repository.
 - **`Framework/Mechanics/erotica.md`:** Explicit sex craft is downstream-only; not shipped in core.
+- **`migrate_optimized.py` & wrappers:** Retired spent optimization migration scripts from toolchain.
 
 ### Prior (2026-07-29)
 - **Full-Body Anatomical Cascade Engine**, **Dual-Aspect Psyche (Wound & Gift)**, **Generative Prism**, gift catalog/hygiene, local agent safeguards, silent image prompts, instruction-to-constraint optimization, live image still routing.

@@ -2,27 +2,41 @@
   "character_id": "example_slug",
   "timestamp_or_movement": "chapter_1_m2",
   "autonomic_state": {
+    "polyvagal_mode": "sympathetic_mobilized",
+    "cognitive_regime": "deliberative",
     "arousal": 35,
-    "stress": 55,
+    "stress": 65,
     "fatigue": 20,
     "pain": 0,
     "primary_somatic_zones": [
       "Z2_Vocal_Cervical",
-      "Z3_Thoracic_Respiratory"
+      "Z3_Thoracic_Respiratory",
+      "Z6_Peripheral_Grounding"
     ],
+    "sensory_tunneling": "fixated on the damp ring left by the glass on the table",
     "autonomic_surge": false
   },
   "affective_state": {
     "primary_emotion": "guarded_anger",
-    "secondary_emotion": "curiosity",
+    "secondary_emotion": "reluctant_curiosity",
     "emotional_intensity": 60,
-    "impulse": "hold the doorframe; do not step fully in"
+    "impulse": "hold the doorframe; do not step fully into the room",
+    "ambivalence": "drawn to the offer but terrified of needing anyone's help"
   },
   "subconscious_bias": {
     "active_wound": "Insulation",
-    "active_gift": "",
+    "active_gift": "Threshold_Vision",
     "bias_state": "DEFENSIVE_ACTIVE",
-    "perceptual_warp": "help reads as intrusion until trust proven"
+    "perceptual_warp": "unearned help reads as leverage and inevitable intrusion",
+    "subconscious_visceral_truth": "Terrified that accepting shelter will give them the right to demand my past.",
+    "conscious_rationalization": "I'm just being cautious; people always want collateral in this town.",
+    "defense_posture": "intellectualize"
+  },
+  "social_mask": {
+    "facade_type": "cool_professional_detachment",
+    "mask_strain": 65,
+    "mask_fracture": true,
+    "fracture_tell": "fingers tightening into the painted doorframe until the wood creaks; clipped final syllable"
   },
   "relational_vectors": {
     "interlocutor_slug": {
@@ -32,6 +46,8 @@
       "respect_competence": 70,
       "status_dynamic": "equals",
       "resentment_friction": 20,
+      "relational_momentum": "brittle",
+      "relational_ambivalence": "admires their direct competence but suspects an ulterior trade",
       "perceived_reciprocity": {
         "perceived_liking": 35,
         "perceived_threat": 25
@@ -42,15 +58,17 @@
   "priority_arbitration": {
     "winning_drive": "maintain_boundary",
     "salience_score": 78,
+    "arbitration_status": "arbitrated",
+    "internal_friction": 55,
     "competing_drives": [
       { "drive_name": "maintain_boundary", "salience": 78 },
-      { "drive_name": "seek_connection", "salience": 42 }
+      { "drive_name": "secure_shelter", "salience": 52 }
     ]
   },
   "output_vector": {
-    "feels": "Throat tight; breath high under the sternum; weight on the balls of the feet.",
-    "thinks": "If they push once more, leave. Don't explain.",
-    "says": "You can stand there. I'm not opening the rest of it.",
-    "does": "Keeps one hand on the door edge; does not fully face them; glances past their shoulder to the hall."
+    "feels": "Throat tight and corded; breathing shallow under the upper ribs; heels planted back with white knuckles on the door casing.",
+    "thinks": "They're being too reasonable. It's a setup. If they push another step closer, I shut the deadbolt.",
+    "says": "You can leave the manifest on the bench. I'm not opening the inner office tonight.",
+    "does": "Keeps shoulder wedged against the door; doesn't blink; tracks their hands instead of their face."
   }
 }

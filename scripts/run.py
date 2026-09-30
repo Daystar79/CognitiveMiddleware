@@ -26,7 +26,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = Path(__file__).resolve().parent
 
-TOOLS: tuple[str, ...] = ("deploy", "lint", "migrate")
+TOOLS: tuple[str, ...] = ("deploy", "lint", "validate", "validate_state", "validate-state", "migrate")
 
 
 def detect_family() -> str:
@@ -67,10 +67,11 @@ def find_python() -> list[str]:
 
 def wrapper_path(family: str, tool: str) -> Path | None:
     """Get the path to a platform wrapper script."""
+    canonical = "validate" if tool in ("validate_state", "validate-state") else tool
     if family == "windows":
-        ps1 = SCRIPTS / "windows" / f"{tool}.ps1"
+        ps1 = SCRIPTS / "windows" / f"{canonical}.ps1"
         return ps1 if ps1.is_file() else None
-    sh = SCRIPTS / "unix" / f"{tool}.sh"
+    sh = SCRIPTS / "unix" / f"{canonical}.sh"
     return sh if sh.is_file() else None
 
 
@@ -80,6 +81,8 @@ def python_core(tool: str) -> Path:
         return ROOT / "deploy_framework.py"
     if tool == "lint":
         return ROOT / "Framework" / "linter.py"
+    if tool in ("validate", "validate_state", "validate-state"):
+        return ROOT / "scripts" / "validate_state.py"
     if tool == "migrate":
         return ROOT / "migrate_optimized.py"
     raise KeyError(tool)
@@ -116,6 +119,9 @@ def run_unix_wrapper(sh: Path, args: list[str]) -> int:
 
 def run_python_core(tool: str, args: list[str]) -> int:
     """Run a Python core script directly."""
+    if tool == "migrate":
+        print("Notice: 'migrate' is retired; framework optimization is complete and active.", file=sys.stderr)
+        return 0
     core = python_core(tool)
     if not core.is_file():
         if tool == "deploy":
@@ -141,11 +147,11 @@ Detected OS family: {family}
 Usage:
   python scripts/run.py deploy [book_name_or_path]
   python scripts/run.py lint <path> [linter args...]
-  python scripts/run.py migrate
+  python scripts/run.py validate [state_file_or_dir]
 
 Platform wrappers (AI: pick by OS if not using this launcher):
-  Unix:    scripts/unix/deploy.sh | lint.sh | migrate.sh
-  Windows: scripts/windows/deploy.ps1 | lint.ps1 | migrate.ps1
+  Unix:    scripts/unix/deploy.sh | lint.sh | validate.sh
+  Windows: scripts/windows/deploy.ps1 | lint.ps1 | validate.ps1
 """
     )
 
@@ -163,6 +169,10 @@ def main(argv: list[str] | None = None) -> int:
         print(f"Unknown tool: {tool}", file=sys.stderr)
         usage()
         return 2
+
+    if tool == "migrate":
+        print("Notice: 'migrate' is retired; framework optimization is complete and active.")
+        return 0
 
     family = detect_family()
     wrapper = wrapper_path(family, tool)

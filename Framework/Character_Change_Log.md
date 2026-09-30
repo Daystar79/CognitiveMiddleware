@@ -56,12 +56,8 @@ On **every approved movement**, execute the Post-Movement State Commit:
 
 | Character | Active Focus | Latent weights | Bias strength | Default somatic | Flexibility | As of |
 | :--- | :--- | :--- | :---: | :--- | :---: | :---: |
-| Cass | IV — Will | I:5 II:10 V:5 VIII:5 | 70 | Still posture; unhurried movements; level gaze; hands folded loosely | 35 | build |
-| Helen | VI — Compassion | II:10 IV:10 VIII:10 | 80 | Chest soft; open hands; sudden inhale; weight toward other; close proximity | 50 | build |
-| Lior | IX — Threshold Fear | I:5 II:10 III:5 | 75 | Lilt in voice; fingers trembling; rapid shallow breathing; wide sight focus | 65 | build |
-| Nora | VI — Compassion | I:10 II:10 VII:10 | 65 | Warm touch; chest breathing; eyes scanning faces; jaw soft | 55 | build |
-| Reed | VIII — Integration | I:10 II:15 VII:10 | 75 | Throat tight; shoulders high; chest breathing; jaw locking | 30 | build |
-| Wren | VII — Presence | I:15 II:15 VI:10 | 65 | Physical stillness; sight landing without attachment; loose jaw | 60 | build |
+<!-- Seed one row per active character from card build defaults (as_of: build) when cast is created -->
+
 
 ---
 

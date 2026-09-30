@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Unix launcher — one-time optimized-file migration (if *_optimized sources exist).
-# AI agents on Linux/macOS/BSD: run this (or: python3 scripts/run.py migrate).
+# Unix launcher — psychosomatic state validator.
+# AI agents on Linux/macOS/BSD: run this (or: python3 scripts/run.py validate …).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -15,4 +15,4 @@ else
   exit 127
 fi
 
-exec "$PY" "$ROOT/migrate_optimized.py" "$@"
+exec "$PY" "$ROOT/scripts/validate_state.py" "$@"

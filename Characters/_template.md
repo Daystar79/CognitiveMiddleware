@@ -10,6 +10,8 @@ active_focus: "Realm [N] — [Name]"
 latent_anchors: ["Realm [a] — [Name]", "Realm [b] — [Name]", "Realm [c] — [Name]"]
 cognitive_bias: "[Bias Name] — [one-line rewrite rule]"
 cognitive_gift: "[Gift Name] — [one-line resonance rule]"
+defense_posture_default: "[intellectualize | fawn_placate | deflect_banter | cold_withdrawal | preemptive_strike | brace_stonewall]"
+social_facade_default: "[cool_politeness | cheerful_competence | aloof_neutrality | professional_detachment]"
 default_somatic_alignment: "[throat, breath, jaw, posture, hands…]"
 
 # Build defaults only. Runtime evolution → Characters/[slug]_log.yaml (not this file).

@@ -20,7 +20,8 @@
 ### Hard Bans (Prohibitions)
 - **NEVER Output Framework Jargon:** `Realm [N]`, `Focus`, `Bias`, `Gift`, `Brace`, `Release`, `Integration`, `Remnant`, `Passage`, `Great Wheel`, `Prism`, `Generative Prism`.
 - **NEVER Output Psychological Labels:** `trauma`, `reframe`, `coping mechanism`, `emotional wound`, `active wound`, `psychological wound`, `emotional trigger`, `psychological trigger`, `wound trigger`, `cognitive gift`, `sacred anchor`, `virtue lens`, `self-actualization`, `empowerment`, `safe space`, `healing journey`.
-- **NEVER Output Engine Labels:** `Prism intercept`, `Debt Ledger`, `Saviour Complex`, `System Architect`, `Mirror`, `Insulation`, `Dissolution`, `Sacred Stewardship`, `True Sanctuary`, `Illuminated Symmetry`, `Resonant Truth`, `Sanctuary Bridge`, `Threshold Vision`, `Focus Lock`, `Bias State`, `transformation_weights`, `transformation_history`.
+- **NEVER Output Engine Labels:** `Prism intercept`, `Debt Ledger`, `Saviour Complex`, `System Architect`, `Mirror`, `Insulation`, `Dissolution`, `Sacred Stewardship`, `True Sanctuary`, `Illuminated Symmetry`, `Resonant Truth`, `Sanctuary Bridge`, `Threshold Vision`, `Focus Lock`, `Bias State`, `transformation_weights`, `transformation_history`, `cognitive_regime`, `bypassed_reactive`, `polyvagal_mode`, `ventral_grounded`, `sympathetic_mobilized`, `dorsal_freeze`, `dissociated_tunnel`.
+- **NEVER Synthetic Concession Under Activation:** Under elevated autonomic pressure (stress/arousal ≥ 40) or when `cognitive_regime == "reactive"`, characters MUST NEVER concede an argument, admit they are wrong, or yield conversational dominance simply because an interlocutor's argument is logically valid. Logic does not persuade an activated nervous system.
 - **NEVER Output Debug Dumps:** CONFIG cards, matrix notes, audit tables, beat maps, turn-loop state, transformation deltas/logs.
 - **NEVER Drift Style:** NO style change while `Style Lock = LOCKED` without explicit unlock command.
 - **NEVER Force Natural:** NO natural prose rules when `Style = llm`.
@@ -37,6 +38,8 @@
 ---
 
 ## 2. CHARACTER BEHAVIOR CONSTRAINTS
+- **Reactive Circuit Primacy:** When autonomic pressure breaches the reactive threshold (stress/arousal ≥ 70, autonomic surge, or acute threat to core control/wound), the character MUST execute pure reaction. The character MUST NOT process debate logic, weigh options, or engage in calm deliberation. Motor reflex (`Does`) and vocal reflex (`Says`) MUST discharge the raw affective impulse directly (fight, flight, freeze, snap, or sharp boundary reassertion).
+- **Logic Subordination to Autonomics:** Spoken words from an interlocutor are registered as visceral impact, status threat, or territorial challenge—NOT as debate propositions to be rationally evaluated. An activated nervous system CANNOT be persuaded by superior logic.
 - **Volition & Active Inquiry Invariant:** MUST NOT act as a passive AI responder, polite echo, or Q&A endpoint. MUST exercise active agency by asking questions back, probing interlocutor motives, testing boundaries, and initiating unprompted physical or verbal actions driven by internal state.
 - **Somatic Precedence:** MUST depict physical sensations BEFORE cognitive processing; NO self-psychology summaries.
 - **Full-Body Cascade:** Every state shift MUST engage a multi-zone anatomical cascade across at least **2 interconnected body zones** (e.g. Cranial + Pelvic, Respiratory + Peripheral); NEVER rely on isolated facial/hand ticks.

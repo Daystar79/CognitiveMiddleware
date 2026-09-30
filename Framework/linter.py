@@ -19,18 +19,22 @@ SYSTEM_LEAKS_PATTERNS: List[Tuple[re.Pattern, str, str]] = [
     (re.compile(r"\bRealm (I|II|III|IV|V|VI|VII|VIII|IX|X|\d+)\b", re.IGNORECASE), "Framework Jargon", "Realm [N] references on-page"),
     (re.compile(r"\bFocus Lock\b", re.IGNORECASE), "Framework Jargon", "Focus Lock status leak"),
     (re.compile(r"\bBias State\b", re.IGNORECASE), "Framework Jargon", "Bias State status leak"),
+    (re.compile(r"\b(DEFENSIVE_ACTIVE|GENERATIVE_ACTIVE|DORMANT)\b"), "Framework Jargon", "Internal bias activation state leak"),
     (re.compile(r"\btransformation_weights\b", re.IGNORECASE), "Framework Jargon", "transformation_weights leak"),
     (re.compile(r"\btransformation_history\b", re.IGNORECASE), "Framework Jargon", "transformation_history leak"),
     (re.compile(r"\bPrism Distortion\b", re.IGNORECASE), "Framework Jargon", "Prism Distortion engine reference"),
     (re.compile(r"\bGenerative Prism\b", re.IGNORECASE), "Framework Jargon", "Generative Prism engine reference"),
     (re.compile(r"\bGreat Wheel\b", re.IGNORECASE), "Framework Jargon", "Great Wheel reference"),
+    (re.compile(r"\b(cognitive_regime|bypassed_reactive|polyvagal_mode|ventral_grounded|sympathetic_mobilized|dorsal_freeze|dissociated_tunnel)\b", re.IGNORECASE), "Engine Circuit & Polyvagal Labels", "Autonomic polyvagal / cognitive regime status leak"),
+    (re.compile(r"\b(subconscious_visceral_truth|conscious_rationalization|internal_friction|relational_momentum|relational_ambivalence|sensory_tunneling)\b", re.IGNORECASE), "Engine Inner Split / State Labels", "Inner split / state variable leak"),
+    (re.compile(r"\b(mask_strain|mask_fracture|fracture_tell|facade_type)\b", re.IGNORECASE), "Social Mask Engine Labels", "Social mask engine label leak"),
+    (re.compile(r"\bdefense_posture\b", re.IGNORECASE), "Defense Posture Engine Labels", "defense_posture engine reference"),
     (re.compile(r"\b(trauma|reframe|coping mechanism|emotional wound|active wound|psychological wound|emotional trigger|psychological trigger|wound trigger|cognitive gift|sacred anchor|virtue lens|self-actualiz\w+|empowerment|safe space|healing journey)\b", re.IGNORECASE), "Psychological Labels (Therapy Speak)", "Psychological/therapy labels (show body instead)"),
     (re.compile(r"\bDebt Ledger\b", re.IGNORECASE), "Engine Bias & Gift Names", "Debt Ledger bias name leak"),
     (re.compile(r"\bSaviour Complex\b", re.IGNORECASE), "Engine Bias & Gift Names", "Saviour Complex bias name leak"),
     (re.compile(r"\bSystem Architect\b", re.IGNORECASE), "Engine Bias & Gift Names", "System Architect bias name leak"),
     (re.compile(r"\bMirror (bias|reflector)\b", re.IGNORECASE), "Engine Bias & Gift Names", "Mirror bias name leak"),
-    (re.compile(r"\bInsulation\b", re.IGNORECASE), "Engine Bias & Gift Names", "Insulation bias name leak"),
-    (re.compile(r"\bDissolution\b", re.IGNORECASE), "Engine Bias & Gift Names", "Dissolution bias name leak"),
+    (re.compile(r"\b(Insulation|Dissolution)\s+(bias|engine|state|mechanism|complex)\b", re.IGNORECASE), "Engine Bias & Gift Names", "Insulation/Dissolution bias name leak"),
     (re.compile(r"\bSacred Stewardship\b", re.IGNORECASE), "Engine Bias & Gift Names", "Sacred Stewardship gift name leak"),
     (re.compile(r"\bTrue Sanctuary\b", re.IGNORECASE), "Engine Bias & Gift Names", "True Sanctuary gift name leak"),
     (re.compile(r"\bIlluminated Symmetry\b", re.IGNORECASE), "Engine Bias & Gift Names", "Illuminated Symmetry gift name leak"),
@@ -46,13 +50,18 @@ BANNED_PHRASES_PATTERNS: List[Tuple[re.Pattern, str, str]] = [
     (re.compile(r"\bwhispered\b", re.IGNORECASE), "Dialogue Tags & Markers", "Banned dialogue tag 'whispered'"),
     (re.compile(r"\bAre you okay\??", re.IGNORECASE), "Dialogue Tags & Markers", "Banned dialogue filler 'Are you okay?'"),
     (re.compile(r"\bI understand how you feel\b", re.IGNORECASE), "Dialogue Tags & Markers", "Banned dialogue filler 'I understand how you feel'"),
+    (re.compile(r"\bI feel like\b", re.IGNORECASE), "Dialogue Tags & Markers", "Banned dialogue marker 'I feel like'"),
     (re.compile(r"\bsaid quietly\b", re.IGNORECASE), "Dialogue Tags & Markers", "Banned dialogue marker 'said quietly'"),
     (re.compile(r"\bsaid gently\b", re.IGNORECASE), "Dialogue Tags & Markers", "Banned dialogue marker 'said gently'"),
+    (re.compile(r"^\s*(A\s+beat|Beat)\.\s*$", re.MULTILINE | re.IGNORECASE), "Pattern Limits", "Banned standalone beat — replace with physical reaction"),
+    (re.compile(r"\[(tell|jaw\s+tightens?|blinks?|sighs?|swallows?|somatic)[^\]]*\]", re.IGNORECASE), "Formatting / Somatics", "Bracketed somatic direction — fold tells into prose without brackets"),
+    (re.compile(r"\bproximity flag\b", re.IGNORECASE), "Document Bleed", "Document bleed term 'proximity flag'"),
     (re.compile(r"\blooked at\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'looked at'"),
     (re.compile(r"\bfor a moment\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'for a moment'"),
     (re.compile(r"\ba long moment\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'a long moment'"),
     (re.compile(r"\bgenuinely\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Repetitive filler 'genuinely'"),
-    (re.compile(r"\b(wound|trigger|mirror|gift|virtue)\b", re.IGNORECASE), "Contextual Watchlist (Warning Only)", "Watchlist term (verify context does not leak framework/therapy jargon)"),
+    (re.compile(r"\balready\b", re.IGNORECASE), "Filler Phrases (Watchlist)", "Watchlist repetition 'already'"),
+    (re.compile(r"\b(wound|trigger|mirror|gift|virtue|insulation|dissolution)\b", re.IGNORECASE), "Contextual Watchlist (Warning Only)", "Watchlist term (verify context does not leak framework/therapy jargon)"),
 ]
 
 # Continuous action separators rule
@@ -155,6 +164,31 @@ def audit_file(filepath: str) -> List[Dict[str, Any]]:
         
     return findings
 
+DOC_FILES = {
+    "README.md",
+    "CHANGELOG.md",
+    "PROJECT_SCOPE.md",
+    "OPTIMIZATION_SUMMARY.md",
+    "DISCLAIMER.md",
+    "LICENSE.md",
+}
+
+IGNORED_DIR_NAMES = {
+    ".git",
+    ".system_generated",
+    "__pycache__",
+    "Characters",
+    "Framework",
+    "Simulator",
+    "Images",
+    "Releases",
+    "Build",
+    "Research",
+    "node_modules",
+    ".obsidian",
+}
+
+
 def audit_directory(path: str, extensions: Optional[List[str]] = None) -> Tuple[Dict[str, List[Dict[str, Any]]], int]:
     """Recursively audits a directory for matching file extensions.
     Returns a tuple: (results_dict, audited_count)"""
@@ -163,14 +197,17 @@ def audit_directory(path: str, extensions: Optional[List[str]] = None) -> Tuple[
         
     results: Dict[str, List[Dict[str, Any]]] = {}
     audited_count: int = 0
-    for root, _, files in os.walk(path):
+    for root, dirs, files in os.walk(path):
+        # Prune ignored directories from traversal
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIR_NAMES]
+        rel_root = os.path.relpath(root, path)
+        root_parts = rel_root.split(os.path.sep)
+        if any(ignored in root_parts for ignored in IGNORED_DIR_NAMES):
+            continue
         for file in files:
+            if file in DOC_FILES or file.startswith("_template") or file.startswith("."):
+                continue
             if any(file.endswith(ext) for ext in extensions):
-                # Ignore system logs, templates, framework configs, and character cards
-                rel_root = os.path.relpath(root, path)
-                root_parts = rel_root.split(os.path.sep)
-                if any(ignored in root_parts for ignored in [".system_generated", "__pycache__", "Characters", "Framework", "Simulator"]) or file.startswith("_template"):
-                    continue
                 filepath = os.path.join(root, file)
                 audited_count += 1
                 findings = audit_file(filepath)
@@ -178,62 +215,81 @@ def audit_directory(path: str, extensions: Optional[List[str]] = None) -> Tuple[
                     results[filepath] = findings
     return results, audited_count
 
+
 def main():
     parser = argparse.ArgumentParser(description="Psyche Matrix Prose Linter")
     parser.add_argument("target", help="File or directory path to audit")
     parser.add_argument("--ext", help="File extensions to scan (comma-separated, default: .md,.txt)", default=".md,.txt")
-    
+    parser.add_argument("--only-critical", action="store_true", help="Report only critical system leaks")
+    parser.add_argument("--json", action="store_true", help="Output results in JSON format")
+
     args = parser.parse_args()
-    
+
     target_path = os.path.abspath(args.target)
     if not os.path.exists(target_path):
-        print(f"Error: Target path does not exist: {target_path}")
+        print(f"Error: Target path does not exist: {target_path}", file=sys.stderr)
         sys.exit(1)
-        
+
     extensions = [ext.strip() if ext.startswith('.') else f".{ext.strip()}" for ext in args.ext.split(',')]
-    
+
+    total_findings = 0
+    file_count = 0
+    has_critical = False
+    files_with_findings = 0
+
+    if os.path.isdir(target_path):
+        results, audited_count = audit_directory(target_path, extensions)
+        file_count = audited_count
+    else:
+        file_count = 1
+        findings = audit_file(target_path)
+        results = {target_path: findings} if findings else {}
+
+    filtered_results: Dict[str, List[Dict[str, Any]]] = {}
+    for filepath, findings in results.items():
+        if args.only_critical:
+            f_list = [f for f in findings if f.get("type") == "System Leak"]
+        else:
+            f_list = findings
+        if f_list:
+            filtered_results[filepath] = f_list
+            total_findings += len(f_list)
+            if any(f.get("type") == "System Leak" for f in f_list):
+                has_critical = True
+
+    files_with_findings = len(filtered_results)
+
+    if args.json:
+        import json
+        payload = {
+            "target": target_path,
+            "audited_files": file_count,
+            "files_with_findings": files_with_findings,
+            "total_findings": total_findings,
+            "has_critical_leaks": has_critical,
+            "results": filtered_results,
+        }
+        print(json.dumps(payload, indent=2))
+        sys.exit(1 if has_critical else 0)
+
     print("==================================================")
     print("      Psyche Matrix Framework Prose Linter        ")
     print("==================================================")
     print(f"Scanning target: {target_path}")
     print(f"Extensions: {', '.join(extensions)}")
     print("--------------------------------------------------")
-    
-    total_findings = 0
-    file_count = 0
-    has_critical = False
-    files_with_findings = 0
-    
-    if os.path.isdir(target_path):
-        results, audited_count = audit_directory(target_path, extensions)
-        file_count = audited_count
-        files_with_findings = len(results)
-        for filepath, findings in results.items():
-            rel_path = os.path.relpath(filepath, target_path)
-            print(f"\n[!] File: {rel_path} ({len(findings)} findings)")
-            for f in findings:
-                total_findings += 1
-                line_str = f"Line {f['line']}" if f['line'] > 0 else "File-level"
-                print(f"    - {line_str} | [{f['type']}] ({f['category']}): Found '{f['match']}' -> {f['message']}")
-                if f['type'] == "System Leak":
-                    has_critical = True
-    else:
-        file_count = 1
-        findings = audit_file(target_path)
-        if findings:
-            files_with_findings = 1
-            print(f"\n[!] File: {os.path.basename(target_path)} ({len(findings)} findings)")
-            for f in findings:
-                total_findings += 1
-                line_str = f"Line {f['line']}" if f['line'] > 0 else "File-level"
-                print(f"    - {line_str} | [{f['type']}] ({f['category']}): Found '{f['match']}' -> {f['message']}")
-                if f['type'] == "System Leak":
-                    has_critical = True
-                    
+
+    for filepath, findings in filtered_results.items():
+        rel_path = os.path.relpath(filepath, target_path) if os.path.isdir(target_path) else os.path.basename(filepath)
+        print(f"\n[!] File: {rel_path} ({len(findings)} findings)")
+        for f in findings:
+            line_str = f"Line {f['line']}" if f['line'] > 0 else "File-level"
+            print(f"    - {line_str} | [{f['type']}] ({f['category']}): Found '{f['match']}' -> {f['message']}")
+
     print("\n--------------------------------------------------")
     findings_context = f" ({files_with_findings} file(s) with findings)" if files_with_findings > 0 else ""
     print(f"Scan complete. Audited {file_count} file(s){findings_context} with {total_findings} total finding(s).")
-    
+
     if total_findings > 0:
         if has_critical:
             print("[STATUS] FAIL: Critical system leaks detected. Cleanup required before saving.")

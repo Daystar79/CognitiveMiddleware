@@ -29,7 +29,7 @@ from typing import List, Tuple
 # Active downstream products only (receive framework deploys).
 # Completed manuscripts stay OFF this list — do not bulk-update them:
 #   BeliefAndLove, A Wanderers Guide To the Gates, history_of_the_great_wheel
-# CharacterSimulator.UI is a separate .NET host (blocked), not a Framework tree.
+# Simulacra is a separate .NET host (blocked), not a Framework tree.
 DEPLOY_ALLOWLIST = frozenset({
     "Midlayer",
     "CharacterSimulator",
@@ -81,7 +81,6 @@ FRAMEWORK_DIRS = [
     "Framework/Psychology",
     "Framework/Schemas",
     "Framework/Prompts",
-    "Simulator",
     "scripts",
 ]
 
@@ -90,7 +89,6 @@ NEW_BOOK_DIRS = [
     "Build",
     "Releases",
     "Research",
-    "Images",
 ]
 
 GITIGNORE_CONTENT = """# OS / editor
@@ -119,7 +117,8 @@ def is_blocked_target(target_dir: str) -> bool:
     blocked = {
         "CognitiveMiddleware",
         "Authors_Framework",
-        "CharacterSimulator.UI",  # .NET UI — not a framework book tree
+        "Simulacra",  # .NET UI — not a framework book tree
+        "CharacterSimulator.UI",  # legacy folder name
         "Keys",
         "Legal",
         "Provider",
@@ -148,7 +147,7 @@ def copy_file(src: str, dst: str) -> None:
     dst_dir = os.path.dirname(dst)
     if not os.path.exists(dst_dir):
         os.makedirs(dst_dir, exist_ok=True)
-    shutil.copyfile(src, dst)
+    shutil.copy2(src, dst)
     print(f"    Copied: {os.path.relpath(dst, get_parent_dir())}")
 
 def copy_directory(src_dir: str, dst_dir: str) -> None:
@@ -159,14 +158,18 @@ def copy_directory(src_dir: str, dst_dir: str) -> None:
         os.makedirs(dst_dir, exist_ok=True)
     
     for root, dirs, files in os.walk(src_dir):
+        # Prune cache and private directories
+        dirs[:] = [d for d in dirs if d not in {"__pycache__", ".git", "Private", "private"}]
         rel_path = os.path.relpath(root, src_dir)
         target_root = dst_dir if rel_path == '.' else os.path.join(dst_dir, rel_path)
         os.makedirs(target_root, exist_ok=True)
         
         for file in files:
+            if file.endswith(('.pyc', '.pyo', '.tmp')) or file in {'.DS_Store', 'Thumbs.db'}:
+                continue
             src_file = os.path.join(root, file)
             dst_file = os.path.join(target_root, file)
-            shutil.copyfile(src_file, dst_file)
+            shutil.copy2(src_file, dst_file)
     print(f"    Synced folder: {os.path.relpath(dst_dir, get_parent_dir())}")
 
 def validate_source_files(source_dir: str) -> Tuple[List[str], List[str]]:
@@ -275,15 +278,29 @@ def deploy_to_path(source_dir: str, target_dir: str, *, force: bool = False) -> 
         else:
             print(f"    [WARNING] Source directory not found: {rel_dir}")
 
-    # Remove core-retired files that must not linger in downstream trees
+    # Remove core-retired files and directories that must not linger in downstream trees
     retired = [
         "Framework/Mechanics/erotica.md",
+        "Framework/Psychology/realm_index.md",
+        "migrate_optimized.py",
+        "scripts/unix/migrate.sh",
+        "scripts/windows/migrate.ps1",
+        "scripts/windows/migrate.cmd",
     ]
     for rel in retired:
         stale = os.path.join(target_dir, rel)
         if os.path.isfile(stale):
             os.remove(stale)
             print(f"    Removed retired file: {rel}")
+
+    retired_dirs = [
+        "Simulator",
+    ]
+    for rel_d in retired_dirs:
+        stale_d = os.path.join(target_dir, rel_d)
+        if os.path.isdir(stale_d):
+            shutil.rmtree(stale_d)
+            print(f"    Removed retired directory: {rel_d}/")
 
     print(f"[✓] Deployment to '{os.path.basename(target_dir)}' completed successfully!")
     print("  (Skipped author-local only: named character cards, Relations.md)")

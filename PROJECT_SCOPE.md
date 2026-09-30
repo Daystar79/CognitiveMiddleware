@@ -33,7 +33,7 @@ It separates **character psychology and somatic simulation** from **downstream p
 | Tier | Owns | Core Files |
 |---|---|---|
 | **Core Engine** | Mind-body simulation → intent vector (`Feels`, `Thinks`, `Says`, `Does`) | [Framework/CognitivePipeline.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/CognitivePipeline.md), `realm_data.yaml`, state schema, [Rules_Index.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Rules_Index.md) |
-| **Application Shells** | How intent vector is rendered into text or UI | [Framework/Main.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Main.md) (manuscript), [Simulator/CharacterRuntime.md](file:///mnt/Books/Source/CognitiveMiddleware/Simulator/CharacterRuntime.md) (RP chat) |
+| **Application Shells** | How intent vector is rendered into text or UI | [Framework/Main.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Main.md) (manuscript); downstream hosts (e.g. `CharacterSimulator`) |
 
 ```
                          Cognitive Pipeline
@@ -42,33 +42,45 @@ It separates **character psychology and somatic simulation** from **downstream p
                                  │
            ┌─────────────────────┴─────────────────────┐
            ▼                                           ▼
-   Book Writing Layer                           Roleplay Engine
-   (Framework/Main.md)                     (Simulator/CharacterRuntime.md)
- Novel Manuscript Prose                          Interactive Chat RP
+   Book Writing Layer                         Downstream Runtimes
+   (Framework/Main.md)                  (CharacterSimulator, Simulacra)
+ Novel Manuscript Prose                   Interactive Chat / Host UIs
 ```
 
 ---
 
 ## 3. Core Simulation Principles & Invariants
 
-### 3.1 Body Before Insight
-Autonomic nervous system reactions and multi-zone somatic cascades (Z1–Z6) complete **before** labeled cognition or dialogue. The 4-channel vector (`Feels` → `Thinks` → `Says` → `Does`) preserves this neurobiological order in every tick.
+### 3.1 Body Before Insight & Polyvagal Modes
+Autonomic nervous system reactions, polyvagal states (`ventral_grounded`, `sympathetic_mobilized`, `dorsal_freeze`, `dissociated_tunnel`), sensory tunneling anchors, and multi-zone somatic cascades (Z1–Z6) complete **before** labeled cognition or dialogue. The 4-channel vector (`Feels` → `Thinks` → `Says` → `Does`) preserves this neurobiological order in every tick.
 
-### 3.2 Dual-Aspect Psyche
-Characters operate on paired **Wound ↔ Gift** vectors rather than trauma-only engines:
-- **Defensive Path (`DEFENSIVE_ACTIVE`):** Triggered when scene pressure activates the core wound/bias.
-- **Generative Path (`GENERATIVE_ACTIVE`):** Engaged when trust, safety, or flow activates virtue lenses and creative capacity.
+### 3.2 Dual-Aspect Psyche & The Inner Split
+Characters operate on paired **Wound ↔ Gift** vectors and experience authentic human internal division:
+- **Subconscious Visceral Truth:** What the gut and nervous system know (e.g. terror of exposure).
+- **Conscious Rationalization:** The self-deceptive narrative the ego constructs to maintain composure and control.
+- **Defense Postures:** Specific survival strategies under threat (`intellectualize`, `fawn_placate`, `deflect_banter`, `cold_withdrawal`, `preemptive_strike`, `brace_stonewall`).
 
-### 3.3 Dynamic Priority Arbitration
+### 3.3 Social Masking & Persona Strain
+Characters maintain a social facade (`facade_type`) under varying degrees of effort (`mask_strain` 0–100). When pressure exceeds coping limits, the state machine triggers a `mask_fracture`, leaking a concrete physical tell into `Does` or dialogue slip into `Says`.
+
+### 3.4 Dynamic Priority Arbitration & Internal Friction
 Competing internal drives arbitrate dynamically based on salience score:
 $$\text{Salience} = (\text{Internal Intensity}) \times (\text{Context Multiplier}) \times (\text{Character Baseline Weight})$$
-The winning drive directs primary dialogue (`Says`) and action (`Does`), while secondary drives remain as subtext, monologue friction, or subtle somatic tells.
+The engine tracks `internal_friction` (0–100) to measure cognitive dissonance between competing urges, driving hesitations, dialogue asymmetry, and somatic dissonance.
 
-### 3.4 Unified 2-Tier State Model
+### 3.5 Interpersonal Momentum & Ambivalence
+Relational vectors track directional velocity (`relational_momentum`: `building`, `deepening`, `stable`, `eroding`, `brittle`, `suspended`, `fractured`) and simultaneous conflicting feelings (`relational_ambivalence`).
+
+### 3.6 Unified 2-Tier State Model
 State is managed across two persistence tiers:
-1. **Immutable Build Identity (`Characters/[slug].md`):** Fixed defaults, voice definitions, baseline drive weights, wound/gift descriptions.
-2. **Durable Runtime Log (`Characters/[slug]_log.yaml`):** Persistent evolution across movements/sessions (focus, weights, skills, detailed memories, relational baselines). Overrides card defaults.
-3. **Live Ephemeral Snapshot (`Framework/Schemas/psychosomatic_state.json`):** Per-tick mind-body state (autonomic scales 0–100, active affect, relational vectors, salience score, 4-channel vector). Rewritten every tick.
+1. **Immutable Build Identity (`Characters/[slug].md`):** Fixed defaults, voice definitions, baseline drive weights, wound/gift descriptions, default defense postures.
+2. **Durable Runtime Log (`Characters/[slug]_log.yaml`):** Persistent evolution across movements/sessions (focus, weights, skills, detailed memories, relational baselines with momentum). Overrides card defaults.
+3. **Live Ephemeral Snapshot (`Framework/Schemas/psychosomatic_state.json`):** Per-tick mind-body state (polyvagal mode, cognitive regime, autonomic scales 0–100, inner split, social mask strain/fracture, relational vectors, salience score, internal friction, 4-channel vector). Rewritten every tick.
+
+### 3.7 Dual-Circuit Cognition & Limbic Short-Circuit
+The runtime executes across two distinct neurobiological operational circuits:
+- **Deliberative Regime (`deliberative`):** Cortical/regulated loop. Evaluates context, weighs competing drives via priority arbitration, maintains social masks, and generates reasoned rationalization in monologue and speech.
+- **Reactive Regime (`reactive`):** Limbic short-circuit triggered by acute autonomic surge (stress/arousal ≥ 70) or threats to core autonomy/wounds. Prefrontal deliberation is bypassed; input is felt purely as autonomic impact rather than debate logic. Social masks collapse, arbitration is bypassed (`bypassed_reactive`), and the raw affective impulse discharges directly into reflexive motor action (`Does`) and vocal snaps/outbursts (`Says`). Synthetic capitulation and debate concession are strictly prohibited under activation.
 
 ---
 
@@ -111,7 +123,7 @@ If the goal is to emulate a human, **character behavior must not require switche
 - **Switchless Psychology:** Humans do not have adult modes or mood switches; they have bodies, histories, bonds, and situations. Character psychology operates 100% switchlessly through continuous state math.
 - **Automated Hands-Free Persistence:** State saving is completely automated. Live snapshots update every turn tick, and durable evolutions automatically merge into `_log.yaml` on scene breaks, movement ends, or session close per the pipeline commit protocol. Manual `/save` commands are eliminated.
 
-| Automated / Developer Inspection Only | Dropped From Character Runtime |
+| Automated / Developer Inspection Only | Eliminated Manual / Mode Switches |
 |---|---|
 | Automated durable log commit on scene close | Manual `/save` or `/adult on` commands |
 | Automated live tick state snapshots | HEAT / COMPANION behavioral modes |
@@ -129,7 +141,6 @@ If the goal is to emulate a human, **character behavior must not require switche
 | [Framework/Rules_Index.md](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Rules_Index.md) | Hard bans catalog and off-page matrix rules. | Enforced by AI agents and linter on all rendered text. |
 | [Framework/Psychology/realm_data.yaml](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Psychology/realm_data.yaml) | 10-realm somatic body catalog (micro, moderate, macro, release, vocal). | Data source for physical tells in `Feels` and `Does`. |
 | [Framework/Schemas/psychosomatic_state.json](file:///mnt/Books/Source/CognitiveMiddleware/Framework/Schemas/psychosomatic_state.json) | Ephemeral live state schema. | Used by `scripts/validate_state.py` to validate state structure. |
-| [Simulator/CharacterRuntime.md](file:///mnt/Books/Source/CognitiveMiddleware/Simulator/CharacterRuntime.md) | Standalone interactive roleplay host engine & OOC parser. | Standard chat host for interactive RP sessions. |
 | [Framework/linter.py](file:///mnt/Books/Source/CognitiveMiddleware/Framework/linter.py) | Automated prose linter for system leaks and banned phrases. | CI/CD and pre-commit check for manuscript compliance. |
 | [scripts/validate_state.py](file:///mnt/Books/Source/CognitiveMiddleware/scripts/validate_state.py) | State structure & range validator. | Validates character log and live state files. |
 | [deploy_framework.py](file:///mnt/Books/Source/CognitiveMiddleware/deploy_framework.py) | Framework deployment & synchronization script. | Copies framework scaffolding into downstream book projects. |
@@ -172,7 +183,7 @@ Mandatory Session Boot Stack (~2,760 - 3,500 words):
 | Somatic catalogs and state schemas | GUI / TUI / service shells |
 | Cross-platform Python ops scripts | Provider SDKs or app-specific logic |
 
-**If a C#, Rust, Go, or other native implementation is needed, it is built downstream** — as a separate product that **consumes** this contract (intent vector, psychosomatic snapshot schema, module hooks, age invariants). Examples of that pattern already exist outside this tree (e.g. .NET hosts such as CharacterSimulator.UI). Those hosts may reimplement execution mechanics; they must not become the source of truth for psych/physical rules. Spec changes still land here first, then deploy or sync to consumers.
+**If a C#, Rust, Go, or other native implementation is needed, it is built downstream** — as a separate product that **consumes** this contract (intent vector, psychosomatic snapshot schema, module hooks, age invariants). Examples of that pattern already exist outside this tree (e.g. .NET hosts such as Simulacra). Those hosts may reimplement execution mechanics; they must not become the source of truth for psych/physical rules. Spec changes still land here first, then deploy or sync to consumers.
 
 **Deploy reminder:** Framework deploys target allowlisted *framework trees* only (e.g. Midlayer, CharacterSimulator). Compiled host projects are not Framework trees and must not receive bulk markdown spray as if they were.
 
