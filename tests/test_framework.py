@@ -171,6 +171,9 @@ class TestDeploymentDecoupling(unittest.TestCase):
         self.assertTrue(deploy_framework.is_blocked_target("/some/path/Authors_Framework"))
         self.assertTrue(deploy_framework.is_blocked_target("/some/path/Simulacra"))
 
+    def test_framework_files_include_psyche_framework(self):
+        self.assertIn("Framework/psyche_framework.md", deploy_framework.FRAMEWORK_FILES)
+
 
 if __name__ == "__main__":
     unittest.main()

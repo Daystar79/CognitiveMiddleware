@@ -58,6 +58,7 @@ FRAMEWORK_FILES = [
     "Framework/Character_Change_Log.md",
     "Framework/source_changes.md",
     "Framework/degradation_protocol.md",
+    "Framework/psyche_framework.md",
     "Characters/_template.md",
     "Characters/_log_template.yaml",
     "Characters/README.md",
@@ -297,6 +298,9 @@ def deploy_to_path(source_dir: str, target_dir: str, *, force: bool = False) -> 
         "Simulator",
     ]
     for rel_d in retired_dirs:
+        # Simulator was decoupled to CharacterSimulator; do not delete it there
+        if target_name == "CharacterSimulator" and rel_d == "Simulator":
+            continue
         stale_d = os.path.join(target_dir, rel_d)
         if os.path.isdir(stale_d):
             shutil.rmtree(stale_d)
