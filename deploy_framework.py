@@ -31,7 +31,6 @@ from typing import List, Tuple
 #   BeliefAndLove, A Wanderers Guide To the Gates, history_of_the_great_wheel
 # Simulacra is a separate .NET host (blocked), not a Framework tree.
 DEPLOY_ALLOWLIST = frozenset({
-    "Midlayer",
     "CharacterSimulator",
 })
 
